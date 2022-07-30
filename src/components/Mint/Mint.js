@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const initData = {
   pre_heading: "Mint",
-  heading: "Mint Your DivinityX",
+  heading: "Mint Your TurkNodes",
 };
 
 class Mint extends Component {

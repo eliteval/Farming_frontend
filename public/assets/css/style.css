@@ -68,12 +68,12 @@
   --h6-weight: 600;
   --p-size: 1rem;
   --p-weight: 400;
-  --header-bg-color: #121117;
+  --header-bg-color: black;
   --nav-brand-height: 55px;
   --top-nav-item-color: #f5f5f5;
-  --nav-item-color: #121117;
-  --primary-color: #4528DC;
-  --secondary-color: #57048A;
+  --nav-item-color: #D1202A;
+  --primary-color: #db3a42;
+  --secondary-color: #D1202A;
   --white-color: #f9f9f9;
   --black-color: #040402;
   --grey-color: #f3f5f7;
@@ -87,14 +87,14 @@
   --secondary-l-color: rgba(255, 255, 255, 0.12);
   --valid-color: #007a4d;
   --invalid-color: #e34f4f;
-  --primary-bg-color: #09080D;
+  --primary-bg-color: #302E2E;
   --primary-bg-color-2: #eeeeee;
   --primary-bg-color-3: #e5e5e5;
   --secondary-bg-color: #040402;
   --secondary-bg-color-2: #111111;
   --secondary-bg-color-3: #191919;
   --card-bg-color: #16151A;
-  --footer-bg-color: #121117;
+  --footer-bg-color: #302E2E;
 }
 
 /* #endregion Root */
@@ -1207,6 +1207,7 @@ header .navbar-expand {
   width: 100%;
   padding: 20px 25px;
   pointer-events: initial;
+  background-color: black;
 }
 
 header .navbar-expand.relative {
@@ -3064,7 +3065,138 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
 /*# sourceMappingURL=style.css.map */
 
 
-/* DivinityX */
-.about-section {
-  
+/* Farming */
+.myshadow{
+  box-shadow: 2px 5px 7px lightslategray;
 }
+.float-right{
+  float: right;
+}
+
+button.red {
+  background-color: #D1202A;
+  background-image: none;
+}
+
+button.gray {
+  background-color: #302E2E;
+  background-image: none;
+}
+
+.text-white{
+  color: white;
+}
+.text-red{
+  color: #D1202A;
+}
+.text-blue{
+  color: #2ABFCD;
+}
+.text-black{
+  color: black;
+}
+.text-gray{
+  color: #302E2E;
+}
+
+.bg-red {
+  background-color: #D1202A;
+  border-color: #D1202A;
+}
+.bg-gray {
+  background-color: #302E2E;
+}
+.bg-blue {
+  background-color: #2ABFCD;
+}
+.bg-white {
+  background-color:white;
+}
+
+/* networks */
+
+img.networks{
+  width: 90px;
+  height: 90px;
+  border-radius: 50px; 
+}
+@media (max-width: 991px) {
+  img.networks{
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 991px) {
+  img.networks{
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 575px) {
+  img.networks{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.networks-container{
+  position: relative;
+  left: 20%;
+  width: 60%;
+  top: -45px;
+}
+
+@media (max-width: 991px) {
+  .networks-container{
+    position: relative;
+    left: 10%;
+    width: 80%;
+    top: -35px;
+  }
+}
+
+@media (max-width: 575px) {
+  .networks-container{
+    position: relative;
+    left: 10%;
+    width: 80%;
+    top: -25px;
+  }
+}
+/* claim */
+.claim-box{
+  color:white;
+  font-size: 21px;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 13px 15px;
+  margin-bottom: 10px;
+}
+.claim-button{
+  background-color: #D1202A;
+  background-image: none;
+  width: 100%;
+  font-size: 21px;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 18px 15px;
+}
+.claim-button-sm{
+  background-image: none;
+  border-radius: 20px;
+}
+
+.claim-table *{
+  text-align: center!important;
+}
+.claim-table th {
+  background-color: #302E2E;
+  color: white;
+}
+.claim-table tr td {
+  color: black;
+  font-size: 18px;
+}
+

@@ -11,10 +11,14 @@ import Footer from "../components/Footer/Footer";
 import ModalSearch from "../components/Modal/ModalSearch";
 import ModalMenu from "../components/Modal/ModalMenu";
 import Scrollup from "../components/Scrollup/Scrollup";
-import About from "../components/About/About";
+// import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
 import Authors from "../components/Authors/Authors";
 import Mint from "../components/Mint/Mint";
+import Banner from "../components/Farming/Banner";
+import Bar from "../components/Farming/Bar";
+import About from "../components/Farming/About";
+import Networks from "../components/Farming/Networks";
 
 import Web3 from "web3";
 import DivinityXData from "../contract/DivinityX.json";
@@ -163,46 +167,11 @@ class ThemeOne extends Component {
             accountAddress={this.state.accountAddress}
             connectToMetamask={this.connectToMetamask}
           />
-          <Hero />
-
-          {!this.state.metamaskConnected ? (
-            <section className="author-area" id="mint_area">
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-12 col-md-8 col-lg-7">
-                    <div className="intro text-center">
-                      <span>Mint</span>
-                      <h4 className="mt-3 mb-0">Please connect your wallet.</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          ) : this.state.ACITVE_SALE && this.state.ACITVE_PRESALE ? (
-            <Mint
-              mint={this.presaleMint}
-              totalSupply={this.state.totalSupply}
-              MAX_SUPPLY={this.state.MAX_SUPPLY}
-              MINT_COST={this.state.MINT_COST}
-              stage="presale"
-            />
-          ) : (
-            <Mint
-              mint={this.publicMint}
-              totalSupply={this.state.totalSupply}
-              MAX_SUPPLY={this.state.MAX_SUPPLY}
-              MINT_COST={this.state.MINT_COST}
-              stage="publicsale"
-            />
-          )}
+          <Banner />
+          <Bar />
           <About />
-          <Work />
-          <Authors />
+          <Networks />
           <Faq />
-          {/* <Auctions />
-          <TopSeller />
-          <Collections />
-          <Explore /> */}
           <Footer />
           <ModalSearch />
           <ModalMenu />

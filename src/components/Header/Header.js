@@ -8,22 +8,16 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
                 <div className="container header">
                     {/* Navbar Brand*/}
                     <a className="navbar-brand" href="/">
-                        <img className="navbar-brand-sticky" src="img/logo.png" alt="sticky brand-logo" />
+                        <img className="navbar-brand-sticky" src="img/logo_white.png" alt="sticky brand-logo" />
                     </a>
                     <div className="ml-auto" />
                     {/* Navbar */}
-                    <ul className="navbar-nav items mx-auto">
+                    <ul className="navbar-nav items mx-auto">                        
                         <li className="nav-item dropdown">
-                            <a className="nav-link smooth-anchor" href="#about_area">About</a>
+                            <a className="nav-link smooth-anchor" href="#banner">Home</a>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link smooth-anchor" href="#mint_area">Mint</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link smooth-anchor" href="#roadmap_area">Roadmap</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link smooth-anchor" href="#team_area">Team</a>
+                            <a className="nav-link smooth-anchor" href="#about_area">Dapp</a>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link smooth-anchor" href="#faq_area">FAQ</a>

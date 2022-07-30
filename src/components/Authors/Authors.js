@@ -18,7 +18,7 @@ class Authors extends Component {
                 "name": "Frost / Artful Studios",
                 "position": "Founder",
                 "btnText": "Follow",
-                "link": " https://twitter.com/DivinityX_NFT"
+                "link": " https://twitter.com/TurkNodes_NFT"
             },
             {
                 "id": 2,

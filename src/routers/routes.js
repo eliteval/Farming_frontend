@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // importing all the themes
 import ThemeOne from "../themes/theme-one";
+import Dashboard from "../themes/dashboard";
 import ExploreOne from "../themes/explore-one";
 import ExploreTwo from "../themes/explore-two";
 import ExploreThree from "../themes/explore-three";
@@ -28,23 +29,7 @@ class MyRouts extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={ThemeOne} />
-            <Route exact path="/explore-1" component={ExploreOne} />
-            <Route exact path="/explore-2" component={ExploreTwo} />
-            <Route exact path="/explore-3" component={ExploreThree} />
-            <Route exact path="/explore-4" component={ExploreFour} />
-            <Route exact path="/auctions" component={Auctions} />
-            <Route exact path="/item-details" component={ItemDetails} />
-            <Route exact path="/activity" component={Activity} />
-            <Route exact path="/blog" component={Blog} />
-            <Route exact path="/blog-single" component={BlogSingle} />
-            <Route exact path="/help-center" component={HelpCenter} />
-            <Route exact path="/authors" component={Authors} />
-            <Route exact path="/author" component={Author} />
-            <Route exact path="/wallet-connect" component={WalletConnect} />
-            <Route exact path="/create" component={Create} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </div>

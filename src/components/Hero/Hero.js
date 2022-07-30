@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 const initData = {
-    pre_heading: "DivinityX",
-    heading: "Discover, collect, and sell DivinityX",
+    pre_heading: "TurkNodes",
+    heading: "Discover, collect, and sell TurkNodes",
     content: "4,444 algorithmically generated, unique, and collectible Divinitys on the Ethereum blockchain",
     btn_1: "Explore",
     btn_2: "Create"
