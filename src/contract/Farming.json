@@ -1010,7 +1010,10 @@
   ],
   "networks": {
     "80001": {
-      "address": "0xfd0d3a8b9438465902e832A55A777F89Fa7b715D"
+      "address": "0x1493751540215432e0037adcc6c118101ebdde68"
+    },
+    "137": {
+      "address": "0x4ec87a444dc5737de8d0382137e58b8a7df17433"
     }
   }
 }

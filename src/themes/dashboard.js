@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Header from "../components/Header/Header";
+import Header from "../components/Farming/Header";
 import Hero from "../components/Hero/Hero";
 import Auctions from "../components/Auctions/AuctionsOne";
 import TopSeller from "../components/TopSeller/TopSellerOne";
@@ -9,7 +9,7 @@ import Explore from "../components/Explore/ExploreOne";
 import Work from "../components/Work/Work";
 import Footer from "../components/Footer/Footer";
 import ModalSearch from "../components/Modal/ModalSearch";
-import ModalMenu from "../components/Modal/ModalMenu";
+import ModalMenu from "../components/Farming/ModalMenu";
 import Scrollup from "../components/Scrollup/Scrollup";
 import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
@@ -20,15 +20,17 @@ import Web3 from "web3";
 import FarmingData from "../contract/Farming.json";
 import ERC20Data from "../contract/ERC20.json";
 
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 import { formatUnits, parseUnits, commify } from "@ethersproject/units";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      web3: null,
       accountAddress: "",
       accountBalance: "",
+      networkId: 0,
       metamaskConnected: false,
       contractDetected: false,
       farmingContract: null,
@@ -63,9 +65,14 @@ class Dashboard extends Component {
         "Non-Ethereum browser detected. You should consider trying MetaMask!"
       );
     }
+    this.setState({ web3: window.web3 });
+
+    window.ethereum.on("chainChanged", (_chainId) => this.loadBlockchainData());
+    // window.ethereum.on("accountsChanged", (array) => window.location.reload());
   };
   loadBlockchainData = async () => {
-    const web3 = window.web3;
+    const web3 = this.state.web3;
+
     const accounts = await web3.eth.getAccounts();
     if (accounts.length === 0) {
       this.setState({ metamaskConnected: false });
@@ -78,6 +85,8 @@ class Dashboard extends Component {
       this.setState({ accountBalance });
       this.setState({ loading: false });
       const networkId = await web3.eth.net.getId();
+      this.setState({ networkId });
+
       console.log(networkId, this.state.accountAddress, accountBalance);
 
       const networkData = FarmingData.networks[networkId];
@@ -92,7 +101,7 @@ class Dashboard extends Component {
         this.setState({ farmingContract });
         this.setState({ contractDetected: true });
 
-        await this.loadData(web3);
+        await this.loadData();
 
         this.setState({ loading: false });
       } else {
@@ -101,7 +110,7 @@ class Dashboard extends Component {
     }
   };
 
-  loadData = async (web3) => {
+  loadData = async () => {
     console.log("loading");
     const total_deposited = await this.state.farmingContract.methods
       .total_deposited()
@@ -125,29 +134,28 @@ class Dashboard extends Component {
         .call();
     this.setState({ yield_total: total_yield });
     this.setState({ yield_types: yield_of_each_type });
+    console.log(total_yield, yield_of_each_type);
 
     const total_withdraw = await this.state.farmingContract.methods
       .total_withdraw()
       .call();
     this.setState({ total_withdraw });
 
-    // const stable_coin_address = await this.state.farmingContract.methods
-    //   .stable_coin_address()
-    //   .call();
-    // this.setState({ stable_coin_address });
+    const stable_coin_address = await this.state.farmingContract.methods
+      .stable_coin_address()
+      .call();
+    this.setState({ stable_coin_address });
 
     //Stable Coin
-    const erc20Contract = new web3.eth.Contract(
+    const erc20Contract = new this.state.web3.eth.Contract(
       ERC20Data.abi,
-      "0xE4607F923490Ec238D82aAE55525176D67749CEa"
-      // stable_coin_address
+      stable_coin_address
     );
     this.setState({ erc20Contract });
 
     const token_allowance = await this.state.erc20Contract.methods
       .allowance(this.state.accountAddress, this.state.contract_address)
       .call();
-    console.log("token_allowance: ", token_allowance);
     this.setState({ token_allowance });
 
     const token_balance = await this.state.erc20Contract.methods
@@ -160,6 +168,12 @@ class Dashboard extends Component {
     await window.ethereum.enable();
     this.setState({ metamaskConnected: true });
     window.location.reload();
+  };
+
+  disconnect = async () => {
+    console.log("disconnecting");
+    this.setState({ metamaskConnected: false });
+    this.setState({ accountAddress: "" });
   };
 
   approveToken = async () => {
@@ -175,16 +189,15 @@ class Dashboard extends Component {
         value: 0,
       })
       .on("confirmation", (confirmationNumber) => {
-        this.setState({ loading: false });
-        this.loadData();
+        return;
       });
   };
 
   createNode = async (node_type) => {
     this.setState({ loading: true });
-    // if (this.state.token_allowance < parseUnits("1000", 18)) {
-    //   await this.approveToken();
-    // }
+    if (this.state.token_allowance < parseUnits("1000", 18)) {
+      await this.approveToken();
+    }
     await this.state.farmingContract.methods
       .createNode(node_type, "0x0000000000000000000000000000000000000000")
       .send({
@@ -236,14 +249,20 @@ class Dashboard extends Component {
             metamaskConnected={this.state.metamaskConnected}
             accountAddress={this.state.accountAddress}
             connectToMetamask={this.connectToMetamask}
+            disconnect={this.disconnect}
           />
           {!this.state.metamaskConnected ? (
-            <section className="author-area" id="mint_area">
-              <div className="container">
+            <section className="author-area bg-white">
+              <div
+                className="container"
+                style={{ minHeight: "450px", padding: "50px 5% 0px" }}
+              >
                 <div className="row justify-content-center">
                   <div className="col-12 col-md-8 col-lg-7">
                     <div className="intro text-center">
-                      <h4 className="mt-3 mb-0">Please connect your wallet.</h4>
+                      <h4 className="mt-3 mb-0  text-black">
+                        Please connect your wallet.
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -260,7 +279,8 @@ class Dashboard extends Component {
               yield_types={this.state.yield_types}
             />
           )}
-          {/* <div className="bg-white">
+          <div className="bg-white" style={{display:"none"}}>
+            <p>networkId: {this.state.networkId}</p>
             <p>contract_address: {this.state.contract_address}</p>
             <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
             <p>total_withdraw: {this.state.total_withdraw / 1e18}$</p>
@@ -268,8 +288,12 @@ class Dashboard extends Component {
             <p>stable_coin_address: {this.state.stable_coin_address}</p>
             <p>token_allowance: {this.state.token_allowance}</p>
             <p>token_balance: {this.state.token_balance}</p>
-          </div> */}
+          </div>
           <Footer />
+          <ModalMenu
+            disconnect={this.disconnect}
+            createNode={this.createNode}
+          />
           <Scrollup />
         </div>
       </>

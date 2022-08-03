@@ -19,8 +19,9 @@ class Claim extends Component {
     });
   }
 
-  handleCreateNodeButton = (node_type) => {
-    this.props.createNode(node_type);
+  handleCreateNodeButton = () => {
+    let node_type = prompt("Which node will you select?");
+    if (node_type) this.props.createNode(node_type);
   };
 
   handleClaimNodesAllButton = () => {
@@ -53,7 +54,7 @@ class Claim extends Component {
                   <div className="claim-box bg-gray">
                     <span>Rewards</span>
                     <span className="float-right">
-                      $ {(this.props.yield_total / 1e18).toFixed(4)}
+                      $ {(this.props.yield_total / 1e18).toFixed(3)}
                     </span>
                   </div>
                 </div>
@@ -87,15 +88,9 @@ class Claim extends Component {
                         <td>Stater</td>
                         <td>{this.props.node_count_types[0]}</td>
                         <td>
-                          {(this.props.yield_types[0] / 1e18).toFixed(4)}$
+                          {(this.props.yield_types[0] / 1e18).toFixed(3)}$
                         </td>
                         <td className="text-center">
-                          <button
-                            className="btn gray claim-button-sm myshadow mx-2 mb-2"
-                            onClick={() => this.handleCreateNodeButton(0)}
-                          >
-                            Buy New
-                          </button>
                           <button
                             className="btn red claim-button-sm myshadow mx-2 mb-2"
                             onClick={() =>
@@ -110,15 +105,9 @@ class Claim extends Component {
                         <td>Pro</td>
                         <td>{this.props.node_count_types[1]}</td>
                         <td>
-                          {(this.props.yield_types[1] / 1e18).toFixed(4)}$
+                          {(this.props.yield_types[1] / 1e18).toFixed(3)}$
                         </td>
                         <td className="text-center">
-                          <button
-                            className="btn gray claim-button-sm myshadow mx-2 mb-2"
-                            onClick={() => this.handleCreateNodeButton(1)}
-                          >
-                            Buy New
-                          </button>
                           <button
                             className="btn red claim-button-sm myshadow mx-2 mb-2"
                             onClick={() =>
@@ -133,15 +122,9 @@ class Claim extends Component {
                         <td>Whale</td>
                         <td>{this.props.node_count_types[2]}</td>
                         <td>
-                          {(this.props.yield_types[2] / 1e18).toFixed(4)}$
+                          {(this.props.yield_types[2] / 1e18).toFixed(3)}$
                         </td>
                         <td className="text-center">
-                          <button
-                            className="btn gray claim-button-sm myshadow mx-2 mb-2"
-                            onClick={() => this.handleCreateNodeButton(2)}
-                          >
-                            Buy New
-                          </button>
                           <button
                             className="btn red claim-button-sm myshadow mx-2 mb-2"
                             onClick={() =>
@@ -156,6 +139,17 @@ class Claim extends Component {
                   </table>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="row justify-content-center text-center mt-4">
+            <div className="col-sm-12 col-md-4 text-center ">
+              <button
+                className="btn gray claim-button myshadow mx-2 mb-2"
+                onClick={() => this.handleCreateNodeButton(0)}
+              >
+                Buy New Node
+              </button>
             </div>
           </div>
         </div>

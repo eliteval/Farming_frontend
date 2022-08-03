@@ -1516,7 +1516,7 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.5rem;
+  font-size: 17px;
   font-weight: 600;
   border: none;
   color: var(--primary-t-color);
@@ -2933,9 +2933,10 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
     display: -ms-flexbox;
     display: flex;
   }
-  body header .navbar-expand .navbar-nav.contacts, body header .navbar-expand .navbar-nav.items, body header .navbar-expand .navbar-nav.icons .social {
+  body header .navbar-expand .navbar-nav.contacts, body header .navbar-expand .navbar-nav.items, body header .navbar-expand .navbar-nav.icons .social, body header .navbar-expand .navbar-nav.action .btn {
     display: none;
   }
+
   /* #endregion Header */
   /* #region Feature */
   body .card-footer {
@@ -3059,6 +3060,10 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
             align-items: start;
   }
   /* #endregion Modal */
+
+  header .navbar-expand{
+    padding: 20px 0px;
+  }
 }
 
 /* #endregion All Media Queries */
@@ -3075,6 +3080,11 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
 
 button.red {
   background-color: #D1202A;
+  background-image: none;
+}
+
+button.blue {
+  background-color: #2ABFCD;
   background-image: none;
 }
 
@@ -3100,17 +3110,17 @@ button.gray {
 }
 
 .bg-red {
-  background-color: #D1202A;
+  background-color: #D1202A!important;
   border-color: #D1202A;
 }
 .bg-gray {
-  background-color: #302E2E;
+  background-color: #302E2E!important;
 }
 .bg-blue {
-  background-color: #2ABFCD;
+  background-color: #2ABFCD!important;
 }
 .bg-white {
-  background-color:white;
+  background-color:white!important;
 }
 
 /* networks */

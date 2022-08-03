@@ -41,7 +41,7 @@ class Footer extends Component {
                                 {/* Copyright Area */}
                                 <div className="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                     {/* Copyright Left */}
-                                    <div className="copyright-left pt-3">©2022 TurkNodes, All Rights Reserved.</div>
+                                    <div className="copyright-left pt-3 mb-2">©2022 TurkNodes, All Rights Reserved.</div>
                                     {/* Social Icons */}
                                     <div className="social-icons d-flex">
                                         {this.state.socialData.map((item, idx) => {
