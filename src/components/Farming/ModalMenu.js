@@ -41,7 +41,7 @@ class ModalMenu extends Component {
                 Buy a Nodes
               </button>
               <button
-                className="btn gray mb-2"
+                className="btn mb-2 customButton"
                 style={{ marginLeft: "auto", marginRight: "auto" }}
                 onClick={() => this.props.disconnect()}
               >

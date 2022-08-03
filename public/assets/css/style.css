@@ -3153,8 +3153,8 @@ img.networks{
 
 .networks-container{
   position: relative;
-  left: 20%;
-  width: 60%;
+  left: 10%;
+  width: 80%;
   top: -45px;
 }
 
@@ -3210,3 +3210,64 @@ img.networks{
   font-size: 18px;
 }
 
+
+.relative_div{
+  position: relative
+}
+
+
+.absole{
+  position:absolute;
+  top:0px;
+  right: -144px;
+}
+.pancil{
+  background-color: #eef0f7;
+}
+
+.mainclass{
+  height: 44px;
+    padding: 14px;
+    width: 118px;
+    border-radius: 9px;
+}
+
+table, th, td,thead{
+  border:1px solid #eef0f7
+  
+}
+
+table{
+  border-radius: 10px;
+}
+
+.borderbtn{
+  width: 1107px;
+  border: 1px solid black;
+  position: absolute;
+  top: 23px;
+  right: 189px;
+ 
+}
+
+
+
+.modal-content{
+  background-color:white;
+  border-radius: 15px;
+}
+.modal-header{
+  padding:1rem;
+  background-color: #e4001c;
+}
+
+.close_btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.close_btn:hover {background: #bbb;}

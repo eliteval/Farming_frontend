@@ -7,7 +7,7 @@ const ModalMenu = () => {
   return (
     <div id="menu" className="modal fade p-0">
       <div className="modal-dialog dialog-animated">
-        <div className="modal-content h-100">
+        <div className="modal-content customModalCotent h-100">
           <div className="modal-header" data-dismiss="modal">
             Menu <i className="far fa-times-circle icon-close" />
           </div>
@@ -18,10 +18,10 @@ const ModalMenu = () => {
           </div>
           <div style={{ padding: "100px 12%", textAlign: "center" }}>
             <button
-              className="btn ml-lg-auto blue text-white"
+              className="btn ml-lg-auto cutomBotton text-white"
               onClick={() => handleButton()}
             >
-              Launch App
+              Buy Nodes
             </button>
           </div>
         </div>

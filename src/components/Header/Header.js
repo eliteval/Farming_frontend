@@ -1,4 +1,5 @@
 import React from "react";
+import "./Header.css";
 
 const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
   const handleButton = () => {
@@ -11,20 +12,21 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
       <nav
         data-aos="zoom-out"
         data-aos-delay={800}
-        className="navbar navbar-expand"
+        className="navbar navbar-expand customHeader"
+        style={{ height: "10vw"}}
       >
         <div className="container header">
           {/* Navbar Brand*/}
           <a className="navbar-brand" href="/">
             <img
-              className="navbar-brand-sticky"
+              className="navbar-brand-sticky logo"
               src="img/logo_white.png"
               alt="sticky brand-logo"
             />
           </a>
-          <div className="ml-auto" />
+          <div className="ml-auto"/>
           {/* Navbar */}
-          <ul className="navbar-nav items mx-auto">
+          <ul className="navbar-nav items customUl">
             <li className="nav-item dropdown">
               <a className="nav-link smooth-anchor" href="#banner">
                 Home
@@ -73,7 +75,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
               <button
                 className="btn ml-lg-auto blue text-black"
                 onClick={() => handleButton()}
-              > Launch App
+              > Buy Nodes
               </button>
             </li>
           </ul>

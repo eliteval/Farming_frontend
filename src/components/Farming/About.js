@@ -30,24 +30,22 @@ class About extends Component {
 
   render() {
     return (
-      <section className="section bg-white" id="about_area">
-        <div className="container">
+      <section className="section bg-white customAboutSection" id="about_area">
+        <div className="container customContainer" style={{ width: "80vw" }}>
           <div className="justify-content-center">
-            <div className="intro text-center">
+            <div className="intro text-center customAbout">
               <img
                 className="card-img-top"
                 src="/img/logo_red.png"
-                alt=""
-                style={{ width: "600px" }}
               />
-              <h3 className="mt-3 mb-0 text-black">
+              <h3 className="mt-0 mb-0 text-black" style={{fontSize: "16px"}}>
                 represents a revolution in passive income
               </h3>
             </div>
           </div>
           <div className="row mt-2">
-            <div className="col-12 col-md-6">
-              <p style={{ fontSize: "16px" }} className="text-black mb-5">
+            <div className="col-12 col-md-6 customAbout">
+              <p className="text-black mb-5" style={{textAlign: "justify", fontSize: "13.5px"}}>
                 {this.state.data.content}
               </p>
             </div>
@@ -56,15 +54,15 @@ class About extends Component {
                 className="card-img-top"
                 src="/img/chart.png"
                 alt=""
-                style={{ width: "100%" }}
+                style={{ width: "100vw" }}
               />
             </div>
           </div>
           <div className="justify-content-center mt-5">
-            <div className="intro text-center">
+            <div className="intro text-center customAbout">
               <button
-                className="btn red myshadow"
-                style={{ fontSize: "20px" }}
+                className="btn myshadow customButton"
+                style={{ fontSize: "20px"}}
                 onClick={() => this.handleButton()}
               >
                 Buy New Nodes

@@ -1,0 +1,158 @@
+@media only screen and (max-width: 800px) {
+    .customBanner {
+        height: 77vh !important;
+        width:  100vw !important;
+        padding-top: 55px;
+    }
+    .customFont h1 {
+        font-size: 37px;
+    }
+    .customFont h2 {
+        font-size: 26.7px !important;
+    }
+    .customFont h3 {
+        font-size: 15px;
+    }
+    .footer h5 {
+        font-size: 12px;
+    }
+    .footer img {
+        width: 120px;
+    }
+    .footer h3 {
+        font-size: 18px;
+    }
+    .customFaq button {
+        font-size: 12px;
+    }
+    .customFaq .contentBody {
+        font-size: 12px;
+    }
+    .customBar {
+        padding-top: 22px !important;
+    }
+    .customBar h3 {
+        font-size: 19px;
+        font-family: inherit;
+        font-weight: bold;
+    }
+    .customBar h3 span {
+        font-size: 30px;
+        font-family: inherit;
+        font-weight: bold;
+    }
+    .customDate {
+        margin-top: -5px !important;
+    }
+    .customBar h6 {
+        font-size: 12px;
+        font-family: inherit;
+        font-weight: bold;
+    }
+    .customFaq h2 {
+        font-size: 23px;
+    }
+    .customAbout img {
+        width: 250px !important;
+    }
+    .customAbout h3 {
+        font-size: 12px !important;
+    }
+    .customAbout p {
+        font-size: 9px !important;
+    }
+    .customAbout button {
+        font-size: 14px !important;
+    }
+    .customAboutSection {
+        padding-top: 30px !important;
+    }
+    .customAboutSection {
+        margin-top: 25px;
+    }
+    .customTable th {
+        font-size: 11px;
+    }
+    .customTable td {
+        font-size: 11px;
+    }
+    .claim-table th {
+        background-color: white !important;
+    }
+    .claim-table th {
+        color: #000 !important;
+    }
+    .customTable button {
+        font-size: 11px;
+    }
+    .contentBody {
+        font-size: 10px !important;
+    }
+    .customButton {
+        background-color: #D1202A !important;
+    }
+    .menu .dropdown a {
+        margin: auto !important;
+    }
+    .customModalCotent {
+        opacity: 0.98 !important;
+    }
+    .customHeader {
+        opacity: 0.4;
+    }
+    .customFooter img {
+        width: 160px;
+    }
+    .customFooter h5 {
+        margin-top: 5px !important;
+    }
+    .customFooter a h3 {
+        font-size: 19px !important; 
+        margin-top: -14px !important;
+    }
+}
+@media only screen and (min-width: 801px) {
+    .customContainer {
+        margin-top: -90px;
+    }
+    .customAbout img {
+        width: 300px !important;
+    }
+    .customBanner {
+        height: 630px !important;
+    }
+    .mlogo {
+        display: none;
+        width: 150px !important;
+        height: 70px !important;
+    }
+    .customButton {
+        background-color: #D1202A !important;
+    }
+    .customBar {
+        padding-bottom: 20px !important;
+    }
+    .customUl {
+        margin-right: 311px !important;
+    }
+    .customBanner {
+        height: 650px;
+    }
+    .customDate {
+        margin-top: 0px !important;
+    }
+    .customFooter img {
+        width: 160px;
+    }
+    .customFooter h5 {
+        font-size: 13px;
+        margin-top: 5px !important;
+    }
+    .customFooter a h3 {
+        font-size: 18px !important; 
+        margin-top: -14px !important;
+    }
+    .customAbout img {
+        width: 350px !important;
+    }
+}
