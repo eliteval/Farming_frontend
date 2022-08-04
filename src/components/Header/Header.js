@@ -20,7 +20,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
           <a className="navbar-brand" href="/">
             <img
               className="navbar-brand-sticky logo"
-              src="img/logo_white.png"
+              src="img/logo_white.svg"
               alt="sticky brand-logo"
             />
           </a>
@@ -71,9 +71,9 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
           </ul>
           {/* Navbar Action Button */}
           <ul className="navbar-nav action">
-            <li className="nav-item ml-3">
+            <li className="nav-item ml-3" >
               <button
-                className="btn ml-lg-auto blue text-black"
+                className="btn ml-lg-auto blue text-black customHeaderButton"
                 onClick={() => handleButton()}
               > Buy Nodes
               </button>

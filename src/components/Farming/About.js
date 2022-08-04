@@ -36,7 +36,7 @@ class About extends Component {
             <div className="intro text-center customAbout">
               <img
                 className="card-img-top"
-                src="/img/logo_red.png"
+                src="/img/logo_red.svg"
               />
               <h3 className="mt-0 mb-0 text-black" style={{fontSize: "16px"}}>
                 represents a revolution in passive income

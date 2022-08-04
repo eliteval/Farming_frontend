@@ -21,7 +21,7 @@ class Networks extends Component {
     return (
       <div className="bg-red">
         <div
-          className="row justify-content-center networks-container"        
+          className="row justify-content-center networks-container customNetwork"        
         >
           <div className="col-3">
             <div className="text-center">

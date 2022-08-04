@@ -41,7 +41,7 @@ class Footer extends Component {
                                 {/* Copyright Area */}
                                 <div className="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                     <div style={{margin: "auto"}} className="footer customFooter">
-                                        <img src="img/logo_red.png"></img>
+                                        <img src="img/logo_red.svg"></img>
                                         <h5 style={{fontFamily: 'revert'}}>JOIN THE COMMUNITY :</h5>
                                         <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
                                             {this.state.socialData.map((item, idx) => {

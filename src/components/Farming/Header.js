@@ -14,7 +14,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
           <a className="navbar-brand" href="/">
             <img
               className="navbar-brand-sticky"
-              src="img/logo_white.png"
+              src="img/logo_white.svg"
               alt="sticky brand-logo"
             />
           </a>

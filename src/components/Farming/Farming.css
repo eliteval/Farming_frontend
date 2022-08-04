@@ -1,8 +1,16 @@
 @media only screen and (max-width: 800px) {
     .customBanner {
-        height: 77vh !important;
-        width:  100vw !important;
-        padding-top: 55px;
+        padding-top: 10vh;
+        background-image: url('./banners/banner1.jpg') !important;
+        height: 100% !important;
+        background-position: center !important; 
+        background-repeat: no-repeat !important;
+        background-size:cover !important;
+    }
+    .customBanner img {
+        width: 230px !important;
+        margin-top: -20px !important;
+        margin-bottom: 14px !important;
     }
     .customFont h1 {
         font-size: 37px;
@@ -12,6 +20,7 @@
     }
     .customFont h3 {
         font-size: 15px;
+        margin-bottom: 180px !important;
     }
     .footer h5 {
         font-size: 12px;
@@ -56,7 +65,7 @@
         width: 250px !important;
     }
     .customAbout h3 {
-        font-size: 12px !important;
+        font-size: 13.5px !important;
     }
     .customAbout p {
         font-size: 9px !important;
@@ -133,7 +142,7 @@
         padding-bottom: 20px !important;
     }
     .customUl {
-        margin-right: 311px !important;
+        margin-right: 330px !important;
     }
     .customBanner {
         height: 650px;
@@ -154,5 +163,35 @@
     }
     .customAbout img {
         width: 350px !important;
+    }
+    .customFont h1 {
+        font-size: 63.6px !important;
+        text-shadow: 2px 2px 5px black !important;
+    }
+    .customFont h2 {
+        margin-top: -20px !important;
+        font-size: 46px !important;
+        text-shadow: 2px 2px 5px black !important;
+    }
+    .customFont h3 {
+        font-size: 27px;
+        text-shadow: 2px 2px 5px black !important;
+        line-height:20pt;
+    }
+    .customHeader img {
+        width: 190px !important;
+        height: 40px !important;
+    }
+    .customHeaderButton {
+        font-size: 16px !important;
+        padding: 20px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+    .customAbout h3 {
+        font-size: 19px !important;
+    }
+    .customBanner {
+        background-image: url('./banners/banner2.jpg') !important;
     }
 }
