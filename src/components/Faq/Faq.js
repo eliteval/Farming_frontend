@@ -47,16 +47,7 @@ const data = [
     contentClass: "collapse",
     content:
       "TurkNodes are geographically distributed around the world to bolster decentralization of the very networks it aims to secure, further expanding its global footprint.",
-  },
-  {
-    id: "7",
-    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
-    target: "#collapseSeven",
-    quote: "Are there any risk with this strategy ?",
-    contentId: "collapseSeven",
-    contentClass: "collapse",
-    content: ""
-  },
+  }
 ];
 
 class Faq extends Component {

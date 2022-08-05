@@ -32,167 +32,6 @@
       "type": "event"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "DirectBonus",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "NewDeposit",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "previousOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "OwnershipTransferred",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "Renew",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "upline",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "Upline",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "checkNodeAvailability",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "checkUserClaimed",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [],
       "name": "claimNodesAll",
       "outputs": [
@@ -254,19 +93,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "claim_fee",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -306,16 +132,51 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "expiration_period",
-      "outputs": [
+      "anonymous": false,
+      "inputs": [
         {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
           "internalType": "uint256",
-          "name": "",
+          "name": "amount",
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "name": "DirectBonus",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr1",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "addr2",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "fillTokensToContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -326,273 +187,54 @@
           "type": "address"
         }
       ],
-      "name": "getAvailableYields",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "total_yield",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256[]",
-          "name": "yield_of_each_type",
-          "type": "uint256[]"
-        }
-      ],
-      "stateMutability": "view",
+      "name": "getTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
+      "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
           "internalType": "address",
-          "name": "_addr",
+          "name": "addr",
           "type": "address"
         },
         {
+          "indexed": false,
           "internalType": "uint256",
-          "name": "_timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "getDailyYield",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "getNodesCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "total_numbers",
+          "name": "timestamp",
           "type": "uint256"
         },
         {
-          "internalType": "uint256[]",
-          "name": "number_of_each_type",
-          "type": "uint256[]"
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
+      "name": "NewDeposit",
+      "type": "event"
     },
     {
+      "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
           "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "getNodesTimestamps",
-      "outputs": [
-        {
-          "internalType": "uint256[]",
-          "name": "arr",
-          "type": "uint256[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
+          "name": "previousOwner",
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "_timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "getRemainingTimes",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "remaining_time",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
+          "indexed": true,
           "internalType": "address",
-          "name": "_addr",
+          "name": "newOwner",
           "type": "address"
         }
       ],
-      "name": "getUserTotalClaimed",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "sum",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "getUserTotalDeposit",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "sum",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "getYieldCalculated",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "payout",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "max_bonus",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "no_claim_period",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "node_types",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "deposit_amount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "daily_yield",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "yield_increase_percent",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "referral_discount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "referral_fee",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+      "name": "OwnershipTransferred",
+      "type": "event"
     },
     {
       "inputs": [
@@ -622,6 +264,25 @@
       ],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Renew",
+      "type": "event"
     },
     {
       "inputs": [
@@ -698,19 +359,6 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "setProxy",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "uint256",
           "name": "discount",
           "type": "uint256"
@@ -750,6 +398,19 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTaxedClaimPeriod",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "addr",
           "type": "address"
@@ -768,7 +429,38 @@
           "type": "uint256"
         }
       ],
-      "name": "setTaxedClaimPeriod",
+      "name": "setTotalDeposited",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTotalNodesCountPerType",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTotalWithdrawed",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -800,84 +492,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "stable_coin_address",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "tax_wallet",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "taxed_claim_period",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "total_deposited",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "total_users",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "total_withdraw",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "address",
@@ -891,13 +505,101 @@
       "type": "function"
     },
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "upline",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Upline",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
-      "name": "treasury_address",
+      "name": "contractSetting",
       "outputs": [
         {
           "internalType": "address",
-          "name": "",
+          "name": "_stable_coin_address",
           "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_treasury_address",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_tax_wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_treasury_allocation",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_referral_discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_referral_fee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_claim_fee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_expiration_period",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_no_claim_period",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_taxed_claim_period",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -905,11 +607,55 @@
     },
     {
       "inputs": [],
-      "name": "treasury_allocation",
+      "name": "contractStatus",
       "outputs": [
         {
           "internalType": "uint256",
+          "name": "_total_deposited",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_total_withdrawed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_total_nodes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_total_nodes_per_type",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
           "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "node_by_index",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "node_type",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
           "type": "uint256"
         }
       ],
@@ -919,17 +665,64 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
       ],
-      "name": "user_nodes",
+      "name": "node_types",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deposit_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "daily_yield",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "yield_increase_percent",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_addr",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "userNodeStatus",
       "outputs": [
         {
           "internalType": "uint256",
@@ -938,17 +731,12 @@
         },
         {
           "internalType": "uint256",
-          "name": "renewed",
+          "name": "deposits",
           "type": "uint256"
         },
         {
-          "internalType": "address",
-          "name": "upline",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
-          "name": "deposits",
+          "name": "payouts",
           "type": "uint256"
         },
         {
@@ -963,7 +751,32 @@
         },
         {
           "internalType": "uint256",
-          "name": "payouts",
+          "name": "renewed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "upline",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "availability",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "remaining_time",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "yiled_calculated",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "daily_yield",
           "type": "uint256"
         }
       ],
@@ -974,46 +787,58 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "",
+          "name": "_addr",
           "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
         }
       ],
-      "name": "user_nodes_timestamps",
+      "name": "userStatus",
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "",
+          "name": "deposited",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "withdrawed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nodes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "nodes_per_type",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "nodes_timestamps",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "yield",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "yield_per_type",
+          "type": "uint256[]"
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "withdraw",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
   "networks": {
     "80001": {
-      "address": "0x1493751540215432e0037adcc6c118101ebdde68"
+      "address": "0xfE7141A6F3e7894DB4a10459d1d17A152D93b61D"
     },
     "137": {
-      "address": "0x4ec87a444dc5737de8d0382137e58b8a7df17433"
+      "address": ""
     }
   }
 }

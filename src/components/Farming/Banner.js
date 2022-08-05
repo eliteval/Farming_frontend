@@ -21,7 +21,7 @@ class Banner extends Component {
   render() {
     return (
       <section
-        className="customBanner"
+        className="customBanner" id="banner"
       >
         <div className="container" style={{textAlign: "center"}}>
           <a className="navbar-brand" href="/">

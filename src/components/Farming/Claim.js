@@ -104,7 +104,7 @@ function MyVerticallyCenteredModal(props) {
                 }}
                 className="relative_div"
               >
-                1000%
+                100%
                 <div className="text-center absole">
                   <button
                     className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"

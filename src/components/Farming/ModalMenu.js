@@ -18,7 +18,7 @@ class ModalMenu extends Component {
       <div id="menu" className="modal fade p-0">
         <div
           className="modal-dialog dialog-animated  bg-gray"
-          style={{ maxWidth: "300px", margin: "0 0 auto 0" }}
+          style={{ maxWidth: "300px" }}
         >
           <div className="modal-content xxxh-100" style={{ display: "block" }}>
             <div className="modal-header" data-dismiss="modal">
@@ -38,15 +38,25 @@ class ModalMenu extends Component {
                 style={{ marginLeft: "auto", marginRight: "auto" }}
                 onClick={() => this.handleCreateNodeButton()}
               >
-                Buy a Nodes
+                Buy New Node
               </button>
-              <button
-                className="btn mb-2 customButton"
-                style={{ marginLeft: "auto", marginRight: "auto" }}
-                onClick={() => this.props.disconnect()}
-              >
-                Log Out
-              </button>
+              {this.props.metamaskConnected ? (
+                <button
+                  className="btn mb-2 customButton"
+                  style={{ marginLeft: "auto", marginRight: "auto" }}
+                  onClick={() => this.props.disconnect()}
+                >
+                  Log Out
+                </button>
+              ) : (
+                <button
+                  className="btn mb-2 customButton"
+                  style={{ marginLeft: "auto", marginRight: "auto" }}
+                  onClick={() => this.props.connectToMetamask()}
+                >
+                  Connect
+                </button>
+              )}
             </div>
           </div>
         </div>

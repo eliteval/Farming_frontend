@@ -43,9 +43,9 @@ class Dashboard extends Component {
       node_count_types: [0, 0, 0],
       yield_total: 0,
       yield_types: [0, 0, 0],
-      total_users: 0,
       total_deposited: 0,
-      total_withdraw: 0,
+      total_withdrawed: 0,
+      userStatus: {},
       loading: true,
     };
   }
@@ -68,7 +68,6 @@ class Dashboard extends Component {
     this.setState({ web3: window.web3 });
 
     window.ethereum.on("chainChanged", (_chainId) => this.loadBlockchainData());
-    // window.ethereum.on("accountsChanged", (array) => window.location.reload());
   };
   loadBlockchainData = async () => {
     const web3 = this.state.web3;
@@ -112,44 +111,34 @@ class Dashboard extends Component {
 
   loadData = async () => {
     console.log("loading");
-    const total_deposited = await this.state.farmingContract.methods
-      .total_deposited()
-      .call();
-    this.setState({ total_deposited });
-    const total_users = await this.state.farmingContract.methods
-      .total_users()
-      .call();
-    this.setState({ total_users });
+    const {
+      _total_deposited,
+      _total_withdrawed,
+      _total_nodes,
+      _total_nodes_per_type,
+    } = await this.state.farmingContract.methods.contractStatus().call();
+    this.setState({ total_deposited: _total_deposited });
+    this.setState({ total_withdrawed: _total_withdrawed });
+    this.setState({ node_count_total: _total_nodes });
+    this.setState({ node_count_types: _total_nodes_per_type });
 
-    var { total_numbers, number_of_each_type } =
-      await this.state.farmingContract.methods
-        .getNodesCount(this.state.accountAddress)
-        .call();
-    this.setState({ node_count_total: total_numbers });
-    this.setState({ node_count_types: number_of_each_type });
-
-    var { total_yield, yield_of_each_type } =
-      await this.state.farmingContract.methods
-        .getAvailableYields(this.state.accountAddress)
-        .call();
-    this.setState({ yield_total: total_yield });
-    this.setState({ yield_types: yield_of_each_type });
-    console.log(total_yield, yield_of_each_type);
-
-    const total_withdraw = await this.state.farmingContract.methods
-      .total_withdraw()
+    var userStatus = await this.state.farmingContract.methods
+      .userStatus(this.state.accountAddress)
       .call();
-    this.setState({ total_withdraw });
+    this.setState({ userStatus });
+    this.setState({ yield_total: userStatus.yield });
+    this.setState({ yield_types: userStatus[6] });
+    console.log(userStatus, userStatus.yield);
 
-    const stable_coin_address = await this.state.farmingContract.methods
-      .stable_coin_address()
+    const { _stable_coin_address } = await this.state.farmingContract.methods
+      .contractSetting()
       .call();
-    this.setState({ stable_coin_address });
+    this.setState({ stable_coin_address: _stable_coin_address });
 
     //Stable Coin
     const erc20Contract = new this.state.web3.eth.Contract(
       ERC20Data.abi,
-      stable_coin_address
+      _stable_coin_address
     );
     this.setState({ erc20Contract });
 
@@ -279,18 +268,20 @@ class Dashboard extends Component {
               yield_types={this.state.yield_types}
             />
           )}
-          <div className="bg-white" style={{display:"none"}}>
+          <div className="bg-white" style={{ display: "none" }}>
             <p>networkId: {this.state.networkId}</p>
             <p>contract_address: {this.state.contract_address}</p>
             <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
-            <p>total_withdraw: {this.state.total_withdraw / 1e18}$</p>
-            <p>total_users: {this.state.total_users}</p>
+            <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
             <p>stable_coin_address: {this.state.stable_coin_address}</p>
             <p>token_allowance: {this.state.token_allowance}</p>
             <p>token_balance: {this.state.token_balance}</p>
+            <p>userStatus: {JSON.stringify(this.state.userStatus)}</p>
           </div>
           <Footer />
           <ModalMenu
+            metamaskConnected={this.state.metamaskConnected}
+            connectToMetamask={this.connectToMetamask}
             disconnect={this.disconnect}
             createNode={this.createNode}
           />
