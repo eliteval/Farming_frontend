@@ -59,16 +59,28 @@ class About extends Component {
             </div>
           </div>
           <div className="justify-content-center mt-5">
-            <div className="intro text-center customAbout">
+            <div className="intro2 text-center customAbout">
               <button
                 className="btn myshadow customButton"
                 style={{ fontSize: "20px"}}
                 onClick={() => this.handleButton()}
               >
-                Buy New Nodes
+                Buy New Node
               </button>
+              
             </div>
+            {/* <div className="intro text-center customAbout">
+              <button
+                className="btn myshadow customButton"
+                style={{ fontSize: "20px"}}
+                onClick={() => this.handleButton()}
+              >
+                Renew Node
+              </button>
+              
+            </div> */}
           </div>
+          
         </div>
       </section>
     );

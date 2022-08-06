@@ -1,197 +1,243 @@
 @media only screen and (max-width: 800px) {
-    .customBanner {
-        padding-top: 10vh;
-        background-image: url('./banners/banner1.jpg') !important;
-        height: 100% !important;
-        background-position: center !important; 
-        background-repeat: no-repeat !important;
-        background-size:cover !important;
-    }
-    .customBanner img {
-        width: 230px !important;
-        margin-top: -20px !important;
-        margin-bottom: 14px !important;
-    }
-    .customFont h1 {
-        font-size: 37px;
-    }
-    .customFont h2 {
-        font-size: 26.7px !important;
-    }
-    .customFont h3 {
-        font-size: 15px;
-        margin-bottom: 180px !important;
-    }
-    .footer h5 {
-        font-size: 12px;
-    }
-    .footer img {
-        width: 120px;
-    }
-    .footer h3 {
-        font-size: 18px;
-    }
-    .customFaq button {
-        font-size: 12px;
-    }
-    .customFaq .contentBody {
-        font-size: 12px;
-    }
-    .customBar {
-        padding-top: 22px !important;
-    }
-    .customBar h3 {
-        font-size: 19px;
-        font-family: inherit;
-        font-weight: bold;
-    }
-    .customBar h3 span {
-        font-size: 30px;
-        font-family: inherit;
-        font-weight: bold;
-    }
-    .customDate {
-        margin-top: -5px !important;
-    }
-    .customBar h6 {
-        font-size: 12px;
-        font-family: inherit;
-        font-weight: bold;
-    }
-    .customFaq h2 {
-        font-size: 23px;
-    }
-    .customAbout img {
-        width: 250px !important;
-    }
-    .customAbout h3 {
-        font-size: 13.5px !important;
-    }
-    .customAbout p {
-        font-size: 9px !important;
-    }
-    .customAbout button {
-        font-size: 14px !important;
-    }
-    .customAboutSection {
-        padding-top: 30px !important;
-    }
-    .customAboutSection {
-        margin-top: 25px;
-    }
-    .customTable th {
-        font-size: 11px;
-    }
-    .customTable td {
-        font-size: 11px;
-    }
-    .claim-table th {
-        background-color: white !important;
-    }
-    .claim-table th {
-        color: #000 !important;
-    }
-    .customTable button {
-        font-size: 11px;
-    }
-    .contentBody {
-        font-size: 10px !important;
-    }
-    .customButton {
-        background-color: #D1202A !important;
-    }
-    .menu .dropdown a {
-        margin: auto !important;
-    }
-    .customModalCotent {
-        opacity: 0.98 !important;
-    }
-    .customHeader {
-        opacity: 0.4;
-    }
-    .customFooter img {
-        width: 160px;
-    }
-    .customFooter h5 {
-        margin-top: 5px !important;
-    }
-    .customFooter a h3 {
-        font-size: 19px !important; 
-        margin-top: -14px !important;
-    }
+  .customBanner {
+    padding-top: 10vh;
+    background-image: url("./banners/banner1.jpg") !important;
+    height: 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+  .customBanner img {
+    width: 265px !important;
+    margin-top: -20px !important;
+    margin-bottom: 14px !important;
+  }
+  .customFont h1 {
+    font-size: 37px;
+  }
+  .customFont h2 {
+    font-size: 26.7px !important;
+  }
+  .customFont h3 {
+    font-size: 15px;
+    margin-bottom: 180px !important;
+  }
+  .footer h5 {
+    font-size: 12px;
+  }
+  .footer img {
+    width: 120px;
+  }
+  .footer h3 {
+    font-size: 18px;
+  }
+  .customFaq button {
+    font-size: 12px;
+  }
+  .customFaq .contentBody {
+    font-size: 12px;
+  }
+  .customBar {
+    padding-top: 22px !important;
+  }
+  .customBar h3 {
+    font-size: 17px;
+    font-family: inherit;
+    font-weight: bold;
+  }
+  .customBar h3 span {
+    font-size: 30px;
+    font-family: inherit;
+    font-weight: bold;
+  }
+  .customDate {
+    margin-top: -5px !important;
+  }
+  .customBar h6 {
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: bold;
+  }
+  .customFaq h2 {
+    font-size: 23px;
+  }
+  .customAbout img {
+    width: 250px !important;
+  }
+  .customAbout h3 {
+    font-size: 13.5px !important;
+  }
+  .customAbout p {
+    font-size: 9px !important;
+  }
+  .customAbout button {
+    font-size: 14px !important;
+  }
+  .customAboutSection {
+    padding-top: 30px !important;
+  }
+  .customAboutSection {
+    margin-top: 25px;
+  }
+  .customTable th {
+    font-size: 11px;
+  }
+  .customTable td {
+    font-size: 11px;
+  }
+  .claim-table th {
+    background-color: white !important;
+  }
+  .claim-table th {
+    color: #000 !important;
+  }
+  .customTable button {
+    font-size: 11px;
+  }
+  .contentBody {
+    font-size: 10px !important;
+  }
+  .customButton {
+    background-color: #d1202a !important;
+  }
+  .menu .dropdown a {
+    margin: auto !important;
+  }
+  .customModalCotent {
+    opacity: 0.98 !important;
+  }
+  .customHeader {
+    opacity: 0.4;
+  }
+  .customFooter img {
+    width: 160px;
+  }
+  .customFooter h5 {
+    margin-top: 5px !important;
+  }
+  .customFooter a h3 {
+    font-size: 19px !important;
+    margin-top: -14px !important;
+  }
+  .mlogo {
+    padding: 63px 0px 0px 0px;
+  }
+  .absolute_1 {
+    display: none;
+  }
+  .popppp {
+    display: block;
+    /* position: absolute;
+        top: -26px;
+        left: 30px; */
+    font-size: 18px !important;
+  }
+  .align_center_main {
+    display: flex !important;
+    justify-content: center !important;
+  }
 }
 @media only screen and (min-width: 801px) {
-    .customContainer {
-        margin-top: -90px;
-    }
-    .customAbout img {
-        width: 300px !important;
-    }
-    .customBanner {
-        height: 630px !important;
-    }
-    .mlogo {
-        display: none;
-        width: 150px !important;
-        height: 70px !important;
-    }
-    .customButton {
-        background-color: #D1202A !important;
-    }
-    .customBar {
-        padding-bottom: 20px !important;
-    }
-    .customUl {
-        margin-right: 330px !important;
-    }
-    .customBanner {
-        height: 650px;
-    }
-    .customDate {
-        margin-top: 0px !important;
-    }
-    .customFooter img {
-        width: 160px;
-    }
-    .customFooter h5 {
-        font-size: 13px;
-        margin-top: 5px !important;
-    }
-    .customFooter a h3 {
-        font-size: 18px !important; 
-        margin-top: -14px !important;
-    }
-    .customAbout img {
-        width: 350px !important;
-    }
-    .customFont h1 {
-        font-size: 63.6px !important;
-        text-shadow: 2px 2px 5px black !important;
-    }
-    .customFont h2 {
-        margin-top: -20px !important;
-        font-size: 46px !important;
-        text-shadow: 2px 2px 5px black !important;
-    }
-    .customFont h3 {
-        font-size: 27px;
-        text-shadow: 2px 2px 5px black !important;
-        line-height:20pt;
-    }
-    .customHeader img {
-        width: 190px !important;
-        height: 40px !important;
-    }
-    .customHeaderButton {
-        font-size: 16px !important;
-        padding: 20px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-    .customAbout h3 {
-        font-size: 19px !important;
-    }
-    .customBanner {
-        background-image: url('./banners/banner2.jpg') !important;
-    }
+  .customContainer {
+    margin-top: -90px;
+  }
+  .customAbout img {
+    width: 300px !important;
+  }
+  .customBanner {
+    height: 630px !important;
+  }
+  .mlogo {
+    display: none;
+    width: 150px !important;
+    height: 70px !important;
+  }
+  .customButton {
+    background-color: #d1202a !important;
+  }
+  .customBar {
+    padding-bottom: 20px !important;
+  }
+  .customUl {
+    margin-right: 330px !important;
+  }
+  .customBanner {
+    height: 650px;
+  }
+  .customDate {
+    margin-top: 0px !important;
+  }
+  .customFooter img {
+    width: 160px;
+  }
+  .customFooter h5 {
+    font-size: 13px;
+    margin-top: 5px !important;
+  }
+  .customFooter a h3 {
+    font-size: 18px !important;
+    margin-top: -14px !important;
+  }
+  .customAbout img {
+    width: 350px !important;
+  }
+  .customFont h1 {
+    font-size: 63.6px !important;
+    text-shadow: 2px 2px 5px black !important;
+  }
+  .customFont h2 {
+    margin-top: -20px !important;
+    font-size: 46px !important;
+    text-shadow: 2px 2px 5px black !important;
+  }
+  .customFont h3 {
+    font-size: 27px;
+    text-shadow: 2px 2px 5px black !important;
+    line-height: 20pt;
+  }
+  .customHeader img {
+    width: 190px !important;
+    height: 40px !important;
+  }
+  .customHeaderButton {
+    font-size: 16px !important;
+    padding: 20px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  .customAbout h3 {
+    font-size: 19px !important;
+  }
+  .customBanner {
+    background-image: url("./banners/banner2.jpg") !important;
+  }
+  .popppp {
+    display: none;
+  }
+}
+
+.menu_left {
+  /* transition: transform .3s ease-out!important;
+    transform: translate3d(0%, 0px, 0px)!important;
+    height: 100%!important;
+    width: 292px!important;
+    position: absolute!important;
+    top: 0!important;
+    left: 0px!important; */
+}
+
+.menu_closed {
+  /* transform: translate3d(0px, 0px, 0px)!important;
+   */
+}
+.list_item__ {
+  color: black !important;
+  display: inline-block !important;
+  font-size: 20px !important;
+  padding-top: 82px !important;
+}
+
+.list_child {
+  display: flex !important;
+  justify-content: space-between !important;
 }

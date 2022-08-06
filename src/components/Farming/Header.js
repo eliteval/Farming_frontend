@@ -1,6 +1,6 @@
 import React from "react";
-
-const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconnect }) => {
+import "./Farming.css"
+const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconnect,handleToggle }) => {
   return (
     <header id="header">
       {/* Navbar */}
@@ -13,7 +13,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
           {/* Navbar Brand*/}
           <a className="navbar-brand" href="/">
             <img
-              className="navbar-brand-sticky"
+              className="navbar-brand-sticky fix_logo"
               src="img/logo_white.svg"
               alt="sticky brand-logo"
             />
@@ -81,7 +81,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
                     </ul> */}
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">
-            <li className="nav-item">
+          <li className="nav-item" onClick={()=>handleToggle()}>
               <a
                 href="#"
                 className="nav-link"

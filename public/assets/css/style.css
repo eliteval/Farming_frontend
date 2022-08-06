@@ -1277,11 +1277,76 @@ aside {
     text-align: justify !important;
   }
   .myshadow {
-    font-size: 20px !important;
+    font-size: 14px !important;
     user-select: auto !important;
     position: relative;
     left: 0;
+}
+
+  /*sunil code strat new-mobile-changes*/
+    .responsive {
+      width:70%!important;
+    }
+    .container{
+      padding:0px 0 0px!important;
+      
+    }
+    .box1{
+      margin-top:30px;
+    }
+    .absole{
+      right:0px!important;
+      left: 100px;
+    }
+    .mainclass {
+      height: 40px!important;
+      padding: 14px;
+      width: 105px!important;
+      border-radius: 9px;
+      line-height: 0;
   }
+  .modal-header{
+    background:#e4001c;
+    padding: 1rem !important;
+  }
+  .modal-body{
+    background:white;
+  }
+.close_btn{
+  font-size: 25px;
+  color: white;
+  border: 1px solid;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50px;
+  line-height: 1;
+  cursor: pointer;
+}
+.quantity_1{
+  display: none;
+}
+.fix_logo{
+  max-width: 56%!important;
+}
+
+.modal-title{
+  display: flex!important;
+  justify-content: right!important;
+}
+/* .navbar-brand-sticky{
+  max-width: 75%!important;
+} */
+.navbar-brand{
+  text-align: center;
+}
+.absole2{
+  right:0px!important;
+  left: 5px;
+}
+.absolute_{
+  display: none
+}
 }
 @media only screen and (min-width: 1367px) and (max-width: 1600) {
   .myshadow {
@@ -3469,3 +3534,69 @@ table {
 }
 
 /* end */
+
+
+
+
+.main_flex{
+  display:flex;
+justify-content: center;
+}
+
+.apr__main{
+  color: hsl(351deg 96% 44%);
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.modal-body{
+  display: block;
+}
+
+.modal-header{
+  padding: 1rem;
+  background-color: #e4001c;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 15px;
+}
+
+.lastone{
+  right: 64px;
+}
+
+.close_btn{
+  font-size: 25px;
+  color: white;
+  border: 1px solid;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.relative_{
+  position:relative;
+}
+.absolute_{
+  position:absolute;
+  font-size: 20px;
+    position: absolute;
+    top: -24px;
+    left: 69px;
+}
+.intro2{
+  margin-bottom:22px
+}
+
+.absolute_1{
+  font-size: 18px;
+    font-weight: 700;
+    line-height: 0;
+    display: flex;
+    justify-content: center;
+}

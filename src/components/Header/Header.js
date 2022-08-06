@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 
-const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
+const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleToggle }) => {
   const handleButton = () => {
     window.location.href = "/dashboard";
   };
@@ -58,7 +58,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask }) => {
           </ul> */}
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">
-            <li className="nav-item">
+            <li className="nav-item" onClick={()=>handleToggle()}>
               <a
                 href="#"
                 className="nav-link"

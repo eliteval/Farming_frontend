@@ -6,11 +6,11 @@ const BASE_URL = "https://my-json-server.typicode.com/themeland/netstorm-json-2/
 class Footer extends Component {
     state = {
         socialData: [
-            {
-                "id": 1,
-                "link": "facebook",
-                "icon": "fab fa-facebook-f fs-2"
-            },
+            // {
+            //     "id": 1,
+            //     "link": "facebook",
+            //     "icon": "fab fa-facebook-f fs-2"
+            // },
             {
                 "id": 2,
                 "link": "twitter",
@@ -21,11 +21,11 @@ class Footer extends Component {
                 "link": "google-plus",
                 "icon": "fab fa-telegram fs-2"
             },
-            {
-                "id": 4,
-                "link": "vine",
-                "icon": "fab fa-discord fs-2"
-            }
+            // {
+            //     "id": 4,
+            //     "link": "vine",
+            //     "icon": "fab fa-discord fs-2"
+            // }
         ]
     }
 

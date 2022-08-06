@@ -3,3 +3,29 @@
       display: none;
     }
 }
+
+.menu_left{
+  transition: transform .3s ease-out!important;
+  /* //transform: translate3d(0%, 0px, 0px)!important; */
+  height: 100%!important;
+  width: 292px!important;
+  /* position: absolute!important;
+  top: 0!important;
+  left: 0px!important; */
+}
+
+.menu_closed{
+  transform: translate3d(0px, 0px, 0px)!important;
+
+}
+.list_item__{
+  color: black!important;
+    display: inline-block!important;
+    font-size: 20px!important;
+    padding-top: 82px!important;
+}
+
+.list_child{
+  display: flex!important;
+    justify-content: space-between!important;
+}

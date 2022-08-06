@@ -1,6 +1,6 @@
 {
   "contractName": "Farming",
-  "abi": [
+  "abi":[
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -174,7 +174,7 @@
           "type": "uint256"
         }
       ],
-      "name": "fillTokensToContract",
+      "name": "filltoken",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -187,7 +187,7 @@
           "type": "address"
         }
       ],
-      "name": "getTransaction",
+      "name": "gettx",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -235,6 +235,24 @@
       ],
       "name": "OwnershipTransferred",
       "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "removetoken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
       "inputs": [
@@ -293,6 +311,32 @@
         }
       ],
       "name": "setCalimFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCredit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDebit",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -425,19 +469,6 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "setTotalDeposited",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
           "name": "index",
           "type": "uint256"
         },
@@ -448,19 +479,6 @@
         }
       ],
       "name": "setTotalNodesCountPerType",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "setTotalWithdrawed",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -528,24 +546,6 @@
       ],
       "name": "Upline",
       "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "withdraw",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
     },
     {
       "inputs": [],
@@ -834,11 +834,8 @@
     }
   ],
   "networks": {
-    "80001": {
-      "address": "0xfE7141A6F3e7894DB4a10459d1d17A152D93b61D"
-    },
-    "137": {
-      "address": ""
+    "56": {
+      "address": "0x09baeF841F993Ee5BaE21561C9587D5A2D432Fc4"
     }
   }
 }

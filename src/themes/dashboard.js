@@ -9,7 +9,7 @@ import Explore from "../components/Explore/ExploreOne";
 import Work from "../components/Work/Work";
 import Footer from "../components/Footer/Footer";
 import ModalSearch from "../components/Modal/ModalSearch";
-import ModalMenu from "../components/Farming/ModalMenu";
+import ModalMenu from "../components/Modal/ModalMenu";
 import Scrollup from "../components/Scrollup/Scrollup";
 import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
@@ -43,12 +43,19 @@ class Dashboard extends Component {
       node_count_types: [0, 0, 0],
       yield_total: 0,
       yield_types: [0, 0, 0],
+      node_type_deposit: [0, 0, 0],
       total_deposited: 0,
       total_withdrawed: 0,
       userStatus: {},
       loading: true,
+      showSidebarMenu: false,
     };
   }
+
+  handleToggle = async () => {
+    console.log(this.state.showSidebarMenu);
+    this.setState({ showSidebarMenu: true });
+  };
 
   componentWillMount = async () => {
     await this.loadWeb3();
@@ -69,6 +76,7 @@ class Dashboard extends Component {
 
     window.ethereum.on("chainChanged", (_chainId) => this.loadBlockchainData());
   };
+
   loadBlockchainData = async () => {
     const web3 = this.state.web3;
 
@@ -101,6 +109,9 @@ class Dashboard extends Component {
         this.setState({ contractDetected: true });
 
         await this.loadData();
+        setInterval(async () => {
+          await this.loadData();
+        }, 15 * 1000);
 
         this.setState({ loading: false });
       } else {
@@ -111,24 +122,38 @@ class Dashboard extends Component {
 
   loadData = async () => {
     console.log("loading");
-    const {
-      _total_deposited,
-      _total_withdrawed,
-      _total_nodes,
-      _total_nodes_per_type,
-    } = await this.state.farmingContract.methods.contractStatus().call();
+    const { _total_deposited, _total_withdrawed } =
+      await this.state.farmingContract.methods.contractStatus().call();
     this.setState({ total_deposited: _total_deposited });
     this.setState({ total_withdrawed: _total_withdrawed });
-    this.setState({ node_count_total: _total_nodes });
-    this.setState({ node_count_types: _total_nodes_per_type });
 
     var userStatus = await this.state.farmingContract.methods
       .userStatus(this.state.accountAddress)
       .call();
     this.setState({ userStatus });
+
     this.setState({ yield_total: userStatus.yield });
-    this.setState({ yield_types: userStatus[6] });
-    console.log(userStatus, userStatus.yield);
+    this.setState({ yield_types: userStatus.yield_per_type });
+    this.setState({ node_count_total: userStatus.nodes });
+    this.setState({ node_count_types: userStatus.nodes_per_type });
+    console.log(userStatus.yield_per_type)
+
+    var node_type1 = await this.state.farmingContract.methods
+      .node_types(0)
+      .call();
+    var node_type2 = await this.state.farmingContract.methods
+      .node_types(1)
+      .call();
+    var node_type3 = await this.state.farmingContract.methods
+      .node_types(2)
+      .call();
+    this.setState({
+      node_type_deposit: [
+        node_type1.deposit_amount,
+        node_type2.deposit_amount,
+        node_type3.deposit_amount,
+      ],
+    });
 
     const { _stable_coin_address } = await this.state.farmingContract.methods
       .contractSetting()
@@ -165,12 +190,13 @@ class Dashboard extends Component {
     this.setState({ accountAddress: "" });
   };
 
-  approveToken = async () => {
+  approveToken = async (node_type) => {
     this.setState({ loading: true });
     await this.state.erc20Contract.methods
       .approve(
         this.state.contract_address,
-        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        this.state.node_type_deposit[node_type]
+        // "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
       )
       .send({
         from: this.state.accountAddress,
@@ -184,9 +210,9 @@ class Dashboard extends Component {
 
   createNode = async (node_type) => {
     this.setState({ loading: true });
-    if (this.state.token_allowance < parseUnits("1000", 18)) {
-      await this.approveToken();
-    }
+    // if (this.state.token_allowance < parseUnits("1000", 18))
+    await this.approveToken(node_type);
+
     await this.state.farmingContract.methods
       .createNode(node_type, "0x0000000000000000000000000000000000000000")
       .send({
@@ -239,6 +265,7 @@ class Dashboard extends Component {
             accountAddress={this.state.accountAddress}
             connectToMetamask={this.connectToMetamask}
             disconnect={this.disconnect}
+            handleToggle={this.handleToggle}
           />
           {!this.state.metamaskConnected ? (
             <section className="author-area bg-white">
@@ -271,6 +298,7 @@ class Dashboard extends Component {
           <div className="bg-white" style={{ display: "none" }}>
             <p>networkId: {this.state.networkId}</p>
             <p>contract_address: {this.state.contract_address}</p>
+            <p>node_type_deposit: {this.state.node_type_deposit}</p>
             <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
             <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
             <p>stable_coin_address: {this.state.stable_coin_address}</p>
@@ -280,10 +308,11 @@ class Dashboard extends Component {
           </div>
           <Footer />
           <ModalMenu
-            metamaskConnected={this.state.metamaskConnected}
-            connectToMetamask={this.connectToMetamask}
-            disconnect={this.disconnect}
-            createNode={this.createNode}
+            // metamaskConnected={this.state.metamaskConnected}
+            // connectToMetamask={this.connectToMetamask}
+            // disconnect={this.disconnect}
+            // createNode={this.createNode}
+            showSidebarMenu={this.state.showSidebarMenu}
           />
           <Scrollup />
         </div>
