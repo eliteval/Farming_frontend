@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 const initData = {
   pre_heading: "Dashboard",
@@ -18,7 +19,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           <img
-            style={{ backgroundColor: "#e4001c" }}
+            style={{ width: "75%" }}
             className=" fix_logo omgggg navbar-brand-sticky"
             src="img/logo_white.png"
             alt="sticky brand-logo"
@@ -29,6 +30,35 @@ function MyVerticallyCenteredModal(props) {
         </span>
       </Modal.Header>
       <Modal.Body>
+        <div className="main_flex mb-2">
+          <Form className="row">
+            <Form.Group
+              className="col-sm-12 col-md-12 mb-3"
+              controlId="formBasicEmail"
+            >
+              {/* <Form.Label>Referrer address</Form.Label> */}
+              <Form.Control
+                type="text"
+                placeholder="Enter referrer address if you have"
+                style={{ height: "47px" }}
+                onChange={(event) => props.onReferrerChange(event.target.value)}
+                value={props.referrer_address}
+              />
+              {props.referrer_address == props.accountAddress ? (
+                <span className="text-red">
+                  Referrer address can not be your self.
+                </span>
+              ) : (
+                <></>
+              )}
+            </Form.Group>
+            {/* <div className="col-sm-12 col-md-4 text-center">
+              <button className="btn red myshadow mx-2 mb-2">
+                Support Project
+              </button>
+            </div> */}
+          </Form>
+        </div>
         <div className="main_flex">
           <div className="apr__main">APR: 80%</div>
         </div>
@@ -66,7 +96,10 @@ function MyVerticallyCenteredModal(props) {
                 <div className="text-center absole absole2 lastone">
                   <button
                     className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => props.handleCreateNodeButton(0)}
+                    onClick={() => {
+                      props.onHide();
+                      props.handleCreateNodeButton(0);
+                    }}
                   >
                     Buy Now
                   </button>
@@ -81,7 +114,10 @@ function MyVerticallyCenteredModal(props) {
                 <div className="text-center absole absole2 lastone">
                   <button
                     className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => props.handleCreateNodeButton(1)}
+                    onClick={() => {
+                      props.onHide();
+                      props.handleCreateNodeButton(1);
+                    }}
                   >
                     Buy Now
                   </button>
@@ -109,7 +145,10 @@ function MyVerticallyCenteredModal(props) {
                 <div className="text-center absole absole2 lastone">
                   <button
                     className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => props.handleCreateNodeButton(2)}
+                    onClick={() => {
+                      props.onHide();
+                      props.handleCreateNodeButton(2);
+                    }}
                   >
                     Buy Now
                   </button>
@@ -126,12 +165,44 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
+function RenewModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <img
+            style={{ width: "75%" }}
+            className=" fix_logo omgggg navbar-brand-sticky"
+            src="img/logo_white.png"
+            alt="sticky brand-logo"
+          />
+        </Modal.Title>
+        <span onClick={() => props.onHide()} className="close_btn">
+          x
+        </span>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="main_flex">
+          <div className="apr__main">You have no node to renew</div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
 class Claim extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       modalShow: false,
+      renewmodalShow: false,
+      referrer_address: "",
     };
   }
 
@@ -142,7 +213,7 @@ class Claim extends Component {
   }
 
   handleCreateNodeButton = (node_type) => {
-    this.props.createNode(node_type);
+    this.props.createNode(node_type, this.state.referrer_address);
   };
 
   handleClaimNodesAllButton = () => {
@@ -220,7 +291,7 @@ class Claim extends Component {
                           >
                             Node Type
                           </th>
-                          <th className="col-md-4 quantity_1">Quantity</th>
+                          <th className="col-md-4 hide_767">Quantity</th>
                           <th
                             style={{
                               border: "1px solid beige",
@@ -234,12 +305,20 @@ class Claim extends Component {
                       </thead>
                       <tbody>
                         <tr style={{ background: "#ffffff" }}>
-                          <td>Stater</td>
-                          <td className="quantity_1">
+                          <td>
+                            Stater
+                            <span
+                              className="show_767"
+                              style={{ display: "none" }}
+                            >
+                              &nbsp;({this.props.node_count_types[0]})
+                            </span>
+                          </td>
+                          <td className="hide_767">
                             {this.props.node_count_types[0]}
                           </td>
                           <td className="relative_div">
-                            {(this.props.yield_types[0] / 1e18).toFixed(3)}$
+                            {(this.props.yield_types[0] / 1e18).toFixed(3)}&nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[0] == 0 ? (
                                 <button
@@ -263,12 +342,20 @@ class Claim extends Component {
                         </tr>
 
                         <tr style={{ background: "#ffffff" }}>
-                          <td>Pro</td>
-                          <td className="quantity_1">
+                          <td>
+                            Pro{" "}
+                            <span
+                              className="show_767"
+                              style={{ display: "none" }}
+                            >
+                              &nbsp;({this.props.node_count_types[1]})
+                            </span>
+                          </td>
+                          <td className="hide_767">
                             {this.props.node_count_types[1]}
                           </td>
                           <td className="relative_div">
-                            {(this.props.yield_types[1] / 1e18).toFixed(3)}$
+                            {(this.props.yield_types[1] / 1e18).toFixed(3)}&nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[1] == 0 ? (
                                 <button
@@ -298,9 +385,15 @@ class Claim extends Component {
                               borderRadius: "0px 0px 0px 20px",
                             }}
                           >
-                            Whale
+                            Whale{" "}
+                            <span
+                              className="show_767"
+                              style={{ display: "none" }}
+                            >
+                              &nbsp;({this.props.node_count_types[2]})
+                            </span>
                           </td>
-                          <td className="quantity_1">
+                          <td className="hide_767">
                             {this.props.node_count_types[2]}
                           </td>
                           <td
@@ -310,7 +403,7 @@ class Claim extends Component {
                             }}
                             className="relative_div"
                           >
-                            {(this.props.yield_types[2] / 1e18).toFixed(3)}$
+                            {(this.props.yield_types[2] / 1e18).toFixed(3)}&nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[2] == 0 ? (
                                 <button
@@ -353,13 +446,13 @@ class Claim extends Component {
               >
                 Buy New Node
               </button>
-              {/* <button
+              <button
                 style={{ borderRadius: "48px", padding: "12px" }}
                 className="btn gray claim-button myshadow mx-2 mb-2"
-                onClick={() => this.setState({ modalShow: true })}
+                onClick={() => this.setState({ renewmodalShow: true })}
               >
-               Renew Node
-              </button> */}
+                Renew Node
+              </button>
             </div>
           </div>
         </div>
@@ -368,6 +461,13 @@ class Claim extends Component {
           show={this.state.modalShow}
           onHide={() => this.setState({ modalShow: false })}
           handleCreateNodeButton={this.handleCreateNodeButton}
+          referrer_address={this.state.referrer_address}
+          accountAddress={this.props.accountAddress}
+          onReferrerChange={(val) => this.setState({ referrer_address: val })}
+        />
+        <RenewModal
+          show={this.state.renewmodalShow}
+          onHide={() => this.setState({ renewmodalShow: false })}
         />
       </section>
     );

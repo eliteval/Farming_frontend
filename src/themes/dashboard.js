@@ -136,7 +136,7 @@ class Dashboard extends Component {
     this.setState({ yield_types: userStatus.yield_per_type });
     this.setState({ node_count_total: userStatus.nodes });
     this.setState({ node_count_types: userStatus.nodes_per_type });
-    console.log(userStatus.yield_per_type)
+    console.log(userStatus.yield_per_type);
 
     var node_type1 = await this.state.farmingContract.methods
       .node_types(0)
@@ -196,34 +196,41 @@ class Dashboard extends Component {
       .approve(
         this.state.contract_address,
         this.state.node_type_deposit[node_type]
-        // "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
       )
       .send({
         from: this.state.accountAddress,
-        gas: 3000000,
-        value: 0,
       })
       .on("confirmation", (confirmationNumber) => {
         return;
       });
   };
 
-  createNode = async (node_type) => {
-    this.setState({ loading: true });
-    // if (this.state.token_allowance < parseUnits("1000", 18))
-    await this.approveToken(node_type);
-
-    await this.state.farmingContract.methods
-      .createNode(node_type, "0x0000000000000000000000000000000000000000")
-      .send({
-        from: this.state.accountAddress,
-        gas: 3000000,
-        value: 0,
-      })
-      .on("confirmation", (confirmationNumber) => {
-        this.setState({ loading: false });
-        this.loadData();
-      });
+  createNode = async (node_type, referrer_address) => {
+    try {
+      if (this.state.token_allowance < this.state.node_type_deposit[node_type])
+        await this.approveToken(node_type);
+      console.log(
+        referrer_address
+          ? referrer_address
+          : "0x0000000000000000000000000000000000000000"
+      );
+      await this.state.farmingContract.methods
+        .createNode(
+          node_type,
+          referrer_address
+            ? referrer_address
+            : "0x0000000000000000000000000000000000000000"
+        )
+        .send({
+          from: this.state.accountAddress,
+        })
+        .on("confirmation", (confirmationNumber) => {
+          this.setState({ loading: false });
+          this.loadData();
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   claimNodesAll = async () => {
@@ -232,8 +239,6 @@ class Dashboard extends Component {
       .claimNodesAll()
       .send({
         from: this.state.accountAddress,
-        gas: 3000000,
-        value: 0,
       })
       .on("confirmation", (confirmationNumber) => {
         this.setState({ loading: false });
@@ -247,8 +252,6 @@ class Dashboard extends Component {
       .claimNodesForType(node_type)
       .send({
         from: this.state.accountAddress,
-        gas: 3000000,
-        value: 0,
       })
       .on("confirmation", (confirmationNumber) => {
         this.setState({ loading: false });
@@ -293,6 +296,8 @@ class Dashboard extends Component {
               node_count_types={this.state.node_count_types}
               yield_total={this.state.yield_total}
               yield_types={this.state.yield_types}
+              support_address={this.state.contract_address}
+              accountAddress={this.state.accountAddress}
             />
           )}
           <div className="bg-white" style={{ display: "none" }}>
