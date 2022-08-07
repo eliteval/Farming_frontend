@@ -318,7 +318,8 @@ class Claim extends Component {
                             {this.props.node_count_types[0]}
                           </td>
                           <td className="relative_div">
-                            {(this.props.yield_types[0] / 1e18).toFixed(3)}&nbsp;$
+                            {(this.props.yield_types[0] / 1e18).toFixed(3)}
+                            &nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[0] == 0 ? (
                                 <button
@@ -355,7 +356,8 @@ class Claim extends Component {
                             {this.props.node_count_types[1]}
                           </td>
                           <td className="relative_div">
-                            {(this.props.yield_types[1] / 1e18).toFixed(3)}&nbsp;$
+                            {(this.props.yield_types[1] / 1e18).toFixed(3)}
+                            &nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[1] == 0 ? (
                                 <button
@@ -403,7 +405,8 @@ class Claim extends Component {
                             }}
                             className="relative_div"
                           >
-                            {(this.props.yield_types[2] / 1e18).toFixed(3)}&nbsp;$
+                            {(this.props.yield_types[2] / 1e18).toFixed(3)}
+                            &nbsp;$
                             <div className="text-center absole">
                               {this.props.yield_types[2] == 0 ? (
                                 <button
@@ -446,6 +449,7 @@ class Claim extends Component {
               >
                 Buy New Node
               </button>
+              <div className="borderbtn2"></div>
               <button
                 style={{ borderRadius: "48px", padding: "12px" }}
                 className="btn gray claim-button myshadow mx-2 mb-2"
@@ -453,6 +457,32 @@ class Claim extends Component {
               >
                 Renew Node
               </button>
+            </div>
+          </div>
+
+          <div
+            style={{ display: "flex", justifyContent: "end" }}
+            className="row justify-content-center mt-4"
+          >
+            <div className="col-sm-12 col-md-6">
+              <div
+                className="claim-box bg-red box1"
+                style={{ fontSize: "25px" }}
+              >
+                <span>Total Nodes</span>
+                <span className="float-right">{this.props.total_nodes}</span>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6">
+              <div
+                className="claim-box bg-red box1"
+                style={{ fontSize: "25px" }}
+              >
+                <span>TVL</span>
+                <span className="float-right">
+                  {this.props.total_deposited / 1e18} $
+                </span>
+              </div>
             </div>
           </div>
         </div>

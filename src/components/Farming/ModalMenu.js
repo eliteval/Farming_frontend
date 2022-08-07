@@ -1,68 +1,83 @@
-import React, { Component } from "react";
+import React from "react";
 
-class ModalMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-    };
-  }
-
-  handleCreateNodeButton = () => {
-    let node_type = prompt("Which node will you select?");
-    if (node_type) this.props.createNode(node_type);
+const ModalMenu = ({
+  page,
+  metamaskConnected,
+  connectToMetamask,
+  disconnect,
+  showSidebarMenu,
+}) => {
+  const handleHomeButton = () => {
+    console.log(1);
+    window.location.href = "/";
   };
-
-  render() {
-    return (
-      <div id="menu" className="modal fade p-0">
-        <div
-          className="modal-dialog dialog-animated  bg-gray"
-          style={{ maxWidth: "300px" }}
-        >
-          <div className="modal-content xxxh-100" style={{ display: "block" }}>
-            <div className="modal-header" data-dismiss="modal">
-              Menu <i className="far fa-times-circle icon-close" />
-            </div>
-            <div
-              className="menu modal-body"
-              style={{ height: "70vh", alignItems: "flex-start" }}
-            >
-              <div className="row w-100">
-                <div className="items p-0 col-12 text-center"></div>
+  const handleDashboardButton = () => {
+    console.log(2);
+    window.location.href = "/dashboard";
+  };
+  return (
+    <div id="menu" className="modal fade p-0">
+      <div
+        className={
+          showSidebarMenu == true
+            ? "modal-dialog dialog-animated menu_left"
+            : "modal-dialog dialog-animated menu_closed"
+        }
+      >
+        <div className="modal-content customModalCotent h-100">
+          <div
+            className="modal-header"
+            data-dismiss="modal"
+            style={{ color: "white" }}
+          >
+            Menu <i className="far fa-times-circle icon-close" />
+          </div>
+          <div className="menu modal-body">
+            <div className="list_item__ nav-link smooth-anchor">
+              <div className="list_child" onClick={() => handleHomeButton()}>
+                <i className="fas fa-home" />
+                &nbsp;Home
+              </div>
+              <div
+                className="list_child"
+                onClick={() => handleDashboardButton()}
+              >
+                <i className="fas fa-user" />
+                &nbsp;Dashboard
               </div>
             </div>
-            <div style={{ padding: "0px 12%", textAlign: "center" }}>
-              <button
-                className="btn red mb-2"
-                style={{ marginLeft: "auto", marginRight: "auto" }}
-                onClick={() => this.handleCreateNodeButton()}
-              >
-                Buy New Node
-              </button>
-              {this.props.metamaskConnected ? (
+          </div>
+          <div style={{ padding: "100px 12%", textAlign: "center" }}>
+            <button
+              className="btn ml-lg-auto cutomBotton text-white"
+              onClick={() => handleDashboardButton()}
+            >
+              Buy New Node
+            </button>
+            {page == "dashboard" ? (
+              metamaskConnected ? (
                 <button
-                  className="btn mb-2 customButton"
-                  style={{ marginLeft: "auto", marginRight: "auto" }}
-                  onClick={() => this.props.disconnect()}
+                  className="btn mt-2 ml-lg-auto cutomBotton text-white"
+                  onClick={() => disconnect()}
                 >
                   Log Out
                 </button>
               ) : (
                 <button
-                  className="btn mb-2 customButton"
-                  style={{ marginLeft: "auto", marginRight: "auto" }}
-                  onClick={() => this.props.connectToMetamask()}
+                  className="btn mt-2 ml-lg-auto cutomBotton text-white"
+                  onClick={() => connectToMetamask()}
                 >
                   Connect
                 </button>
-              )}
-            </div>
+              )
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default ModalMenu;

@@ -1,7 +1,11 @@
 import React from "react";
 
 const ModalMenu = ({ showSidebarMenu }) => {
-  const handleButton = () => {
+  const handleButton = (hash) => {
+    window.location.href = hash;
+  };
+  const handleAppButton = () => {
+    console.log(2);
     window.location.href = "/dashboard";
   };
   return (
@@ -22,33 +26,36 @@ const ModalMenu = ({ showSidebarMenu }) => {
             Menu <i className="far fa-times-circle icon-close" />
           </div>
           <div className="menu modal-body">
-            <div
-              className="list_item__ nav-link smooth-anchor"
-              href="#about_area"
-            >
-              <div className="list_child">
-                <i className="fas fa-home " />
-                &nbsp;Dashboard
+            <div className="list_item__ nav-link smooth-anchor">
+              <div
+                className="list_child"
+                onClick={() => handleButton("#banner")}
+              >
+                <i className="fas fa-home" />
+                &nbsp;Home
               </div>
-              <div className="list_child">
-                {" "}
+              <div
+                className="list_child"
+                onClick={() => handleButton("#about_area")}
+              >
                 <i className="fas fa-user" />
-                &nbsp;Member
+                &nbsp;Dapp
+              </div>
+              <div
+                className="list_child"
+                onClick={() => handleButton("#faq_area")}
+              >
+                <i className="fas fa-question" />
+                &nbsp;FAQ
               </div>
             </div>
           </div>
           <div style={{ padding: "100px 12%", textAlign: "center" }}>
             <button
               className="btn ml-lg-auto cutomBotton text-white"
-              onClick={() => handleButton()}
+              onClick={() => handleAppButton()}
             >
               Buy New Node
-            </button>
-            <button
-              className="btn mt-2 ml-lg-auto cutomBotton text-white"
-              onClick={() => handleButton()}
-            >
-              Logout
             </button>
           </div>
         </div>

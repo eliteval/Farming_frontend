@@ -9,7 +9,7 @@ import Explore from "../components/Explore/ExploreOne";
 import Work from "../components/Work/Work";
 import Footer from "../components/Footer/Footer";
 import ModalSearch from "../components/Modal/ModalSearch";
-import ModalMenu from "../components/Modal/ModalMenu";
+import ModalMenu from "../components/Farming/ModalMenu";
 import Scrollup from "../components/Scrollup/Scrollup";
 import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
@@ -44,6 +44,7 @@ class Dashboard extends Component {
       yield_total: 0,
       yield_types: [0, 0, 0],
       node_type_deposit: [0, 0, 0],
+      total_nodes: 0,
       total_deposited: 0,
       total_withdrawed: 0,
       userStatus: {},
@@ -122,8 +123,9 @@ class Dashboard extends Component {
 
   loadData = async () => {
     console.log("loading");
-    const { _total_deposited, _total_withdrawed } =
+    const { _total_nodes, _total_deposited, _total_withdrawed } =
       await this.state.farmingContract.methods.contractStatus().call();
+    this.setState({ total_nodes: _total_nodes });
     this.setState({ total_deposited: _total_deposited });
     this.setState({ total_withdrawed: _total_withdrawed });
 
@@ -270,6 +272,7 @@ class Dashboard extends Component {
             disconnect={this.disconnect}
             handleToggle={this.handleToggle}
           />
+
           {!this.state.metamaskConnected ? (
             <section className="author-area bg-white">
               <div
@@ -287,11 +290,30 @@ class Dashboard extends Component {
                 </div>
               </div>
             </section>
+          ) : this.state.networkId != 56 ? (
+            <section className="author-area bg-white">
+              <div
+                className="container"
+                style={{ minHeight: "450px", padding: "50px 5% 0px" }}
+              >
+                <div className="row justify-content-center">
+                  <div className="col-12 col-md-8 col-lg-7">
+                    <div className="intro text-center">
+                      <h4 className="mt-3 mb-0  text-black">
+                        Please change network to Binance Smart Chain.
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           ) : (
             <Claim
               createNode={this.createNode}
               claimNodesAll={this.claimNodesAll}
               claimNodesForType={this.claimNodesForType}
+              total_nodes={this.state.total_nodes}
+              total_deposited={this.state.total_deposited}
               node_count_total={this.state.node_count_total}
               node_count_types={this.state.node_count_types}
               yield_total={this.state.yield_total}
@@ -300,10 +322,15 @@ class Dashboard extends Component {
               accountAddress={this.state.accountAddress}
             />
           )}
-          <div className="bg-white" style={{ display: "none" }}>
+          <div className="bg-white" style={{ display: "block" }}>
             <p>networkId: {this.state.networkId}</p>
             <p>contract_address: {this.state.contract_address}</p>
-            <p>node_type_deposit: {this.state.node_type_deposit}</p>
+            <p>
+              node_type_deposit: {this.state.node_type_deposit[0] / 1e18}$,
+              {this.state.node_type_deposit[1] / 1e18}$,
+              {this.state.node_type_deposit[2] / 1e18}$
+            </p>
+            <p>total_nodes: {this.state.total_nodes}</p>
             <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
             <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
             <p>stable_coin_address: {this.state.stable_coin_address}</p>
@@ -313,9 +340,10 @@ class Dashboard extends Component {
           </div>
           <Footer />
           <ModalMenu
-            // metamaskConnected={this.state.metamaskConnected}
-            // connectToMetamask={this.connectToMetamask}
-            // disconnect={this.disconnect}
+            page="dashboard"
+            metamaskConnected={this.state.metamaskConnected}
+            connectToMetamask={this.connectToMetamask}
+            disconnect={this.disconnect}
             // createNode={this.createNode}
             showSidebarMenu={this.state.showSidebarMenu}
           />

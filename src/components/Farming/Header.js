@@ -1,6 +1,12 @@
 import React from "react";
-import "./Farming.css"
-const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconnect,handleToggle }) => {
+import "./Farming.css";
+const Header = ({
+  metamaskConnected,
+  accountAddress,
+  connectToMetamask,
+  disconnect,
+  handleToggle,
+}) => {
   return (
     <header id="header">
       {/* Navbar */}
@@ -20,68 +26,23 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
           </a>
           <div className="ml-auto" />
           {/* Navbar */}
-          <ul className="navbar-nav items mx-auto">
+          <ul className="navbar-nav items customUl2">
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="#banner">
-              <i className="fas fa-home" />&nbsp;Dashboard
+              <a className="nav-link smooth-anchor" href="/">
+                <i className="fas fa-home" />
+                &nbsp;Home
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="#about_area">
-              <i className="fas fa-user" />&nbsp;Member
+              <a className="nav-link smooth-anchor" href="/dashboard">
+                <i className="fas fa-user" />
+                &nbsp;Dashboard
               </a>
             </li>
-            {/* <li className="nav-item dropdown">
-                            <a className="nav-link" href="/">Home</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Explore <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/explore-1" className="nav-link">Explore Style 1</a></li>
-                                <li className="nav-item"><a href="/explore-2" className="nav-link">Explore Style 2</a></li>
-                                <li className="nav-item"><a href="/explore-3" className="nav-link">Explore Style 3</a></li>
-                                <li className="nav-item"><a href="/explore-4" className="nav-link">Explore Style 4</a></li>
-                                <li className="nav-item"><a href="/auctions" className="nav-link">Live Auctions</a></li>
-                                <li className="nav-item"><a href="/item-details" className="nav-link">Item Details</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item">
-                            <a href="/activity" className="nav-link">Activity</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Community <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/blog" className="nav-link">Blog</a></li>
-                                <li className="nav-item"><a href="/blog-single" className="nav-link">Blog Single</a></li>
-                                <li className="nav-item"><a href="/help-center" className="nav-link">Help Center</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Pages <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/authors" className="nav-link">Authors</a></li>
-                                <li className="nav-item"><a href="/author" className="nav-link">Author</a></li>
-                                <li className="nav-item"><a href="/wallet-connect" className="nav-link">Wallet Connect</a></li>
-                                <li className="nav-item"><a href="/create" className="nav-link">Create</a></li>
-                                <li className="nav-item"><a href="/login" className="nav-link">Login</a></li>
-                                <li className="nav-item"><a href="/signup" className="nav-link">Signup</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item">
-                            <a href="/contact" className="nav-link">Contact</a>
-                        </li> */}
           </ul>
-          {/* Navbar Icons */}
-          {/* <ul className="navbar-nav icons">
-                        <li className="nav-item">
-                            <a href="#" className="nav-link" data-toggle="modal" data-target="#search">
-                                <i className="fas fa-search" />
-                            </a>
-                        </li>
-                    </ul> */}
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">
-          <li className="nav-item" onClick={()=>handleToggle()}>
+            <li className="nav-item" onClick={() => handleToggle()}>
               <a
                 href="#"
                 className="nav-link"
@@ -96,7 +57,11 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
           <ul className="navbar-nav action">
             <li className="nav-item ml-3">
               {metamaskConnected ? (
-                <button className="btn ml-lg-auto btn-bordered-white" onClick={()=>disconnect()}>
+                <button
+                  className="btn ml-lg-auto btn-bordered-white"
+                  onClick={() => disconnect()}
+                  style={{ padding: "9px 12px" }}
+                >
                   <i className="icon-wallet mr-md-2" />
                   {accountAddress.substring(0, 6)}...
                   {accountAddress.substring(accountAddress.length - 4)}
@@ -105,6 +70,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask, disconne
                 <button
                   className="btn ml-lg-auto btn-bordered-white"
                   onClick={connectToMetamask}
+                  style={{ padding: "9px 12px" }}
                 >
                   <i className="icon-wallet mr-md-2" /> Connect
                 </button>

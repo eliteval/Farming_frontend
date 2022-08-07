@@ -1,7 +1,7 @@
 @media only screen and (max-width: 800px) {
   .customBanner {
     padding-top: 10vh;
-    background-image: url("./banners/banner1.jpg") !important;
+    background-image: url("./banners/banner_.jpg") !important;
     height: 100% !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -161,6 +161,9 @@
   .customUl {
     margin-right: 330px !important;
   }
+  .customUl2 {
+    margin-right: 260px !important;
+  }
   .customBanner {
     height: 650px;
   }
@@ -240,4 +243,5 @@
 .list_child {
   display: flex !important;
   justify-content: space-between !important;
+  cursor: pointer;
 }

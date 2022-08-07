@@ -1,7 +1,12 @@
 import React from "react";
 import "./Header.css";
 
-const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleToggle }) => {
+const Header = ({
+  metamaskConnected,
+  accountAddress,
+  connectToMetamask,
+  handleToggle,
+}) => {
   const handleButton = () => {
     window.location.href = "/dashboard";
   };
@@ -13,7 +18,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleTog
         data-aos="zoom-out"
         data-aos-delay={800}
         className="navbar navbar-expand customHeader"
-        style={{ height: "10vw"}}
+        style={{ height: "10vw", maxHeight: "125px" }}
       >
         <div className="container header">
           {/* Navbar Brand*/}
@@ -24,7 +29,7 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleTog
               alt="sticky brand-logo"
             />
           </a>
-          <div className="ml-auto"/>
+          <div className="ml-auto" />
           {/* Navbar */}
           <ul className="navbar-nav items customUl">
             <li className="nav-item dropdown">
@@ -43,22 +48,9 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleTog
               </a>
             </li>
           </ul>
-          {/* Navbar Icons */}
-          {/* <ul className="navbar-nav icons">
-            <li className="nav-item">
-              <a
-                href="#"
-                className="nav-link"
-                data-toggle="modal"
-                data-target="#search"
-              >
-                <i className="fas fa-search" />
-              </a>
-            </li>
-          </ul> */}
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">
-            <li className="nav-item" onClick={()=>handleToggle()}>
+            <li className="nav-item" onClick={() => handleToggle()}>
               <a
                 href="#"
                 className="nav-link"
@@ -71,11 +63,12 @@ const Header = ({ metamaskConnected, accountAddress, connectToMetamask,handleTog
           </ul>
           {/* Navbar Action Button */}
           <ul className="navbar-nav action">
-            <li className="nav-item ml-3" >
+            <li className="nav-item ml-3">
               <button
                 className="btn ml-lg-auto blue text-black customHeaderButton"
                 onClick={() => handleButton()}
-              > Buy Nodes
+              >
+                Buy Nodes
               </button>
             </li>
           </ul>

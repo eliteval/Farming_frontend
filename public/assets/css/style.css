@@ -1320,7 +1320,7 @@ aside {
     display: none;
   }
   .show_767 {
-    display: inline-block!important;
+    display: inline-block !important;
   }
   .fix_logo {
     max-width: 56% !important;
@@ -3408,6 +3408,9 @@ button.gray {
 .bg-blue {
   background-color: #2abfcd !important;
 }
+.bg-purple {
+  background-color: #45175e !important;
+}
 .bg-white {
   background-color: white !important;
 }
@@ -3539,6 +3542,14 @@ table {
   right: 189px;
 }
 
+.borderbtn2 {
+  width: 1107px;
+  border: 1px solid black;
+  position: absolute;
+  top: 72px;
+  right: 189px;
+}
+
 /* end */
 
 .main_flex {
@@ -3602,4 +3613,8 @@ table {
   line-height: 0;
   display: flex;
   justify-content: center;
+}
+
+.fix_logo {
+  height: 30px!important;
 }
