@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactLoading from "react-loading";
 
 import Header from "../components/Farming/Header";
 import Hero from "../components/Hero/Hero";
@@ -15,6 +16,7 @@ import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
 import Authors from "../components/Authors/Authors";
 import Claim from "../components/Farming/Claim";
+import Member from "../components/Farming/Member";
 
 import Web3 from "web3";
 import FarmingData from "../contract/Farming.json";
@@ -50,17 +52,20 @@ class Dashboard extends Component {
       userStatus: {},
       loading: true,
       showSidebarMenu: false,
+      page: "claim",
     };
   }
 
-  handleToggle = async () => {
-    console.log(this.state.showSidebarMenu);
-    this.setState({ showSidebarMenu: true });
-  };
-
   componentWillMount = async () => {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let page = params.get("page");
+    this.setState({ page });
+
+    this.setState({ loading: true });
     await this.loadWeb3();
     await this.loadBlockchainData();
+    this.setState({ loading: false });
   };
 
   loadWeb3 = async () => {
@@ -86,12 +91,10 @@ class Dashboard extends Component {
       this.setState({ metamaskConnected: false });
     } else {
       this.setState({ metamaskConnected: true });
-      this.setState({ loading: true });
       this.setState({ accountAddress: accounts[0] });
       let accountBalance = await web3.eth.getBalance(accounts[0]);
       accountBalance = web3.utils.fromWei(accountBalance, "Ether");
       this.setState({ accountBalance });
-      this.setState({ loading: false });
       const networkId = await web3.eth.net.getId();
       this.setState({ networkId });
 
@@ -100,7 +103,6 @@ class Dashboard extends Component {
       const networkData = FarmingData.networks[networkId];
       console.log(networkData);
       if (networkData) {
-        this.setState({ loading: true });
         this.setState({ contract_address: networkData.address });
         const farmingContract = new web3.eth.Contract(
           FarmingData.abi,
@@ -113,8 +115,6 @@ class Dashboard extends Component {
         setInterval(async () => {
           await this.loadData();
         }, 15 * 1000);
-
-        this.setState({ loading: false });
       } else {
         this.setState({ contractDetected: false });
       }
@@ -122,7 +122,6 @@ class Dashboard extends Component {
   };
 
   loadData = async () => {
-    console.log("loading");
     const { _total_nodes, _total_deposited, _total_withdrawed } =
       await this.state.farmingContract.methods.contractStatus().call();
     this.setState({ total_nodes: _total_nodes });
@@ -180,6 +179,11 @@ class Dashboard extends Component {
     this.setState({ token_balance });
   };
 
+  handleToggle = async () => {
+    console.log(this.state.showSidebarMenu);
+    this.setState({ showSidebarMenu: true });
+  };
+
   connectToMetamask = async () => {
     await window.ethereum.enable();
     this.setState({ metamaskConnected: true });
@@ -193,7 +197,6 @@ class Dashboard extends Component {
   };
 
   approveToken = async (node_type) => {
-    this.setState({ loading: true });
     await this.state.erc20Contract.methods
       .approve(
         this.state.contract_address,
@@ -272,8 +275,28 @@ class Dashboard extends Component {
             disconnect={this.disconnect}
             handleToggle={this.handleToggle}
           />
-
-          {!this.state.metamaskConnected ? (
+          {this.state.loading ? (
+            <section className="author-area bg-white">
+              <div
+                className="container"
+                style={{ minHeight: "450px", padding: "50px 5% 0px" }}
+              >
+                <div className="row justify-content-center">
+                  <div className="col-12">
+                    <div className="intro text-center">
+                      <ReactLoading
+                        type={"spinningBubbles"}
+                        color={"red"}
+                        height={50}
+                        width={50}
+                        className="bg-white text-center loading_spin"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          ) : !this.state.metamaskConnected ? (
             <section className="author-area bg-white">
               <div
                 className="container"
@@ -307,6 +330,8 @@ class Dashboard extends Component {
                 </div>
               </div>
             </section>
+          ) : this.state.page == "member" ? (
+            <Member />
           ) : (
             <Claim
               createNode={this.createNode}
@@ -314,6 +339,7 @@ class Dashboard extends Component {
               claimNodesForType={this.claimNodesForType}
               total_nodes={this.state.total_nodes}
               total_deposited={this.state.total_deposited}
+              total_withdrawed={this.state.total_withdrawed}
               node_count_total={this.state.node_count_total}
               node_count_types={this.state.node_count_types}
               yield_total={this.state.yield_total}
@@ -322,22 +348,30 @@ class Dashboard extends Component {
               accountAddress={this.state.accountAddress}
             />
           )}
-          <div className="bg-white" style={{ display: "block" }}>
-            <p>networkId: {this.state.networkId}</p>
-            <p>contract_address: {this.state.contract_address}</p>
-            <p>
-              node_type_deposit: {this.state.node_type_deposit[0] / 1e18}$,
-              {this.state.node_type_deposit[1] / 1e18}$,
-              {this.state.node_type_deposit[2] / 1e18}$
-            </p>
-            <p>total_nodes: {this.state.total_nodes}</p>
-            <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
-            <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
-            <p>stable_coin_address: {this.state.stable_coin_address}</p>
-            <p>token_allowance: {this.state.token_allowance}</p>
-            <p>token_balance: {this.state.token_balance}</p>
-            <p>userStatus: {JSON.stringify(this.state.userStatus)}</p>
-          </div>
+
+          {window.location.hostname === "localhost" ||
+          window.location.hostname === "127.0.0.1" ? (
+            <div className="bg-white" style={{ display: "block" }}>
+              <p>page: {this.state.page}</p>
+              <p>networkId: {this.state.networkId}</p>
+              <p>contract_address: {this.state.contract_address}</p>
+              <p>
+                node_type_deposit: {this.state.node_type_deposit[0] / 1e18}$,
+                {this.state.node_type_deposit[1] / 1e18}$,
+                {this.state.node_type_deposit[2] / 1e18}$
+              </p>
+              <p>total_nodes: {this.state.total_nodes}</p>
+              <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
+              <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
+              <p>stable_coin_address: {this.state.stable_coin_address}</p>
+              <p>token_allowance: {this.state.token_allowance}</p>
+              <p>token_balance: {this.state.token_balance}</p>
+              <p>userStatus: {JSON.stringify(this.state.userStatus)}</p>
+            </div>
+          ) : (
+            <></>
+          )}
+
           <Footer />
           <ModalMenu
             page="dashboard"

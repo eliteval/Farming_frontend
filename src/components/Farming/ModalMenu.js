@@ -7,14 +7,10 @@ const ModalMenu = ({
   disconnect,
   showSidebarMenu,
 }) => {
-  const handleHomeButton = () => {
-    console.log(1);
-    window.location.href = "/";
+  const goto = (href) => {
+    window.location.href = href;
   };
-  const handleDashboardButton = () => {
-    console.log(2);
-    window.location.href = "/dashboard";
-  };
+
   return (
     <div id="menu" className="modal fade p-0">
       <div
@@ -34,23 +30,30 @@ const ModalMenu = ({
           </div>
           <div className="menu modal-body">
             <div className="list_item__ nav-link smooth-anchor">
-              <div className="list_child" onClick={() => handleHomeButton()}>
+              <div className="list_child" onClick={() => goto("/")}>
                 <i className="fas fa-home" />
                 &nbsp;Home
               </div>
               <div
                 className="list_child"
-                onClick={() => handleDashboardButton()}
+                onClick={() => goto("/dashboard?page=claim")}
               >
                 <i className="fas fa-user" />
                 &nbsp;Dashboard
+              </div>
+              <div
+                className="list_child"
+                onClick={() => goto("/dashboard?page=member")}
+              >
+                <i className="fas fa-user" />
+                &nbsp;Member
               </div>
             </div>
           </div>
           <div style={{ padding: "100px 12%", textAlign: "center" }}>
             <button
               className="btn ml-lg-auto cutomBotton text-white"
-              onClick={() => handleDashboardButton()}
+              onClick={() => goto("/dashboard?page=claim")}
             >
               Buy New Node
             </button>

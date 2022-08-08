@@ -8,7 +8,7 @@ const initData = {
   heading: "abcdef",
 };
 
-function MyVerticallyCenteredModal(props) {
+function BuyNewNodeModal(props) {
   return (
     <Modal
       {...props}
@@ -30,13 +30,14 @@ function MyVerticallyCenteredModal(props) {
         </span>
       </Modal.Header>
       <Modal.Body>
-        <div className="main_flex mb-2">
+        {/* Referral System - not using for now */}
+        {/* <div className="main_flex mb-2">
           <Form className="row">
             <Form.Group
               className="col-sm-12 col-md-12 mb-3"
               controlId="formBasicEmail"
             >
-              {/* <Form.Label>Referrer address</Form.Label> */}
+              <Form.Label>Referrer address</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter referrer address if you have"
@@ -52,13 +53,14 @@ function MyVerticallyCenteredModal(props) {
                 <></>
               )}
             </Form.Group>
-            {/* <div className="col-sm-12 col-md-4 text-center">
+            <div className="col-sm-12 col-md-4 text-center">
               <button className="btn red myshadow mx-2 mb-2">
                 Support Project
               </button>
-            </div> */}
+            </div>
           </Form>
-        </div>
+        </div> */}
+        
         <div className="main_flex">
           <div className="apr__main">APR: 80%</div>
         </div>
@@ -462,23 +464,34 @@ class Claim extends Component {
 
           <div
             style={{ display: "flex", justifyContent: "end" }}
-            className="row justify-content-center mt-4"
+            className="row justify-content-center mt-5"
           >
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-12 col-md-4">
               <div
                 className="claim-box bg-red box1"
-                style={{ fontSize: "25px" }}
+                style={{ fontSize: "20px" }}
               >
                 <span>Total Nodes</span>
                 <span className="float-right">{this.props.total_nodes}</span>
               </div>
             </div>
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-12 col-md-4">
               <div
                 className="claim-box bg-red box1"
-                style={{ fontSize: "25px" }}
+                style={{ fontSize: "20px" }}
               >
-                <span>TVL</span>
+                <span>Total Rewards</span>
+                <span className="float-right">
+                  {(this.props.total_withdrawed / 1e18).toFixed(3)} $
+                </span>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-4">
+              <div
+                className="claim-box bg-red box1"
+                style={{ fontSize: "20px" }}
+              >
+                <span>Total Volume</span>
                 <span className="float-right">
                   {this.props.total_deposited / 1e18} $
                 </span>
@@ -487,7 +500,7 @@ class Claim extends Component {
           </div>
         </div>
 
-        <MyVerticallyCenteredModal
+        <BuyNewNodeModal
           show={this.state.modalShow}
           onHide={() => this.setState({ modalShow: false })}
           handleCreateNodeButton={this.handleCreateNodeButton}

@@ -162,7 +162,7 @@
     margin-right: 330px !important;
   }
   .customUl2 {
-    margin-right: 260px !important;
+    margin-right: 170px !important;
   }
   .customBanner {
     height: 650px;
@@ -244,4 +244,9 @@
   display: flex !important;
   justify-content: space-between !important;
   cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.loading_spin{
+  margin: 0px auto;
 }

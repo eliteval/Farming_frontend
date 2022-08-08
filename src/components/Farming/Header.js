@@ -34,9 +34,15 @@ const Header = ({
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="/dashboard">
-                <i className="fas fa-user" />
+              <a className="nav-link smooth-anchor" href="/dashboard?page=claim">
+              <i class="fas fa-user"></i>
                 &nbsp;Dashboard
+              </a>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link smooth-anchor" href="/dashboard?page=member">
+                <i className="fas fa-user" />
+                &nbsp;Member
               </a>
             </li>
           </ul>

@@ -6,7 +6,7 @@ const ModalMenu = ({ showSidebarMenu }) => {
   };
   const handleAppButton = () => {
     console.log(2);
-    window.location.href = "/dashboard";
+    window.location.href = "/dashboard?page=claim";
   };
   return (
     <div id="menu" className="modal fade p-0">
