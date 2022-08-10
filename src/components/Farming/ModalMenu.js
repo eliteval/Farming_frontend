@@ -31,29 +31,32 @@ const ModalMenu = ({
           <div className="menu modal-body">
             <div className="list_item__ nav-link smooth-anchor">
               <div className="list_child" onClick={() => goto("/")}>
-                <i className="fas fa-home" />
                 &nbsp;Home
               </div>
               <div
                 className="list_child"
-                onClick={() => goto("/dashboard?page=claim")}
+                onClick={() => goto("/farming?page=dashboard")}
               >
-                <i className="fas fa-user" />
                 &nbsp;Dashboard
               </div>
               <div
                 className="list_child"
-                onClick={() => goto("/dashboard?page=member")}
+                onClick={() => goto("/farming?page=member")}
               >
-                <i className="fas fa-user" />
                 &nbsp;Member
+              </div>
+              <div
+                className="list_child"
+                onClick={() => goto("/farming?page=referral")}
+              >
+                &nbsp;Referral
               </div>
             </div>
           </div>
           <div style={{ padding: "100px 12%", textAlign: "center" }}>
             <button
               className="btn ml-lg-auto cutomBotton text-white"
-              onClick={() => goto("/dashboard?page=claim")}
+              onClick={() => goto("/dashboard?page=dashboard")}
             >
               Buy New Node
             </button>

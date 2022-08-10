@@ -162,7 +162,7 @@
     margin-right: 330px !important;
   }
   .customUl2 {
-    margin-right: 170px !important;
+    margin-right: 105px !important;
   }
   .customBanner {
     height: 650px;
@@ -199,14 +199,14 @@
     line-height: 20pt;
   }
   .customHeader img {
-    width: 190px !important;
-    height: 40px !important;
+    width: 253px !important;
+    /* height: 40px !important; */
   }
   .customHeaderButton {
     font-size: 16px !important;
     padding: 20px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
   }
   .customAbout h3 {
     font-size: 19px !important;

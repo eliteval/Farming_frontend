@@ -29,20 +29,28 @@ const Header = ({
           <ul className="navbar-nav items customUl2">
             <li className="nav-item dropdown">
               <a className="nav-link smooth-anchor" href="/">
-                <i className="fas fa-home" />
                 &nbsp;Home
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="/dashboard?page=claim">
-              <i class="fas fa-user"></i>
+              <a
+                className="nav-link smooth-anchor"
+                href="/farming?page=dashboard"
+              >
                 &nbsp;Dashboard
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="/dashboard?page=member">
-                <i className="fas fa-user" />
+              <a className="nav-link smooth-anchor" href="/farming?page=member">
                 &nbsp;Member
+              </a>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link smooth-anchor"
+                href="/farming?page=referral"
+              >
+                &nbsp;Referral
               </a>
             </li>
           </ul>

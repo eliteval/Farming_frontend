@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // importing all the themes
 import ThemeOne from "../themes/theme-one";
-import Dashboard from "../themes/dashboard";
+import Farming from "../themes/farming";
 import ExploreOne from "../themes/explore-one";
 import ExploreTwo from "../themes/explore-two";
 import ExploreThree from "../themes/explore-three";
@@ -29,7 +29,7 @@ class MyRouts extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={ThemeOne} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/farming" component={Farming} />
           </Switch>
         </Router>
       </div>

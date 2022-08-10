@@ -15,46 +15,85 @@ import Scrollup from "../components/Scrollup/Scrollup";
 import About from "../components/About/About";
 import Faq from "../components/Faq/Faq";
 import Authors from "../components/Authors/Authors";
-import Claim from "../components/Farming/Claim";
+import Dashboard from "../components/Farming/Dashboard";
 import Member from "../components/Farming/Member";
+import Referral from "../components/Farming/Referral";
 
 import Web3 from "web3";
 import FarmingData from "../contract/Farming.json";
+import ReferralData from "../contract/Referral.json";
 import ERC20Data from "../contract/ERC20.json";
 
 import { BigNumber } from "ethers";
 import { formatUnits, parseUnits, commify } from "@ethersproject/units";
 
-class Dashboard extends Component {
+class Farming extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // provider
       web3: null,
       accountAddress: "",
       accountBalance: "",
       networkId: 0,
       metamaskConnected: false,
-      contractDetected: false,
-      farmingContract: null,
+      //contracts
       contract_address: null,
-      stable_coin_address: "",
+      farmingContract: null,
+      referralContract: null,
       erc20Contract: null,
+      //contract- setting
+      stable_coin_address: "",
+      referral_system_address: "",
+      no_claim_period: 0,
+      expiration_period: 0,
+      node_type_deposit: [0, 0, 0],
+      //contract- status
+      contractStatus: {},
+      //contract- user side
+      userStatus: {},
+      userNodes: [],
+      expiredNodeTimestamps: [],
+      //token data
       token_allowance: 0,
       token_balance: 0,
-      node_count_total: 0,
-      node_count_types: [0, 0, 0],
-      yield_total: 0,
-      yield_types: [0, 0, 0],
-      node_type_deposit: [0, 0, 0],
-      total_nodes: 0,
-      total_deposited: 0,
-      total_withdrawed: 0,
-      userStatus: {},
+      //page
       loading: true,
       showSidebarMenu: false,
-      page: "claim",
+      page: "dashboard",
     };
   }
+
+  /*
+  --contractStatus--
+    _total_deposited: "1000000000000000000"
+    _total_nodes: "1"
+    _total_nodes_per_type: (3) ['1', '0', '0']
+    _total_withdrawed: "0"
+
+  --userStatus --
+    deposited: "1000000000000000000"
+    nodes: "1"
+    nodes_per_type: (3) ['1', '0', '0']
+    nodes_timestamps: ['1660070738']
+    withdrawed: "0"
+    yield: "2036349536960026"
+    yield_per_type: (3) ['2036349536960026', '0', '0']
+  --userNodes-- Array
+    can_free_claim: true
+    created_time: "1660070738"
+    deposits: "1000000000000000000"
+    is_expired: false
+    last_claim_time: "1660070738"
+    node_type: "0"
+    payouts: "0"
+    remaining_time: "0"
+    renewed: "0"
+    upline: "0xed2d267b642730a958B7B90A3a9Bb68511Af1AF7"
+    yiled_calculated: "2104030092513022"
+
+    remaining_for_noclaim: 123
+  */
 
   componentWillMount = async () => {
     let search = window.location.search;
@@ -101,7 +140,6 @@ class Dashboard extends Component {
       console.log(networkId, this.state.accountAddress, accountBalance);
 
       const networkData = FarmingData.networks[networkId];
-      console.log(networkData);
       if (networkData) {
         this.setState({ contract_address: networkData.address });
         const farmingContract = new web3.eth.Contract(
@@ -109,35 +147,33 @@ class Dashboard extends Component {
           networkData.address
         );
         this.setState({ farmingContract });
-        this.setState({ contractDetected: true });
 
         await this.loadData();
         setInterval(async () => {
           await this.loadData();
         }, 15 * 1000);
       } else {
-        this.setState({ contractDetected: false });
       }
     }
   };
 
   loadData = async () => {
-    const { _total_nodes, _total_deposited, _total_withdrawed } =
-      await this.state.farmingContract.methods.contractStatus().call();
-    this.setState({ total_nodes: _total_nodes });
-    this.setState({ total_deposited: _total_deposited });
-    this.setState({ total_withdrawed: _total_withdrawed });
-
-    var userStatus = await this.state.farmingContract.methods
-      .userStatus(this.state.accountAddress)
+    // Contract
+    var contractStatus = await this.state.farmingContract.methods
+      .contractStatus()
       .call();
-    this.setState({ userStatus });
+    this.setState({ contractStatus });
 
-    this.setState({ yield_total: userStatus.yield });
-    this.setState({ yield_types: userStatus.yield_per_type });
-    this.setState({ node_count_total: userStatus.nodes });
-    this.setState({ node_count_types: userStatus.nodes_per_type });
-    console.log(userStatus.yield_per_type);
+    const {
+      _no_claim_period,
+      _expiration_period,
+      _referral_system_address,
+      _stable_coin_address,
+    } = await this.state.farmingContract.methods.contractSetting().call();
+    this.setState({ stable_coin_address: _stable_coin_address });
+    this.setState({ referral_system_address: _referral_system_address });
+    this.setState({ no_claim_period: _no_claim_period });
+    this.setState({ expiration_period: _expiration_period });
 
     var node_type1 = await this.state.farmingContract.methods
       .node_types(0)
@@ -156,10 +192,45 @@ class Dashboard extends Component {
       ],
     });
 
-    const { _stable_coin_address } = await this.state.farmingContract.methods
-      .contractSetting()
+    // User side
+    var userStatus = await this.state.farmingContract.methods
+      .userStatus(this.state.accountAddress)
       .call();
-    this.setState({ stable_coin_address: _stable_coin_address });
+    this.setState({ userStatus });
+
+    var userNodes = [];
+    var expiredNodeTimestamps = [];
+    await userStatus.nodes_timestamps.reduce(async (accum, timestamp, key) => {
+      // don't progress further until the last iteration has finished:
+      await accum;
+
+      var userNodeStatus = await this.state.farmingContract.methods
+        .userNodeStatus(this.state.accountAddress, timestamp)
+        .call();
+      userNodeStatus.remaining_for_noclaim = Math.max(
+        (Number(userNodeStatus.created_time) + Number(_no_claim_period)) * 1000 - Date.now(),
+        0
+      );
+      userNodeStatus.remaining_for_expiration = Math.max(
+        (Number(userNodeStatus.created_time) + Number(_expiration_period)) * 1000 - Date.now,
+        0
+      );
+      userNodes.push(userNodeStatus);
+      if (userNodeStatus.is_expired) {
+        expiredNodeTimestamps.push(userNodeStatus.created_time);
+      }
+
+      return 1;
+    }, Promise.resolve(""));
+    this.setState({ userNodes });
+    this.setState({ expiredNodeTimestamps });
+
+    // Referral
+    const referralContract = new this.state.web3.eth.Contract(
+      ReferralData.abi,
+      _referral_system_address
+    );
+    this.setState({ referralContract });
 
     //Stable Coin
     const erc20Contract = new this.state.web3.eth.Contract(
@@ -238,28 +309,48 @@ class Dashboard extends Component {
     }
   };
 
+  renewNode = async (timestamp) => {
+    console.log(timestamp);
+    await this.state.farmingContract.methods
+      .renew(timestamp)
+      .send({
+        from: this.state.accountAddress,
+      })
+      .on("confirmation", (confirmationNumber) => {
+        this.loadData();
+      });
+  };
+
+  claimOne = async (timestamp, amount) => {
+    console.log(timestamp, amount);
+    await this.state.farmingContract.methods
+      .claimOne(timestamp, amount)
+      .send({
+        from: this.state.accountAddress,
+      })
+      .on("confirmation", (confirmationNumber) => {
+        this.loadData();
+      });
+  };
+
   claimNodesAll = async () => {
-    this.setState({ loading: true });
     await this.state.farmingContract.methods
       .claimNodesAll()
       .send({
         from: this.state.accountAddress,
       })
       .on("confirmation", (confirmationNumber) => {
-        this.setState({ loading: false });
         this.loadData();
       });
   };
 
   claimNodesForType = async (node_type) => {
-    this.setState({ loading: true });
     await this.state.farmingContract.methods
       .claimNodesForType(node_type)
       .send({
         from: this.state.accountAddress,
       })
       .on("confirmation", (confirmationNumber) => {
-        this.setState({ loading: false });
         this.loadData();
       });
   };
@@ -331,38 +422,32 @@ class Dashboard extends Component {
               </div>
             </section>
           ) : this.state.page == "member" ? (
-            <Member />
+            <Member
+              userStatus={this.state.userStatus}
+              no_claim_period={this.state.no_claim_period}
+              userNodes={this.state.userNodes}
+              renewNode={this.renewNode}
+              claimOne={this.claimOne}
+            />
+          ) : this.state.page == "referral" ? (
+            <Referral referralContract={this.state.referralContract} />
           ) : (
-            <Claim
+            <Dashboard
               createNode={this.createNode}
               claimNodesAll={this.claimNodesAll}
               claimNodesForType={this.claimNodesForType}
-              total_nodes={this.state.total_nodes}
-              total_deposited={this.state.total_deposited}
-              total_withdrawed={this.state.total_withdrawed}
-              node_count_total={this.state.node_count_total}
-              node_count_types={this.state.node_count_types}
-              yield_total={this.state.yield_total}
-              yield_types={this.state.yield_types}
-              support_address={this.state.contract_address}
               accountAddress={this.state.accountAddress}
+              userStatus={this.state.userStatus}
+              contractStatus={this.state.contractStatus}
             />
           )}
 
           {window.location.hostname === "localhost" ||
           window.location.hostname === "127.0.0.1" ? (
-            <div className="bg-white" style={{ display: "block" }}>
+            <div className="bg-white">
               <p>page: {this.state.page}</p>
               <p>networkId: {this.state.networkId}</p>
               <p>contract_address: {this.state.contract_address}</p>
-              <p>
-                node_type_deposit: {this.state.node_type_deposit[0] / 1e18}$,
-                {this.state.node_type_deposit[1] / 1e18}$,
-                {this.state.node_type_deposit[2] / 1e18}$
-              </p>
-              <p>total_nodes: {this.state.total_nodes}</p>
-              <p>total_deposited: {this.state.total_deposited / 1e18}$</p>
-              <p>total_withdrawed: {this.state.total_withdrawed / 1e18}$</p>
               <p>stable_coin_address: {this.state.stable_coin_address}</p>
               <p>token_allowance: {this.state.token_allowance}</p>
               <p>token_balance: {this.state.token_balance}</p>
@@ -388,4 +473,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default Farming;

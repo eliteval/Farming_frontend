@@ -6,7 +6,7 @@ const ModalMenu = ({ showSidebarMenu }) => {
   };
   const handleAppButton = () => {
     console.log(2);
-    window.location.href = "/dashboard?page=claim";
+    window.location.href = "/farming?page=dashboard";
   };
   return (
     <div id="menu" className="modal fade p-0">
@@ -31,21 +31,18 @@ const ModalMenu = ({ showSidebarMenu }) => {
                 className="list_child"
                 onClick={() => handleButton("#banner")}
               >
-                <i className="fas fa-home" />
                 &nbsp;Home
               </div>
               <div
                 className="list_child"
                 onClick={() => handleButton("#about_area")}
               >
-                <i className="fas fa-user" />
                 &nbsp;Dapp
               </div>
               <div
                 className="list_child"
                 onClick={() => handleButton("#faq_area")}
               >
-                <i className="fas fa-question" />
                 &nbsp;FAQ
               </div>
             </div>

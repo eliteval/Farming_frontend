@@ -25,7 +25,7 @@ class About extends Component {
   }
 
   handleButton = () => {
-    window.location.href = "dashboard";
+    window.location.href = "farming";
   };
 
   render() {

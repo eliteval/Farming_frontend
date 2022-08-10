@@ -3476,6 +3476,14 @@ img.networks {
   padding: 13px 15px;
   margin-bottom: 10px;
 }
+.claim-box-small {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+}
 .claim-button {
   background-color: #e4001c;
   background-image: none;
@@ -3500,6 +3508,18 @@ img.networks {
 .claim-table tr td {
   color: black;
   font-size: 18px;
+}
+
+.referrer-table * {
+  text-align: center !important;
+  font-size: 15px;
+}
+.referrer-table th {
+  background-color: #302e2e;
+  color: white;
+}
+.referrer-table tr td {
+  color: black;
 }
 
 /* Sunil code start */
@@ -3616,5 +3636,5 @@ table {
 }
 
 .fix_logo {
-  height: 30px!important;
+  height: 30px !important;
 }

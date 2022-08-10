@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-
-const initData = {
-  pre_heading: "Dashboard",
-  heading: "abcdef",
-};
+import {
+  readableDuration,
+  getNodeName,
+  convertToDate,
+  getValue,
+} from "../../utils/utils";
 
 function BuyNewNodeModal(props) {
   return (
@@ -31,7 +32,7 @@ function BuyNewNodeModal(props) {
       </Modal.Header>
       <Modal.Body>
         {/* Referral System - not using for now */}
-        {/* <div className="main_flex mb-2">
+        <div className="main_flex mb-2">
           <Form className="row">
             <Form.Group
               className="col-sm-12 col-md-12 mb-3"
@@ -53,14 +54,14 @@ function BuyNewNodeModal(props) {
                 <></>
               )}
             </Form.Group>
-            <div className="col-sm-12 col-md-4 text-center">
+            {/* <div className="col-sm-12 col-md-4 text-center">
               <button className="btn red myshadow mx-2 mb-2">
                 Support Project
               </button>
-            </div>
+            </div> */}
           </Form>
-        </div> */}
-        
+        </div>
+
         <div className="main_flex">
           <div className="apr__main">APR: 80%</div>
         </div>
@@ -197,33 +198,18 @@ function RenewModal(props) {
   );
 }
 
-class Claim extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       modalShow: false,
       renewmodalShow: false,
       referrer_address: "",
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      initData: initData,
-    });
-  }
-
   handleCreateNodeButton = (node_type) => {
     this.props.createNode(node_type, this.state.referrer_address);
-  };
-
-  handleClaimNodesAllButton = () => {
-    this.props.claimNodesAll();
-  };
-
-  handleClaimNodesForTypeButton = (node_type) => {
-    this.props.claimNodesForType(node_type);
   };
 
   render() {
@@ -240,7 +226,7 @@ class Claim extends Component {
                   <div className="claim-box bg-gray box1">
                     <span style={{ fontSize: "19px" }}>Your Nodes</span>
                     <span className="float-right">
-                      {this.props.node_count_total}
+                      {this.props.userStatus.nodes}
                     </span>
                   </div>
                 </div>
@@ -248,19 +234,19 @@ class Claim extends Component {
                   <div className="claim-box bg-gray">
                     <span style={{ fontSize: "19px" }}>Rewards</span>
                     <span className="float-right">
-                      $ {(this.props.yield_total / 1e18).toFixed(3)}
+                      {getValue(this.props.userStatus.yield, 3)}
                     </span>
                   </div>
                 </div>
                 <div className="col-sm-12 col-md-4">
-                  {this.props.yield_total == 0 ? (
+                  {this.props.userStatus.yield == 0 ? (
                     <button className="btn claim-button" disabled>
                       Claim All
                     </button>
                   ) : (
                     <button
                       className="btn claim-button"
-                      onClick={() => this.handleClaimNodesAllButton()}
+                      onClick={() => this.props.claimNodesAll()}
                     >
                       Claim All
                     </button>
@@ -306,130 +292,52 @@ class Claim extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr style={{ background: "#ffffff" }}>
-                          <td>
-                            Stater
-                            <span
-                              className="show_767"
-                              style={{ display: "none" }}
-                            >
-                              &nbsp;({this.props.node_count_types[0]})
-                            </span>
-                          </td>
-                          <td className="hide_767">
-                            {this.props.node_count_types[0]}
-                          </td>
-                          <td className="relative_div">
-                            {(this.props.yield_types[0] / 1e18).toFixed(3)}
-                            &nbsp;$
-                            <div className="text-center absole">
-                              {this.props.yield_types[0] == 0 ? (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  disabled
+                        {[0, 1, 2].map((index) => {
+                          return (
+                            <tr style={{ background: "#ffffff" }} key={index}>
+                              <td>
+                                {getNodeName(index)}
+                                <span
+                                  className="show_767"
+                                  style={{ display: "none" }}
                                 >
-                                  Claim
-                                </button>
-                              ) : (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  onClick={() =>
-                                    this.handleClaimNodesForTypeButton(0)
-                                  }
-                                >
-                                  Claim
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-
-                        <tr style={{ background: "#ffffff" }}>
-                          <td>
-                            Pro{" "}
-                            <span
-                              className="show_767"
-                              style={{ display: "none" }}
-                            >
-                              &nbsp;({this.props.node_count_types[1]})
-                            </span>
-                          </td>
-                          <td className="hide_767">
-                            {this.props.node_count_types[1]}
-                          </td>
-                          <td className="relative_div">
-                            {(this.props.yield_types[1] / 1e18).toFixed(3)}
-                            &nbsp;$
-                            <div className="text-center absole">
-                              {this.props.yield_types[1] == 0 ? (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  disabled
-                                >
-                                  Claim
-                                </button>
-                              ) : (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  onClick={() =>
-                                    this.handleClaimNodesForTypeButton(1)
-                                  }
-                                >
-                                  Claim
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-
-                        <tr style={{ background: "#ffffff" }}>
-                          <td
-                            style={{
-                              border: "1px solid beige",
-                              borderRadius: "0px 0px 0px 20px",
-                            }}
-                          >
-                            Whale{" "}
-                            <span
-                              className="show_767"
-                              style={{ display: "none" }}
-                            >
-                              &nbsp;({this.props.node_count_types[2]})
-                            </span>
-                          </td>
-                          <td className="hide_767">
-                            {this.props.node_count_types[2]}
-                          </td>
-                          <td
-                            style={{
-                              border: "1px solid beige",
-                              borderRadius: "0px 0px 20px 0px",
-                            }}
-                            className="relative_div"
-                          >
-                            {(this.props.yield_types[2] / 1e18).toFixed(3)}
-                            &nbsp;$
-                            <div className="text-center absole">
-                              {this.props.yield_types[2] == 0 ? (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  disabled
-                                >
-                                  Claim
-                                </button>
-                              ) : (
-                                <button
-                                  className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                                  onClick={() =>
-                                    this.handleClaimNodesForTypeButton(2)
-                                  }
-                                >
-                                  Claim
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
+                                  &nbsp;(
+                                  {this.props.userStatus.nodes_per_type[index]})
+                                </span>
+                              </td>
+                              <td className="hide_767">
+                                {this.props.userStatus.nodes_per_type[index]}
+                              </td>
+                              <td className="relative_div">
+                                {getValue(
+                                  this.props.userStatus.yield_per_type[index],
+                                  3
+                                )}
+                                <div className="text-center absole">
+                                  {Number(
+                                    this.props.userStatus.yield_per_type[index]
+                                  ) == 0 ? (
+                                    <button
+                                      className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
+                                      disabled
+                                    >
+                                      Claim
+                                    </button>
+                                  ) : (
+                                    <button
+                                      className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
+                                      onClick={() =>
+                                        this.props.claimNodesForType(index)
+                                      }
+                                    >
+                                      Claim
+                                    </button>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
@@ -437,28 +345,26 @@ class Claim extends Component {
               </div>
             </div>
           </div>
-
-          <div
-            style={{ display: "flex", justifyContent: "end" }}
-            className="row justify-content-right mt-4"
-          >
-            <div className="col-sm-12 col-md-4  ">
-              <div className="borderbtn"></div>
-              <button
-                style={{ borderRadius: "48px", padding: "12px" }}
-                className="btn gray claim-button myshadow mx-2 mb-2"
-                onClick={() => this.setState({ modalShow: true })}
-              >
-                Buy New Node
-              </button>
-              <div className="borderbtn2"></div>
-              <button
-                style={{ borderRadius: "48px", padding: "12px" }}
-                className="btn gray claim-button myshadow mx-2 mb-2"
-                onClick={() => this.setState({ renewmodalShow: true })}
-              >
-                Renew Node
-              </button>
+          <div className="justify-content-center mt-4">
+            <div className="row" style={{ padding: "0px 10%" }}>
+              <div className="col-xs-12 col-sm-6  ">
+                <button
+                  style={{ borderRadius: "48px", padding: "12px" }}
+                  className="btn gray claim-button myshadow mx-2 mb-2"
+                  onClick={() => this.setState({ modalShow: true })}
+                >
+                  Buy New Node
+                </button>
+              </div>
+              <div className="col-xs-12 col-sm-6  ">
+                <button
+                  style={{ borderRadius: "48px", padding: "12px" }}
+                  className="btn gray claim-button myshadow mx-2 mb-2"
+                  onClick={() => this.setState({ renewmodalShow: true })}
+                >
+                  Renew Node
+                </button>
+              </div>
             </div>
           </div>
 
@@ -472,7 +378,9 @@ class Claim extends Component {
                 style={{ fontSize: "20px" }}
               >
                 <span>Total Nodes</span>
-                <span className="float-right">{this.props.total_nodes}</span>
+                <span className="float-right">
+                  {this.props.contractStatus._total_nodes}
+                </span>
               </div>
             </div>
             <div className="col-sm-12 col-md-4">
@@ -482,7 +390,7 @@ class Claim extends Component {
               >
                 <span>Total Rewards</span>
                 <span className="float-right">
-                  {(this.props.total_withdrawed / 1e18).toFixed(3)} $
+                  {getValue(this.props.contractStatus._total_withdrawed)}
                 </span>
               </div>
             </div>
@@ -493,7 +401,7 @@ class Claim extends Component {
               >
                 <span>Total Volume</span>
                 <span className="float-right">
-                  {this.props.total_deposited / 1e18} $
+                  {getValue(this.props.contractStatus._total_deposited)}
                 </span>
               </div>
             </div>
@@ -517,4 +425,4 @@ class Claim extends Component {
   }
 }
 
-export default Claim;
+export default Dashboard;

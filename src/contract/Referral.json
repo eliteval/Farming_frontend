@@ -1,0 +1,226 @@
+{
+  "contractName": "Referral",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_referrer_address",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_referral_address",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_deposits",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_affilate_reward",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "action",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getReferralSystemInfo",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "total_referrers",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total_referrals",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total_affilate_rewards",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_referrer_address",
+          "type": "address"
+        }
+      ],
+      "name": "getReferrerInfo",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "referrals",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "volume",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "affilate_rewards",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "referrer_address",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "referral_address",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deposits",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "affilate_reward",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Referral.Action[]",
+          "name": "actions",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTopReferres",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "referrer_address",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "referrals",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "volume",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "affilate_rewards",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Referral.Referrer[]",
+          "name": "top_referrers",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_addr",
+          "type": "address"
+        }
+      ],
+      "name": "setFarmingContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "networks": {
+    "56": {
+      "address": "0x37E4225E1B4455D9abA2ecF4D3d70Ec0Dfb36516"
+    }
+  }
+}

@@ -8,7 +8,7 @@ const Header = ({
   handleToggle,
 }) => {
   const handleButton = () => {
-    window.location.href = "/dashboard?page=claim";
+    window.location.href = "/farming?page=dashboard";
   };
 
   return (
