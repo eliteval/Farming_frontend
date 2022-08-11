@@ -159,10 +159,10 @@
     padding-bottom: 20px !important;
   }
   .customUl {
-    margin-right: 330px !important;
+    margin-right: 290px !important;
   }
   .customUl2 {
-    margin-right: 105px !important;
+    margin-right: 145px !important;
   }
   .customBanner {
     height: 650px;
@@ -240,13 +240,6 @@
   padding-top: 82px !important;
 }
 
-.list_child {
-  display: flex !important;
-  justify-content: space-between !important;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.loading_spin{
+.loading_spin {
   margin: 0px auto;
 }

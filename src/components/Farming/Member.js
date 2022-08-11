@@ -34,7 +34,9 @@ class Member extends Component {
                   <div className="claim-box bg-gray">
                     <span style={{ fontSize: "19px" }}>Deposits</span>
                     <span className="float-right">
-                      $ {(this.props.userStatus.deposited / 1e18).toFixed(1)}
+                      {this.props.userStatus.deposited
+                        ? getValue(this.props.userStatus.deposited)
+                        : ""}
                     </span>
                   </div>
                 </div>
@@ -42,7 +44,9 @@ class Member extends Component {
                   <div className="claim-box bg-gray">
                     <span style={{ fontSize: "19px" }}>Claimed</span>
                     <span className="float-right">
-                      $ {(this.props.userStatus.withdrawed / 1e18).toFixed(1)}
+                      {this.props.userStatus.withdrawed
+                        ? getValue(this.props.userStatus.withdrawed, 3)
+                        : ""}
                     </span>
                   </div>
                 </div>
@@ -105,7 +109,9 @@ class Member extends Component {
                               {getValue(item.deposits)}
                             </td>
                             <td className="hide_767">
-                              {getValue(item.payouts)}
+                              {Number(item.payouts)
+                                ? getValue(item.payouts)
+                                : ""}
                             </td>
                             <td className="hide_767">
                               {convertToDate(item.created_time * 1000)}
@@ -139,7 +145,7 @@ class Member extends Component {
                             </td>
                             <td className="relative_div">
                               {item.remaining_for_noclaim || item.is_expired
-                                ? getValue(0)
+                                ? ""
                                 : getValue(item.yiled_calculated)}
                               <div className="text-center absole">
                                 {item.is_expired ? (

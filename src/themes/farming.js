@@ -37,6 +37,7 @@ class Farming extends Component {
       accountBalance: "",
       networkId: 0,
       metamaskConnected: false,
+      currentBlockTimestamp: 0,
       //contracts
       contract_address: null,
       farmingContract: null,
@@ -47,13 +48,15 @@ class Farming extends Component {
       referral_system_address: "",
       no_claim_period: 0,
       expiration_period: 0,
-      node_type_deposit: [0, 0, 0],
+      node_type_deposit: [0, 0, 0], //deposit amounts for 3 types
       //contract- status
       contractStatus: {},
       //contract- user side
       userStatus: {},
       userNodes: [],
       expiredNodeTimestamps: [],
+      expiringDuration: 30 * 24 * 60 * 60 * 1000, //after 30 days, will expire
+      expiringNodeTimestamps: [], //after 30 days, will expire
       //token data
       token_allowance: 0,
       token_balance: 0,
@@ -79,6 +82,7 @@ class Farming extends Component {
     withdrawed: "0"
     yield: "2036349536960026"
     yield_per_type: (3) ['2036349536960026', '0', '0']
+
   --userNodes-- Array
     can_free_claim: true
     created_time: "1660070738"
@@ -87,12 +91,13 @@ class Farming extends Component {
     last_claim_time: "1660070738"
     node_type: "0"
     payouts: "0"
-    remaining_time: "0"
+    remaining_time: "0"   (seconds)
     renewed: "0"
     upline: "0xed2d267b642730a958B7B90A3a9Bb68511Af1AF7"
     yiled_calculated: "2104030092513022"
 
-    remaining_for_noclaim: 123
+    remaining_for_noclaim: 12300  (milliseconds)
+    remaining_for_expiration: 12300  (milliseconds)
   */
 
   componentWillMount = async () => {
@@ -124,6 +129,11 @@ class Farming extends Component {
 
   loadBlockchainData = async () => {
     const web3 = this.state.web3;
+
+    var blockNumber = await web3.eth.getBlockNumber();
+    var block = await web3.eth.getBlock(blockNumber);
+    var timestamp = block.timestamp;
+    this.setState({ currentBlockTimestamp: timestamp });
 
     const accounts = await web3.eth.getAccounts();
     if (accounts.length === 0) {
@@ -200,6 +210,7 @@ class Farming extends Component {
 
     var userNodes = [];
     var expiredNodeTimestamps = [];
+    var expiringNodeTimestamps = [];
     await userStatus.nodes_timestamps.reduce(async (accum, timestamp, key) => {
       // don't progress further until the last iteration has finished:
       await accum;
@@ -208,22 +219,33 @@ class Farming extends Component {
         .userNodeStatus(this.state.accountAddress, timestamp)
         .call();
       userNodeStatus.remaining_for_noclaim = Math.max(
-        (Number(userNodeStatus.created_time) + Number(_no_claim_period)) * 1000 - Date.now(),
+        (Number(userNodeStatus.created_time) +
+          Number(_no_claim_period) -
+          this.state.currentBlockTimestamp) *
+          1000,
         0
       );
       userNodeStatus.remaining_for_expiration = Math.max(
-        (Number(userNodeStatus.created_time) + Number(_expiration_period)) * 1000 - Date.now,
+        (Number(userNodeStatus.created_time) +
+          Number(_expiration_period) -
+          this.state.currentBlockTimestamp) *
+          1000,
         0
       );
       userNodes.push(userNodeStatus);
-      if (userNodeStatus.is_expired) {
+
+      if (userNodeStatus.remaining_for_expiration == 0)
         expiredNodeTimestamps.push(userNodeStatus.created_time);
-      }
+      else if (
+        userNodeStatus.remaining_for_expiration < this.state.expiringDuration
+      )
+        expiringNodeTimestamps.push(userNodeStatus.created_time);
 
       return 1;
     }, Promise.resolve(""));
     this.setState({ userNodes });
     this.setState({ expiredNodeTimestamps });
+    this.setState({ expiringNodeTimestamps });
 
     // Referral
     const referralContract = new this.state.web3.eth.Contract(
@@ -285,11 +307,11 @@ class Farming extends Component {
     try {
       if (this.state.token_allowance < this.state.node_type_deposit[node_type])
         await this.approveToken(node_type);
-      console.log(
-        referrer_address
-          ? referrer_address
-          : "0x0000000000000000000000000000000000000000"
-      );
+      // console.log(
+      //   referrer_address
+      //     ? referrer_address
+      //     : "0x0000000000000000000000000000000000000000"
+      // );
       await this.state.farmingContract.methods
         .createNode(
           node_type,
@@ -310,7 +332,15 @@ class Farming extends Component {
   };
 
   renewNode = async (timestamp) => {
-    console.log(timestamp);
+    var current_node = this.state.userNodes.find(
+      (item) => item.created_time == timestamp
+    );
+
+    if (
+      this.state.token_allowance <
+      this.state.node_type_deposit[current_node.node_type]
+    )
+      await this.approveToken(current_node.node_type);
     await this.state.farmingContract.methods
       .renew(timestamp)
       .send({
@@ -322,7 +352,6 @@ class Farming extends Component {
   };
 
   claimOne = async (timestamp, amount) => {
-    console.log(timestamp, amount);
     await this.state.farmingContract.methods
       .claimOne(timestamp, amount)
       .send({
@@ -439,6 +468,9 @@ class Farming extends Component {
               accountAddress={this.state.accountAddress}
               userStatus={this.state.userStatus}
               contractStatus={this.state.contractStatus}
+              node_type_deposit={this.state.node_type_deposit}
+              expiringNodeTimestamps={this.state.expiringNodeTimestamps}
+              expiredNodeTimestamps={this.state.expiredNodeTimestamps}
             />
           )}
 
@@ -448,6 +480,8 @@ class Farming extends Component {
               <p>page: {this.state.page}</p>
               <p>networkId: {this.state.networkId}</p>
               <p>contract_address: {this.state.contract_address}</p>
+              <p>expiringNodeTimestamps: {this.state.expiringNodeTimestamps}</p>
+              <p>expiredNodeTimestamps: {this.state.expiredNodeTimestamps}</p>
               <p>stable_coin_address: {this.state.stable_coin_address}</p>
               <p>token_allowance: {this.state.token_allowance}</p>
               <p>token_balance: {this.state.token_balance}</p>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import {
   readableDuration,
   getNodeName,
@@ -31,7 +32,7 @@ function BuyNewNodeModal(props) {
         </span>
       </Modal.Header>
       <Modal.Body>
-        {/* Referral System - not using for now */}
+        {/* Referral System */}
         <div className="main_flex mb-2">
           <Form className="row">
             <Form.Group
@@ -92,72 +93,27 @@ function BuyNewNodeModal(props) {
             </tr>
           </thead>
           <tbody>
-            <tr style={{ background: "#ffffff" }}>
-              <td>Starter</td>
-              <td>$100</td>
-              <td className="relative_div">
-                <div className="text-center absole absole2 lastone">
-                  <button
-                    className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => {
-                      props.onHide();
-                      props.handleCreateNodeButton(0);
-                    }}
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <tr style={{ background: "#ffffff" }}>
-              <td>Pro</td>
-              <td>$500</td>
-              <td className="relative_div">
-                <div className="text-center absole absole2 lastone">
-                  <button
-                    className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => {
-                      props.onHide();
-                      props.handleCreateNodeButton(1);
-                    }}
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <tr style={{ background: "#ffffff" }}>
-              <td
-                style={{
-                  border: "1px solid beige",
-                  borderRadius: "0px 0px 0px 20px",
-                }}
-              >
-                Whale
-              </td>
-              <td>$1000</td>
-              <td
-                style={{
-                  border: "1px solid beige",
-                  borderRadius: "0px 0px 20px 0px",
-                }}
-                className="relative_div"
-              >
-                <div className="text-center absole absole2 lastone">
-                  <button
-                    className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
-                    onClick={() => {
-                      props.onHide();
-                      props.handleCreateNodeButton(2);
-                    }}
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {[0,1,2].map((item) => {
+              return (
+                <tr style={{ background: "#ffffff" }} key={item}>
+                  <td>{getNodeName(item)}</td>
+                  <td>{getValue(props.node_type_deposit[item], 0)}</td>
+                  <td className="relative_div">
+                    <div className="text-center absole absole2 lastone">
+                      <button
+                        className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
+                        onClick={() => {
+                          props.onHide();
+                          props.handleCreateNodeButton(item);
+                        }}
+                      >
+                        Buy Now
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </Modal.Body>
@@ -219,6 +175,47 @@ class Dashboard extends Component {
           className="container"
           style={{ minHeight: "450px", padding: "50px 5% 0px" }}
         >
+          {/* Exprire Alerts */}
+          {this.props.expiredNodeTimestamps.length ? (
+            <div className="row ">
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-12">
+                    <Alert variant="danger">
+                      You have {this.props.expiredNodeTimestamps.length} node
+                      {this.props.expiredNodeTimestamps.length == 1
+                        ? ""
+                        : "s"}{" "}
+                      expired!
+                    </Alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+          {this.props.expiringNodeTimestamps.length ? (
+            <div className="row ">
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-12">
+                    <Alert variant="warning">
+                      You have {this.props.expiringNodeTimestamps.length} node
+                      {this.props.expiringNodeTimestamps.length == 1
+                        ? ""
+                        : "s"}{" "}
+                      expiring in 30 days!
+                    </Alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {/* Global */}
           <div className="row justify-content-center">
             <div className="col-12">
               <div className="row">
@@ -414,6 +411,7 @@ class Dashboard extends Component {
           handleCreateNodeButton={this.handleCreateNodeButton}
           referrer_address={this.state.referrer_address}
           accountAddress={this.props.accountAddress}
+          node_type_deposit={this.props.node_type_deposit}
           onReferrerChange={(val) => this.setState({ referrer_address: val })}
         />
         <RenewModal

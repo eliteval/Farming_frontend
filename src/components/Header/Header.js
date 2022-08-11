@@ -25,7 +25,7 @@ const Header = ({
           <a className="navbar-brand" href="/">
             <img
               className="navbar-brand-sticky logo"
-              src="img/logo_white.svg"
+              src="img/logo_red.svg"
               alt="sticky brand-logo"
             />
           </a>
@@ -65,7 +65,7 @@ const Header = ({
           <ul className="navbar-nav action">
             <li className="nav-item ml-3">
               <button
-                className="btn ml-lg-auto blue text-black customHeaderButton"
+                className="btn ml-lg-auto red text-white customHeaderButton"
                 onClick={() => handleButton()}
               >
                 Buy Nodes

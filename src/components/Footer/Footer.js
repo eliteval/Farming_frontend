@@ -21,11 +21,11 @@ class Footer extends Component {
                 "link": "google-plus",
                 "icon": "fab fa-telegram fs-2"
             },
-            // {
-            //     "id": 4,
-            //     "link": "vine",
-            //     "icon": "fab fa-discord fs-2"
-            // }
+            {
+                "id": 4,
+                "link": "vine",
+                "icon": "fab fa-instagram fs-2"
+            }
         ]
     }
 
