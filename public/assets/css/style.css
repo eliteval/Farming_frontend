@@ -3665,3 +3665,8 @@ table {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.apr_img {
+  width: 100%;
+  max-width: 150px;
+}
