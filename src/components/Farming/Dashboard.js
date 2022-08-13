@@ -68,7 +68,7 @@ function BuyNewNodeModal(props) {
         </div>
         <table
           style={{ borderCollapse: "collapse", maxWidth: "745px" }}
-          className="responsive claim-table "
+          className="responsive claim-table xxx"
         >
           <thead>
             <tr>
@@ -93,12 +93,12 @@ function BuyNewNodeModal(props) {
             </tr>
           </thead>
           <tbody>
-            {[0,1,2].map((item) => {
+            {[0, 1, 2].map((item) => {
               return (
                 <tr style={{ background: "#ffffff" }} key={item}>
                   <td>{getNodeName(item)}</td>
                   <td>{getValue(props.node_type_deposit[item], 0)}</td>
-                  <td className="relative_div">
+                  <td className="relative_div noborder">
                     <div className="text-center absole absole2 lastone">
                       <button
                         className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"

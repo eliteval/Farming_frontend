@@ -36,7 +36,7 @@ class About extends Component {
             <div className="intro text-center customAbout">
               <img
                 className="card-img-top"
-                src="/img/logo_red.svg"
+                src="/img/logo_red.png"
               />
               <h3 className="mt-0 mb-0 text-black" style={{fontSize: "16px"}}>
                 represents a revolution in passive income
@@ -45,14 +45,14 @@ class About extends Component {
           </div>
           <div className="row mt-2">
             <div className="col-12 col-md-6 customAbout">
-              <p className="text-black mb-5" style={{textAlign: "justify", fontSize: "13.5px"}}>
+              <p className="text-black mb-5" style={{textAlign: "justify", fontSize: "16px"}}>
                 {this.state.data.content}
               </p>
             </div>
             <div className="col-12 col-md-6 text-center">
               <img
                 className="card-img-top"
-                src="/img/chart.png"
+                src="/img/worldwide.png"
                 alt=""
                 style={{ width: "100vw" }}
               />

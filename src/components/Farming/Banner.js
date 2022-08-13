@@ -22,7 +22,7 @@ class Banner extends Component {
 
   render() {
     return (
-      <Video mp4={`img/turknode.mp4`} />
+      <Video mp4={`img/turknode.mp4`} id="banner" />
 
       // <section className="customBanner" id="banner">
       //   <div className="container" style={{ textAlign: "center" }}>

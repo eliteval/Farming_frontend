@@ -54,13 +54,13 @@ class Member extends Component {
             </div>
           </div>
           {/* table */}
-          <div className="row justify-content-center mt-5">
-            <div className="col-12">
-              <div className="row">
-                <div className="col-12">
+          <div className="row justify-content-center mt-5 myoverflow">
+            <div className="col-12 ">
+              <div className="row ">
+                <div className="col-12 ">
                   <table
                     style={{ borderCollapse: "collapse" }}
-                    className="responsive referrer-table mt-2"
+                    className="responsive referrer-table mt-2 "
                   >
                     <thead>
                       <tr>
@@ -73,14 +73,14 @@ class Member extends Component {
                         >
                           Node Type
                         </th>
-                        <th className="col-md-4 hide_767">Deposits</th>
-                        <th className="col-md-4 hide_767">Claimed</th>
-                        <th className="col-md-4 hide_767">Created At</th>
-                        <th className="col-md-4 hide_767">Last Claimed At</th>
-                        <th className="col-md-4 hide_767">Locked Period</th>
-                        <th className="col-md-4 hide_767">Taxed Period</th>
-                        <th className="col-md-4 hide_767">Expiration</th>
-                        <th className="col-md-4 hide_767">Renewed</th>
+                        <th className="col-md-4 ">Deposits</th>
+                        <th className="col-md-4 ">Claimed</th>
+                        <th className="col-md-4 ">Created At</th>
+                        <th className="col-md-4 ">Last Claimed At</th>
+                        <th className="col-md-4 ">Locked Period</th>
+                        <th className="col-md-4 ">Taxed Period</th>
+                        <th className="col-md-4 ">Expiration</th>
+                        <th className="col-md-4 ">Renewed</th>
                         <th
                           style={{
                             border: "1px solid beige",
@@ -96,51 +96,39 @@ class Member extends Component {
                       {this.props.userNodes.map((item, index) => {
                         return (
                           <tr style={{ background: "#ffffff" }} key={index}>
+                            <td>{getNodeName(item.node_type)}</td>
+                            <td>{getValue(item.deposits)}</td>
                             <td>
-                              {getNodeName(item.node_type)}
-                              <span
-                                className="show_767"
-                                style={{ display: "none" }}
-                              >
-                                &nbsp;({getValue(item.deposits)})
-                              </span>
-                            </td>
-                            <td className="hide_767">
-                              {getValue(item.deposits)}
-                            </td>
-                            <td className="hide_767">
                               {Number(item.payouts)
                                 ? getValue(item.payouts)
                                 : ""}
                             </td>
-                            <td className="hide_767">
-                              {convertToDate(item.created_time * 1000)}
-                            </td>
-                            <td className="hide_767">
+                            <td>{convertToDate(item.created_time * 1000)}</td>
+                            <td>
                               {item.created_time == item.last_claim_time
                                 ? "Never"
                                 : convertToDate(item.last_claim_time * 1000)}
                             </td>
-                            <td className="hide_767">
+                            <td>
                               {Number(item.remaining_for_noclaim)
                                 ? readableDuration(item.remaining_for_noclaim) +
                                   " left"
                                 : "Passed"}
                             </td>
-                            <td className="hide_767">
+                            <td>
                               {Number(item.remaining_time)
                                 ? readableDuration(item.remaining_time * 1000) +
                                   " left"
                                 : "Passed"}
                             </td>
-                            <td className="hide_767">
+                            <td>
                               {Number(item.remaining_for_expiration)
                                 ? readableDuration(
                                     item.remaining_for_expiration
                                   ) + " left"
                                 : "Expired"}
                             </td>
-                            <td className="hide_767">
+                            <td>
                               {Number(item.renewed) ? item.renewed : "Never"}
                             </td>
                             <td className="relative_div">

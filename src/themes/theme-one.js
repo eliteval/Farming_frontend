@@ -19,6 +19,7 @@ import Banner from "../components/Farming/Banner";
 import Bar from "../components/Farming/Bar";
 import About from "../components/Farming/About";
 import Networks from "../components/Farming/Networks";
+import Contact from "../components/Contact/Contact";
 
 import Web3 from "web3";
 
@@ -42,22 +43,8 @@ class ThemeOne extends Component {
   }
 
   componentWillMount = async () => {
-    await this.loadWeb3();
-    await this.loadBlockchainData();
-  };
 
-  loadWeb3 = async () => {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-    } else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-    } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
-    }
   };
-  loadBlockchainData = async () => {};
 
   handleToggle = async () => {
     console.log(this.state.showSidebarMenu);
@@ -79,6 +66,7 @@ class ThemeOne extends Component {
           <About />
           <Networks />
           <Faq />
+          <Contact />
           <Footer />
           <ModalSearch />
           <ModalMenu showSidebarMenu={this.state.showSidebarMenu} />

@@ -47,6 +47,11 @@ const Header = ({
                 FAQ
               </a>
             </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link smooth-anchor" href="#contact">
+                Contact
+              </a>
+            </li>
           </ul>
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">

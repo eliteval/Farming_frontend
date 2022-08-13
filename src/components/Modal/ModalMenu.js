@@ -45,6 +45,12 @@ const ModalMenu = ({ showSidebarMenu }) => {
               >
                 &nbsp;FAQ
               </div>
+              <div
+                className="list_child"
+                onClick={() => handleButton("#contact")}
+              >
+                &nbsp;Contact
+              </div>
             </div>
           </div>
           <div style={{ padding: "100px 12%", textAlign: "center" }}>

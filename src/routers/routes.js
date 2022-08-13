@@ -30,6 +30,7 @@ class MyRouts extends React.Component {
           <Switch>
             <Route exact path="/" component={ThemeOne} />
             <Route exact path="/farming" component={Farming} />
+            <Route exact path="/contact" component={Contact} />
           </Switch>
         </Router>
       </div>

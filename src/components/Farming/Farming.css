@@ -51,7 +51,7 @@
     font-weight: bold;
   }
   .customDate {
-    margin-top: -5px !important;
+    margin-top: 5px !important;
   }
   .customBar h6 {
     font-size: 12px;
@@ -168,7 +168,7 @@
     height: 650px;
   }
   .customDate {
-    margin-top: 0px !important;
+    margin-top: 5px !important;
   }
   .customFooter img {
     width: 160px;
@@ -242,4 +242,12 @@
 
 .loading_spin {
   margin: 0px auto;
+}
+
+table.xxx,
+table.xxx thead,
+table.xxx tr,
+table.xxx th,
+table.xxx td.noborder {
+  border: none;
 }

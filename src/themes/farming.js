@@ -118,17 +118,25 @@ class Farming extends Component {
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      // window.alert(
+      //   "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      // );
+    }
+    if (window.web3) {
+      this.setState({ web3: window.web3 });
+
+      window.ethereum.on("chainChanged", (_chainId) =>
+        this.loadBlockchainData()
       );
     }
-    this.setState({ web3: window.web3 });
-
-    window.ethereum.on("chainChanged", (_chainId) => this.loadBlockchainData());
   };
 
   loadBlockchainData = async () => {
     const web3 = this.state.web3;
+    if (!web3) {
+      this.setState({ metamaskConnected: false });
+      return;
+    }
 
     var blockNumber = await web3.eth.getBlockNumber();
     var block = await web3.eth.getBlock(blockNumber);
@@ -426,7 +434,7 @@ class Farming extends Component {
                   <div className="col-12 col-md-8 col-lg-7">
                     <div className="intro text-center">
                       <h4 className="mt-3 mb-0  text-black">
-                        Please connect your wallet.
+                        Please connect your Metamask.
                       </h4>
                     </div>
                   </div>

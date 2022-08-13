@@ -84,7 +84,7 @@ class Referral extends Component {
             </div>
           </div>
           {/* table - top 10 */}
-          <div className="row justify-content-center mt-2">
+          <div className="row justify-content-center mt-2 myoverflow">
             <div className="col-12">
               <h4 className="text-red">Top 10 Referrers</h4>
               <table
@@ -105,8 +105,8 @@ class Referral extends Component {
                       <tr style={{ background: "#ffffff" }}>
                         <td>{item.referrer_address}</td>
                         <td>{item.referrals}</td>
-                        <td>{getValue(item.volume)}</td>
-                        <td>{getValue(item.affilate_rewards)}</td>
+                        <td>{getValue(item.volume, 2)}</td>
+                        <td>{getValue(item.affilate_rewards, 2)}</td>
                       </tr>
                     );
                   })}
@@ -175,7 +175,7 @@ class Referral extends Component {
                 </div>
               </div>
               {/* table - search result */}
-              <div className="row justify-content-center mt-2">
+              <div className="row justify-content-center mt-2 myoverflow">
                 <div className="col-12">
                   <table
                     style={{ borderCollapse: "collapse" }}
@@ -194,8 +194,8 @@ class Referral extends Component {
                         return (
                           <tr style={{ background: "#ffffff" }}>
                             <td>{action[1]}</td>
-                            <td>{getValue(action[2])}</td>
-                            <td>{getValue(action[3])}</td>
+                            <td>{getValue(action[2], 2)}</td>
+                            <td>{getValue(action[3], 2)}</td>
                             <td>{convertToDate(action[4] * 1000)}</td>
                           </tr>
                         );

@@ -20,9 +20,7 @@ class Networks extends Component {
   render() {
     return (
       <div className="bg-red">
-        <div
-          className="row justify-content-center networks-container customNetwork"        
-        >
+        <div className="row justify-content-center networks-container customNetwork">
           <div className="col-3">
             <div className="text-center">
               <img className="networks" src="/img/network1.jpg" />
