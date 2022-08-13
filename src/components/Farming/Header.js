@@ -13,14 +13,14 @@ const Header = ({
       <nav
         data-aos="zoom-out"
         data-aos-delay={800}
-        className="navbar navbar-expand bg-red"
+        className="navbar navbar-expand bg-red customHeader "
       >
         <div className="container header">
           {/* Navbar Brand*/}
           <a className="navbar-brand" href="/">
             <img
-              className="navbar-brand-sticky fix_logo"
-              src="img/logo_white.svg"
+              className="navbar-brand-sticky"
+              src="img/logo_white.png"
               alt="sticky brand-logo"
             />
           </a>

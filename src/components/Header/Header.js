@@ -25,7 +25,7 @@ const Header = ({
           <a className="navbar-brand" href="/">
             <img
               className="navbar-brand-sticky logo"
-              src="img/logo_red.svg"
+              src="img/logo_red.png"
               alt="sticky brand-logo"
             />
           </a>

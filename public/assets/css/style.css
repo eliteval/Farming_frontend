@@ -1456,7 +1456,7 @@ header .navbar-expand .navbar-brand i {
 }
 
 header .navbar-expand .navbar-brand img {
-  height: var(--nav-brand-height);
+  /* height: var(--nav-brand-height); */
 }
 
 header .navbar-expand .navbar-nav {
