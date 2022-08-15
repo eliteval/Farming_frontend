@@ -182,11 +182,7 @@ class Dashboard extends Component {
                 <div className="row">
                   <div className="col-12">
                     <Alert variant="danger">
-                      You have {this.props.expiredNodeTimestamps.length} node
-                      {this.props.expiredNodeTimestamps.length == 1
-                        ? ""
-                        : "s"}{" "}
-                      expired!
+                      Your node has expired, renew now to get 90% APR.
                     </Alert>
                   </div>
                 </div>
@@ -195,25 +191,23 @@ class Dashboard extends Component {
           ) : (
             <></>
           )}
-          {this.props.expiringNodeTimestamps.length ? (
-            <div className="row ">
-              <div className="col-12">
-                <div className="row">
-                  <div className="col-12">
-                    <Alert variant="warning">
-                      You have {this.props.expiringNodeTimestamps.length} node
-                      {this.props.expiringNodeTimestamps.length == 1
-                        ? ""
-                        : "s"}{" "}
-                      expiring in 30 days!
-                    </Alert>
-                  </div>
-                </div>
+
+          <div className="row ">
+            <div className="col-12">
+              <div className="row">
+                {this.props.expiringDates.map((item) => {
+                  return (
+                    <div className="col-12">
+                      <Alert variant="warning">
+                        You have 1 node to be renewed after{" "}
+                        {new Date(item).toISOString().slice(0, 10)}
+                      </Alert>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          ) : (
-            <></>
-          )}
+          </div>
 
           {/* Global */}
           <div className="row justify-content-center">
@@ -350,7 +344,7 @@ class Dashboard extends Component {
                   className="btn gray claim-button myshadow mx-2 mb-2"
                   onClick={() => this.setState({ modalShow: true })}
                 >
-                  Buy New Node
+                  Buy Nodes
                 </button>
               </div>
               <div className="col-xs-12 col-sm-6  ">

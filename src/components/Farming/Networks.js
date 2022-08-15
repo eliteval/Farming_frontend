@@ -23,22 +23,22 @@ class Networks extends Component {
         <div className="row justify-content-center networks-container customNetwork">
           <div className="col-3">
             <div className="text-center">
-              <img className="networks" src="/img/network1.jpg" />
+              <img className="networks" src="/img/network1.png" />
             </div>
           </div>
           <div className="col-3">
             <div className="text-center">
-            <img className="networks" src="/img/network2.jpg" />
+            <img className="networks" src="/img/network2.png" />
             </div>
           </div>
           <div className="col-3">
             <div className="text-center">
-            <img className="networks" src="/img/network3.jpg" />
+            <img className="networks" src="/img/network3.png" />
             </div>
           </div>
           <div className="col-3">
             <div className="text-center">
-            <img className="networks" src="/img/network4.jpg" />
+            <img className="networks" src="/img/network4.png" />
             </div>
           </div>
         </div>

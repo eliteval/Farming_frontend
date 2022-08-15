@@ -5,7 +5,7 @@ const Header = ({
   metamaskConnected,
   accountAddress,
   connectToMetamask,
-  handleToggle,
+  showMenu,
 }) => {
   const handleButton = () => {
     window.location.href = "/farming?page=dashboard";
@@ -55,7 +55,7 @@ const Header = ({
           </ul>
           {/* Navbar Toggler */}
           <ul className="navbar-nav toggle">
-            <li className="nav-item" onClick={() => handleToggle()}>
+            <li className="nav-item" onClick={() => showMenu()}>
               <a
                 href="#"
                 className="nav-link"

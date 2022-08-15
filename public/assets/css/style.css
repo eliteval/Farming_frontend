@@ -1334,7 +1334,7 @@ aside {
   max-width: 75%!important;
 } */
   .navbar-brand {
-    text-align: center;
+    /* text-align: center; */
   }
   .absole2 {
     right: 0px !important;
@@ -1342,6 +1342,10 @@ aside {
   }
   .absolute_ {
     display: none;
+  }
+
+  #banner {
+    padding-top: 40px;
   }
 }
 @media only screen and (min-width: 1367px) and (max-width: 1600) {
@@ -3595,7 +3599,6 @@ table {
 }
 .modal-content {
   background-color: white;
-  border-radius: 15px;
 }
 
 .lastone {

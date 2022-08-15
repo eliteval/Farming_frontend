@@ -3,6 +3,7 @@ import React from "react";
 const ModalMenu = ({ showSidebarMenu }) => {
   const handleButton = (hash) => {
     window.location.href = hash;
+    window.location.reload();
   };
   const handleAppButton = () => {
     console.log(2);
@@ -29,25 +30,25 @@ const ModalMenu = ({ showSidebarMenu }) => {
             <div className="list_item__ nav-link smooth-anchor">
               <div
                 className="list_child"
-                onClick={() => handleButton("#banner")}
+                onClick={() => handleButton("/#banner")}
               >
                 &nbsp;Home
               </div>
               <div
                 className="list_child"
-                onClick={() => handleButton("#about_area")}
+                onClick={() => handleButton("/#about_area")}
               >
                 &nbsp;Dapp
               </div>
               <div
                 className="list_child"
-                onClick={() => handleButton("#faq_area")}
+                onClick={() => handleButton("/#faq_area")}
               >
                 &nbsp;FAQ
               </div>
               <div
                 className="list_child"
-                onClick={() => handleButton("#contact")}
+                onClick={() => handleButton("/#contact")}
               >
                 &nbsp;Contact
               </div>
@@ -58,7 +59,7 @@ const ModalMenu = ({ showSidebarMenu }) => {
               className="btn ml-lg-auto cutomBotton text-white"
               onClick={() => handleAppButton()}
             >
-              Buy New Node
+              Buy Nodes
             </button>
           </div>
         </div>

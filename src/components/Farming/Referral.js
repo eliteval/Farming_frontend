@@ -86,7 +86,7 @@ class Referral extends Component {
           {/* table - top 10 */}
           <div className="row justify-content-center mt-2 myoverflow">
             <div className="col-12">
-              <h4 className="text-red">Top 10 Referrers</h4>
+              <h4 className="text-red mb-1">Top 10 Referrers</h4>
               <table
                 style={{ borderCollapse: "collapse", fontSize: "12px" }}
                 className="responsive referrer-table mt-2"

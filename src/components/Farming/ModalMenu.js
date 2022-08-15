@@ -58,7 +58,7 @@ const ModalMenu = ({
               className="btn ml-lg-auto cutomBotton text-white"
               onClick={() => goto("/dashboard?page=dashboard")}
             >
-              Buy New Node
+              Buy Nodes
             </button>
             {page == "dashboard" ? (
               metamaskConnected ? (

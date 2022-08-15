@@ -42,11 +42,9 @@ class ThemeOne extends Component {
     };
   }
 
-  componentWillMount = async () => {
+  componentWillMount = async () => {};
 
-  };
-
-  handleToggle = async () => {
+  showMenu = async () => {
     console.log(this.state.showSidebarMenu);
     this.setState({ showSidebarMenu: true });
   };
@@ -59,7 +57,7 @@ class ThemeOne extends Component {
             metamaskConnected={this.state.metamaskConnected}
             accountAddress={this.state.accountAddress}
             connectToMetamask={this.connectToMetamask}
-            handleToggle={this.handleToggle}
+            showMenu={this.showMenu}
           />
           <Banner />
           <Bar />

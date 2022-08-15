@@ -38,7 +38,7 @@
     font-size: 12px;
   }
   .customBar {
-    padding-top: 22px !important;
+    /* padding-top: 22px !important; */
   }
   .customBar h3 {
     font-size: 17px;
@@ -106,9 +106,6 @@
   .customModalCotent {
     opacity: 0.98 !important;
   }
-  .customHeader {
-    opacity: 0.4;
-  }
   .customFooter img {
     width: 160px;
   }
@@ -156,7 +153,7 @@
     background-color: #d1202a !important;
   }
   .customBar {
-    padding-bottom: 20px !important;
+    /* padding-bottom: 20px !important; */
   }
   .customUl {
     margin-right: 235px !important;

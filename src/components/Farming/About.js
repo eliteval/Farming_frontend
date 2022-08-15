@@ -65,7 +65,7 @@ class About extends Component {
                 style={{ fontSize: "20px"}}
                 onClick={() => this.handleButton()}
               >
-                Buy New Node
+                Buy Nodes
               </button>
               
             </div>

@@ -55,8 +55,8 @@ class Farming extends Component {
       userStatus: {},
       userNodes: [],
       expiredNodeTimestamps: [],
-      expiringDuration: 30 * 24 * 60 * 60 * 1000, //after 30 days, will expire
-      expiringNodeTimestamps: [], //after 30 days, will expire
+      expiringDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+      expiringDates: [], //after 30 days, will expire
       //token data
       token_allowance: 0,
       token_balance: 0,
@@ -218,7 +218,7 @@ class Farming extends Component {
 
     var userNodes = [];
     var expiredNodeTimestamps = [];
-    var expiringNodeTimestamps = [];
+    var expiringDates = [];
     await userStatus.nodes_timestamps.reduce(async (accum, timestamp, key) => {
       // don't progress further until the last iteration has finished:
       await accum;
@@ -233,6 +233,8 @@ class Farming extends Component {
           1000,
         0
       );
+
+      var _expiration_period = 60 * 60 * 24 * 20;
       userNodeStatus.remaining_for_expiration = Math.max(
         (Number(userNodeStatus.created_time) +
           Number(_expiration_period) -
@@ -247,13 +249,16 @@ class Farming extends Component {
       else if (
         userNodeStatus.remaining_for_expiration < this.state.expiringDuration
       )
-        expiringNodeTimestamps.push(userNodeStatus.created_time);
+        expiringDates.push(
+          (Number(userNodeStatus.created_time) + Number(_expiration_period)) *
+            1000
+        );
 
       return 1;
     }, Promise.resolve(""));
     this.setState({ userNodes });
     this.setState({ expiredNodeTimestamps });
-    this.setState({ expiringNodeTimestamps });
+    this.setState({ expiringDates });
 
     // Referral
     const referralContract = new this.state.web3.eth.Contract(
@@ -477,7 +482,7 @@ class Farming extends Component {
               userStatus={this.state.userStatus}
               contractStatus={this.state.contractStatus}
               node_type_deposit={this.state.node_type_deposit}
-              expiringNodeTimestamps={this.state.expiringNodeTimestamps}
+              expiringDates={this.state.expiringDates}
               expiredNodeTimestamps={this.state.expiredNodeTimestamps}
             />
           )}
@@ -488,7 +493,7 @@ class Farming extends Component {
               <p>page: {this.state.page}</p>
               <p>networkId: {this.state.networkId}</p>
               <p>contract_address: {this.state.contract_address}</p>
-              <p>expiringNodeTimestamps: {this.state.expiringNodeTimestamps}</p>
+              <p>expiringDates: {JSON.stringify(this.state.expiringDates)}</p>
               <p>expiredNodeTimestamps: {this.state.expiredNodeTimestamps}</p>
               <p>stable_coin_address: {this.state.stable_coin_address}</p>
               <p>token_allowance: {this.state.token_allowance}</p>

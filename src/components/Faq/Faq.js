@@ -12,7 +12,7 @@ const data = [
     id: "3",
     btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
     target: "#collapseThree",
-    quote: "How is the yield generated ?",
+    quote: "How is the yield generated?",
     contentId: "collapseThree",
     contentClass: "collapse ",
     content:
@@ -22,7 +22,7 @@ const data = [
     id: "4",
     btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
     target: "#collapseFour",
-    quote: "Why is this opportunity given to everyone ?",
+    quote: "Why is this opportunity given to everyone?",
     contentId: "collapseFour",
     contentClass: "collapse",
     content:
@@ -32,7 +32,7 @@ const data = [
     id: "5",
     btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
     target: "#collapseFive",
-    quote: "Is this the first protocol of this kind in Turkey ?",
+    quote: "Is this the first protocol of this kind in Turkey?",
     contentId: "collapseFive",
     contentClass: "collapse",
     content:
@@ -42,7 +42,7 @@ const data = [
     id: "6",
     btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
     target: "#collapseSix",
-    quote: "Where are the nodes hosted ?",
+    quote: "Where are the nodes hosted?",
     contentId: "collapseSix",
     contentClass: "collapse",
     content:

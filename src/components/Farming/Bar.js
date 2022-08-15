@@ -21,7 +21,7 @@ class Bar extends Component {
     return (
       <div className="bg-gray customBar">
         <div className="row justify-content-center">
-          <h4 className="mt-5 text-red ">Annual Returns</h4>
+          <h3 className="mt-4 text-red ">Annual Returns</h3>
         </div>
         <div
           className="row justify-content-center"
