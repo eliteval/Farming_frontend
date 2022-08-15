@@ -46,6 +46,21 @@ class Bar extends Component {
             </div>
           </div>
         </div>
+
+        <div
+          className="row justify-content-center mb-3"
+          style={{ width: "90%", maxWidth: "700px", margin: "auto" }}
+        >
+          <div className="col-4">
+            <img className="card-img-top" src="/img/yazi-01.png" />
+          </div>
+          <div className="col-4">
+            <img className="card-img-top" src="/img/yazi-02.png" />
+          </div>
+          <div className="col-4">
+            <img className="card-img-top" src="/img/yazi-03.png" />
+          </div>
+        </div>
       </div>
     );
   }

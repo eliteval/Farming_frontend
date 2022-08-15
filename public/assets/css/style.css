@@ -215,6 +215,10 @@ body {
   background-color: var(--primary-bg-color);
 }
 
+body * {
+  font-family: var(--secondary-font)!important;
+}
+
 body.odd {
   background-color: var(--secondary-bg-color);
 }

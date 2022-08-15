@@ -34,18 +34,18 @@ class About extends Component {
         <div className="container customContainer" style={{ width: "80vw" }}>
           <div className="justify-content-center">
             <div className="intro text-center customAbout">
-              <img
-                className="card-img-top"
-                src="/img/logo_red.png"
-              />
-              <h3 className="mt-0 mb-0 text-black" style={{fontSize: "16px"}}>
+              <img className="card-img-top" src="/img/logo_red.png" />
+              <h3 className="mt-0 mb-0 text-black" style={{ fontSize: "16px" }}>
                 represents a revolution in passive income
               </h3>
             </div>
           </div>
           <div className="row mt-2">
             <div className="col-12 col-md-6 customAbout">
-              <p className="text-black mb-5" style={{textAlign: "justify", fontSize: "16px"}}>
+              <p
+                className="text-black mb-5"
+                style={{ textAlign: "justify", fontSize: "16px" }}
+              >
                 {this.state.data.content}
               </p>
             </div>
@@ -62,12 +62,18 @@ class About extends Component {
             <div className="intro2 text-center customAbout">
               <button
                 className="btn myshadow customButton"
-                style={{ fontSize: "20px"}}
+                style={{ fontSize: "20px" }}
                 onClick={() => this.handleButton()}
               >
                 Buy Nodes
               </button>
-              
+            </div>
+            <div className="text-center mt-5">
+              <img
+                className="card-img-top"
+                src="/img/referral.png"
+                style={{ width: "50%", maxWidth:"400px", cursor:"pointer" }}
+              />
             </div>
             {/* <div className="intro text-center customAbout">
               <button
@@ -80,7 +86,6 @@ class About extends Component {
               
             </div> */}
           </div>
-          
         </div>
       </section>
     );

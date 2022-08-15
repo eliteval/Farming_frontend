@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 // importing all the themes
-import ThemeOne from "../themes/theme-one";
+import Home from "../themes/home";
 import Farming from "../themes/farming";
 import ExploreOne from "../themes/explore-one";
 import ExploreTwo from "../themes/explore-two";
@@ -36,7 +36,7 @@ class MyRouts extends React.Component {
             {/* <Route exact path="/">
               <Redirect to="/home" />
             </Route> */}
-            <Route exact path="/" component={ThemeOne} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/farming" component={Farming} />
           </Switch>
         </Router>

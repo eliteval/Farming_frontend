@@ -21,24 +21,24 @@ class Networks extends Component {
     return (
       <div className="bg-red">
         <div className="row justify-content-center networks-container customNetwork">
-          <div className="col-3">
+          <div className="col-3" style={{ padding: "0px" }}>
             <div className="text-center">
               <img className="networks" src="/img/network1.png" />
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-3" style={{ padding: "0px" }}>
             <div className="text-center">
-            <img className="networks" src="/img/network2.png" />
+              <img className="networks" src="/img/network2.png" />
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-3" style={{ padding: "0px" }}>
             <div className="text-center">
-            <img className="networks" src="/img/network3.png" />
+              <img className="networks" src="/img/network3.png" />
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-3" style={{ padding: "0px" }}>
             <div className="text-center">
-            <img className="networks" src="/img/network4.png" />
+              <img className="networks" src="/img/network4.png" />
             </div>
           </div>
         </div>

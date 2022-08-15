@@ -23,7 +23,7 @@ import Contact from "../components/Contact/Contact";
 
 import Web3 from "web3";
 
-class ThemeOne extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,4 +75,4 @@ class ThemeOne extends Component {
   }
 }
 
-export default ThemeOne;
+export default Home;
