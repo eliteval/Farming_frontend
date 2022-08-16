@@ -246,8 +246,8 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          {/* table */}
-          <div className="row justify-content-center">
+          {/* page - table */}
+          <div className="row justify-content-center myoverflow">
             <div className="col-12">
               <div className="row">
                 <div className="col-12">
@@ -256,8 +256,8 @@ class Dashboard extends Component {
                       <div className="apr__main">APR: 80%</div>
                     </div>
                     <table
-                      style={{ borderCollapse: "collapse" }}
-                      className="responsive claim-table mt-2"
+                      style={{ borderCollapse: "collapse", width:"83%" }}
+                      className="claim-table mt-2"
                     >
                       <thead>
                         <tr>
@@ -270,7 +270,7 @@ class Dashboard extends Component {
                           >
                             Node Type
                           </th>
-                          <th className="col-md-4 hide_767">Quantity</th>
+                          <th className="col-md-4">Quantity</th>
                           <th
                             style={{
                               border: "1px solid beige",
@@ -286,17 +286,8 @@ class Dashboard extends Component {
                         {[0, 1, 2].map((index) => {
                           return (
                             <tr style={{ background: "#ffffff" }} key={index}>
-                              <td>
-                                {getNodeName(index)}
-                                <span
-                                  className="show_767"
-                                  style={{ display: "none" }}
-                                >
-                                  &nbsp;(
-                                  {this.props.userStatus.nodes_per_type[index]})
-                                </span>
-                              </td>
-                              <td className="hide_767">
+                              <td>{getNodeName(index)}</td>
+                              <td className="">
                                 {this.props.userStatus.nodes_per_type[index]}
                               </td>
                               <td className="relative_div">

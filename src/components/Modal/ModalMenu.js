@@ -1,21 +1,20 @@
 import React from "react";
 
-const ModalMenu = ({ showSidebarMenu }) => {
+const ModalMenu = () => {
   const handleButton = (hash) => {
     window.location.href = hash;
     window.location.reload();
   };
   const handleAppButton = () => {
-    console.log(2);
     window.location.href = "/farming?page=dashboard";
   };
   return (
     <div id="menu" className="modal fade p-0">
       <div
         className={
-          showSidebarMenu == true
-            ? "modal-dialog dialog-animated menu_left"
-            : "modal-dialog dialog-animated menu_closed"
+          1 == 1
+            ? "modal-dialog dialog-animated menu_left" //left side
+            : "modal-dialog dialog-animated menu_closed" //full side
         }
       >
         <div className="modal-content customModalCotent h-100">

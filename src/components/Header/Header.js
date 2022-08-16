@@ -2,10 +2,8 @@ import React from "react";
 import "./Header.css";
 
 const Header = ({
-  metamaskConnected,
-  accountAddress,
-  connectToMetamask,
   showMenu,
+  showContactModal,
 }) => {
   const handleButton = () => {
     window.location.href = "/farming?page=dashboard";
@@ -48,7 +46,7 @@ const Header = ({
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="#contact">
+              <a className="nav-link smooth-anchor" onClick={()=>showContactModal()} style={{cursor:"pointer"}}>
                 Contact
               </a>
             </li>

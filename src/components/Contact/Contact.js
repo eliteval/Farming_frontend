@@ -18,7 +18,11 @@ class Contact extends Component {
   }
   render() {
     return (
-      <section className="author-area bg-white" style={{paddingTop:'60px'}} id="contact">
+      <section
+        className="author-area bg-white"
+        style={{ paddingTop: "60px" }}
+        id="contact"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-md-8 col-lg-7">
@@ -84,7 +88,6 @@ class Contact extends Component {
                       className="btn w-100 mt-3 mt-sm-4 red"
                       type="submit"
                     >
-                      <i className="icon-paper-plane mr-2" />
                       Send Message
                     </button>
                   </div>

@@ -21,7 +21,8 @@ import About from "../components/Farming/About";
 import Networks from "../components/Farming/Networks";
 import Contact from "../components/Contact/Contact";
 
-import Web3 from "web3";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 class Home extends Component {
   constructor(props) {
@@ -38,15 +39,18 @@ class Home extends Component {
       ACITVE_PRESALE: false,
       ACITVE_PUBLICSALE: false,
       loading: true,
-      showSidebarMenu: false,
+      sidebarShow: false,
+      modalShow: false,
     };
   }
 
-  componentWillMount = async () => {};
+  componentWillMount = async () => {
+    if (window.location.hash == "#contact") this.setState({ modalShow: true });
+  };
 
   showMenu = async () => {
-    console.log(this.state.showSidebarMenu);
-    this.setState({ showSidebarMenu: true });
+    console.log(this.state.sidebarShow);
+    this.setState({ sidebarShow: true });
   };
 
   render() {
@@ -58,21 +62,62 @@ class Home extends Component {
             accountAddress={this.state.accountAddress}
             connectToMetamask={this.connectToMetamask}
             showMenu={this.showMenu}
+            showContactModal={() => this.setState({ modalShow: true })}
           />
           <Banner />
           <Bar />
           <About />
           <Networks />
           <Faq />
-          <Contact />
           <Footer />
           <ModalSearch />
-          <ModalMenu showSidebarMenu={this.state.showSidebarMenu} />
+          <ModalMenu />
           <Scrollup />
+          <BuyNewNodeModal
+            show={this.state.modalShow}
+            onHide={() => this.setState({ modalShow: false })}
+          />
         </div>
       </>
     );
   }
+}
+
+function BuyNewNodeModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header style={{ height: "75px" }}>
+        <Modal.Title>
+          <h4 className="text-white">Contact</h4>
+        </Modal.Title>
+        <span onClick={() => props.onHide()} className="close_btn">
+          x
+        </span>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="main_flex mb-2">
+          <Form className="row">
+            <Form.Group className="col-sm-12 col-md-12 mb-3">
+              <h6 className="text-black my-2">Subject</h6>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="col-sm-12 col-md-12 mb-3">
+              <h6 className="text-black my-2">Message</h6>
+              <Form.Control as="textarea" rows={4} />
+            </Form.Group>
+          </Form>
+        </div>
+        <div className="main_flex mb-2">
+          <button className="btn red">Submit</button>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
 }
 
 export default Home;

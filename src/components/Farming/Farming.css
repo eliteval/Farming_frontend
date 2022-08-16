@@ -86,10 +86,8 @@
     font-size: 11px;
   }
   .claim-table th {
-    background-color: white !important;
-  }
-  .claim-table th {
-    color: #000 !important;
+    /* background-color: white !important;
+    color: #000 !important; */
   }
   .customTable button {
     font-size: 11px;

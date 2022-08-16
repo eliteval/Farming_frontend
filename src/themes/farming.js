@@ -234,7 +234,7 @@ class Farming extends Component {
         0
       );
 
-      var _expiration_period = 60 * 60 * 24 * 20;
+      // var _expiration_period = 60 * 60 * 24 * 40; //40 days
       userNodeStatus.remaining_for_expiration = Math.max(
         (Number(userNodeStatus.created_time) +
           Number(_expiration_period) -
