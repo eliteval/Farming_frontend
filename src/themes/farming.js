@@ -456,7 +456,12 @@ class Farming extends Component {
                   <div className="col-12 col-md-8 col-lg-7">
                     <div className="intro text-center">
                       <h4 className="mt-3 mb-0  text-black">
-                        Please change network to Binance Smart Chain.
+                        <a
+                          href="https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain"
+                          target="blank"
+                        >
+                          Please change network to Binance Smart Chain.
+                        </a>
                       </h4>
                     </div>
                   </div>
