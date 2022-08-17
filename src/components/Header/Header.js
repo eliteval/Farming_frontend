@@ -1,10 +1,7 @@
 import React from "react";
 import "./Header.css";
 
-const Header = ({
-  showMenu,
-  showContactModal,
-}) => {
+const Header = ({ showMenu, showContactModal }) => {
   const handleButton = () => {
     window.location.href = "/farming?page=dashboard";
   };
@@ -46,8 +43,20 @@ const Header = ({
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" onClick={()=>showContactModal()} style={{cursor:"pointer"}}>
+              <a
+                className="nav-link smooth-anchor"
+                onClick={() => showContactModal()}
+                style={{ cursor: "pointer" }}
+              >
                 Contact
+              </a>
+            </li>
+          </ul>
+          {/* Navbar language */}
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a href="https://turknodes.com" className="nav-link">
+                <img className="flag" src="/img/flag_turkey.png" />
               </a>
             </li>
           </ul>

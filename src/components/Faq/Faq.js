@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import parse from "html-react-parser";
 
 const initData = {
   pre_heading: "",
@@ -47,7 +48,44 @@ const data = [
     contentClass: "collapse",
     content:
       "TurkNodes are geographically distributed around the world to bolster decentralization of the very networks it aims to secure, further expanding its global footprint.",
-  }
+  },
+  {
+    id: "7",
+    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
+    target: "#collapseSeven",
+    quote: "How to buy a Node?",
+    contentId: "collapseSeven",
+    contentClass: "collapse",
+    content: `<a href="faq1.pdf" target="_blank">Please read full description here.</a>`,
+  },
+  {
+    id: "8",
+    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
+    target: "#collapseEight",
+    quote: "How to withdraw to your Binance account?",
+    contentId: "collapseEight",
+    contentClass: "collapse",
+    content: `1.	Claim your rewards and send them to your Binance BNB Deposit Wallet<br> 2.	Sell BNB for Lira and withdraw Lira from your Binance account to your Bank Account.`,
+  },
+  {
+    id: "9",
+    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
+    target: "#collapseNine",
+    quote: "Referral System",
+    contentId: "collapseNine",
+    contentClass: "collapse",
+    content: `When you refer a friend to TurkNode you receive a $5 USD bonus (paid in BNB tokens) for the referral and your friend receives a discount of $5 USD on their  TurkNode purchases! <br>When your friends sign up to TurkNode be sure they copy and paste your entire wallet address (example 0x123abc……)`,
+  },
+  {
+    id: "10",
+    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
+    target: "#collapseTen",
+    quote: "Important Tips",
+    contentId: "collapseTen",
+    contentClass: "collapse",
+    content: `Be sure to always withdraw a little more BNB tokens than you think you need.<br>
+    Be sure to always keep a little bit of BNB tokens in your wallet to cover network costs`,
+  },
 ];
 
 class Faq extends Component {
@@ -70,7 +108,12 @@ class Faq extends Component {
               {/* Intro */}
               <div className="intro text-center customFaq">
                 <span>{this.state.initData.pre_heading}</span>
-                <h2 className="mt-3 mb-0" style={{textShadow: "4px 3px 7px black"}}>{this.state.initData.heading}</h2>
+                <h2
+                  className="mt-3 mb-0"
+                  style={{ textShadow: "4px 3px 7px black" }}
+                >
+                  {this.state.initData.heading}
+                </h2>
                 {/* <p>{this.state.initData.content}</p> */}
               </div>
             </div>
@@ -84,109 +127,139 @@ class Faq extends Component {
                   <div className="row justify-content-center">
                     <div className="col-12 col-md-10 customFaq">
                       {/* Single Accordion Item */}
-                      <div style={{boxShadow: "7px 6px 18px black", borderRadius: "17px"}}>
-                      {this.state.data.map((item, idx) => {
-                        if(idx === 0) {
-                          return (
-                            <div
-                              key={`fd_${idx}`}
-                              className="single-accordion-item"
-                              style={{backgroundColor: '#302e2e', borderRadius: '17px 17px 0 0'}}
-                            >
-                              {/* Card Header */}
-                              <div className="card-header bg-inherit p-0">
-                                <h2 className="m-0">
-                                  <button
-                                  style={{borderRadius: 0, borderRadius: '17px 17px 0 0'}}
-                                    className={item.btnClass}
-                                    type="button"
-                                    data-toggle="collapse"
-                                    data-target={item.target}
-                                  >
-                                    {item.quote}
-                                  </button>
-                                </h2>
-                              </div>
+                      <div
+                        style={{
+                          boxShadow: "7px 6px 18px black",
+                          borderRadius: "17px",
+                        }}
+                      >
+                        {this.state.data.map((item, idx) => {
+                          if (idx === 0) {
+                            return (
                               <div
-                                id={item.contentId}
-                                className={item.contentClass}
-                                data-parent="#netstorm-accordion"
+                                key={`fd_${idx}`}
+                                className="single-accordion-item"
+                                style={{
+                                  backgroundColor: "#302e2e",
+                                  borderRadius: "17px 17px 0 0",
+                                }}
                               >
-                                {/* Card Body */}
-                                <div className="card-body py-3 contentBody" style={{color:"#bbb"}}>
-                                  {item.content}
+                                {/* Card Header */}
+                                <div className="card-header bg-inherit p-0">
+                                  <h2 className="m-0">
+                                    <button
+                                      style={{
+                                        borderRadius: 0,
+                                        borderRadius: "17px 17px 0 0",
+                                      }}
+                                      className={item.btnClass}
+                                      type="button"
+                                      data-toggle="collapse"
+                                      data-target={item.target}
+                                    >
+                                      {item.quote}
+                                    </button>
+                                  </h2>
                                 </div>
-                              </div>
-                            </div>
-                          ); 
-                        }
-                        if(idx === this.state.data.length - 1) {
-                          return (
-                            <div
-                              key={`fd_${idx}`}
-                              className="single-accordion-item"
-                              style={{backgroundColor: '#302e2e', borderRadius: '0 0 17px 17px'}}
-                            >
-                              {/* Card Header */}
-                              <div className="card-header bg-inherit p-0">
-                                <h2 className="m-0">
-                                  <button
-                                  style={{borderRadius: 0, borderRadius: '0 0 17px 17px', borderTop: "1px solid white"}}
-                                    className={item.btnClass}
-                                    type="button"
-                                    data-toggle="collapse"
-                                    data-target={item.target}
-                                  >
-                                    {item.quote}
-                                  </button>
-                                </h2>
-                              </div>
-                              <div
-                                id={item.contentId}
-                                className={item.contentClass}
-                                data-parent="#netstorm-accordion"
-                              >
-                                {/* Card Body */}
-                                <div className="card-body py-3 contentBody" style={{color:"#bbb"}}>
-                                  {item.content}
-                                </div>
-                              </div>
-                            </div>
-                          ); 
-                        }
-                        return (
-                          <div
-                            key={`fd_${idx}`}
-                            className="single-accordion-item"
-                            style={{backgroundColor: '#302e2e'}}
-                          >
-                            {/* Card Header */}
-                            <div className="card-header bg-inherit p-0">
-                              <h2 className="m-0">
-                                <button
-                                style={{borderRadius: 0, borderTop: "1px solid white"}}
-                                  className={item.btnClass}
-                                  type="button"
-                                  data-toggle="collapse"
-                                  data-target={item.target}
+                                <div
+                                  id={item.contentId}
+                                  className={item.contentClass}
+                                  data-parent="#netstorm-accordion"
                                 >
-                                  {item.quote}
-                                </button>
-                              </h2>
-                            </div>
+                                  {/* Card Body */}
+                                  <div
+                                    className="card-body py-3 contentBody"
+                                    style={{ color: "#bbb" }}
+                                  >
+                                    {parse(item.content)}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+                          if (idx === this.state.data.length - 1) {
+                            return (
+                              <div
+                                key={`fd_${idx}`}
+                                className="single-accordion-item"
+                                style={{
+                                  backgroundColor: "#302e2e",
+                                  borderRadius: "0 0 17px 17px",
+                                }}
+                              >
+                                {/* Card Header */}
+                                <div className="card-header bg-inherit p-0">
+                                  <h2 className="m-0">
+                                    <button
+                                      style={{
+                                        borderRadius: 0,
+                                        borderRadius: "0 0 17px 17px",
+                                        borderTop: "1px solid white",
+                                      }}
+                                      className={item.btnClass}
+                                      type="button"
+                                      data-toggle="collapse"
+                                      data-target={item.target}
+                                    >
+                                      {item.quote}
+                                    </button>
+                                  </h2>
+                                </div>
+                                <div
+                                  id={item.contentId}
+                                  className={item.contentClass}
+                                  data-parent="#netstorm-accordion"
+                                >
+                                  {/* Card Body */}
+                                  <div
+                                    className="card-body py-3 contentBody"
+                                    style={{ color: "#bbb" }}
+                                  >
+                                    {parse(item.content)}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+                          return (
                             <div
-                              id={item.contentId}
-                              className={item.contentClass}
-                              data-parent="#netstorm-accordion"
+                              key={`fd_${idx}`}
+                              className="single-accordion-item"
+                              style={{ backgroundColor: "#302e2e" }}
                             >
-                              {/* Card Body */}
-                              <div className="card-body py-3 contentBody" style={{color:"#bbb"}}>
-                                {item.content}
+                              {/* Card Header */}
+                              <div className="card-header bg-inherit p-0">
+                                <h2 className="m-0">
+                                  <button
+                                    style={{
+                                      borderRadius: 0,
+                                      borderTop: "1px solid white",
+                                    }}
+                                    className={item.btnClass}
+                                    type="button"
+                                    data-toggle="collapse"
+                                    data-target={item.target}
+                                  >
+                                    {item.quote}
+                                  </button>
+                                </h2>
+                              </div>
+                              <div
+                                id={item.contentId}
+                                className={item.contentClass}
+                                data-parent="#netstorm-accordion"
+                              >
+                                {/* Card Body */}
+                                <div
+                                  className="card-body py-3 contentBody"
+                                  style={{ color: "#bbb" }}
+                                >
+                                  {parse(item.content)}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

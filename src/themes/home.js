@@ -73,7 +73,7 @@ class Home extends Component {
           <ModalSearch />
           <ModalMenu />
           <Scrollup />
-          <BuyNewNodeModal
+          <ContactModal
             show={this.state.modalShow}
             onHide={() => this.setState({ modalShow: false })}
           />
@@ -83,7 +83,7 @@ class Home extends Component {
   }
 }
 
-function BuyNewNodeModal(props) {
+function ContactModal(props) {
   return (
     <Modal
       {...props}
@@ -101,19 +101,29 @@ function BuyNewNodeModal(props) {
       </Modal.Header>
       <Modal.Body>
         <div className="main_flex mb-2">
-          <Form className="row">
+          <Form className="row" method="POST" action="assets/php/mail.php">
+            <Form.Group className="col-sm-12 col-md-12 mb-3">
+              <h6 className="text-black my-2">Name</h6>
+              <Form.Control type="text" name="name" required />
+            </Form.Group>
+            <Form.Group className="col-sm-12 col-md-12 mb-3">
+              <h6 className="text-black my-2">Email</h6>
+              <Form.Control type="email" name="email" required />
+            </Form.Group>
             <Form.Group className="col-sm-12 col-md-12 mb-3">
               <h6 className="text-black my-2">Subject</h6>
-              <Form.Control type="text" />
+              <Form.Control type="text" name="subject" required />
             </Form.Group>
             <Form.Group className="col-sm-12 col-md-12 mb-3">
               <h6 className="text-black my-2">Message</h6>
-              <Form.Control as="textarea" rows={4} />
+              <Form.Control as="textarea" rows={4} name="message" required />
+            </Form.Group>
+            <Form.Group className="col-sm-12 col-md-12 mb-3 text-center">
+              <button className="btn red" type="submit">
+                Submit
+              </button>
             </Form.Group>
           </Form>
-        </div>
-        <div className="main_flex mb-2">
-          <button className="btn red">Submit</button>
         </div>
       </Modal.Body>
     </Modal>
