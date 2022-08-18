@@ -86,6 +86,15 @@ const data = [
     content: `Be sure to always withdraw a little more BNB tokens than you think you need.<br>
     Be sure to always keep a little bit of BNB tokens in your wallet to cover network costs`,
   },
+  {
+    id: "11",
+    btnClass: "btn d-block text-left w-100 collapsed py-4 gray",
+    target: "#collapseEleven",
+    quote: "Connecting MetaMask to Binance Smart Chain",
+    contentId: "collapseEleven",
+    contentClass: "collapse",
+    content: `<a href="https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain" target="_blank">Please read full description here.</a>`,
+  },
 ];
 
 class Faq extends Component {
