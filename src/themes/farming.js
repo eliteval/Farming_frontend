@@ -152,10 +152,11 @@ class Farming extends Component {
       let accountBalance = await web3.eth.getBalance(accounts[0]);
       accountBalance = web3.utils.fromWei(accountBalance, "Ether");
       this.setState({ accountBalance });
+
       const networkId = await web3.eth.net.getId();
       this.setState({ networkId });
 
-      console.log(networkId, this.state.accountAddress, accountBalance);
+      if (networkId != 56) await this.swtichNetwork();
 
       const networkData = FarmingData.networks[networkId];
       if (networkData) {
@@ -173,6 +174,42 @@ class Farming extends Component {
       } else {
       }
     }
+  };
+
+  swtichNetwork = async () => {
+    console.log("swtichNetwork");
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x38" }],
+      });
+    } catch (switchError) {
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0x38",
+                chainName: "Binance Smart Chain Mainnet",
+                nativeCurrency: {
+                  name: "BNB",
+                  symbol:  "BNB",
+                  decimals: 18,
+                },
+                rpcUrls: ["https://bsc-dataseed1.binance.org"] /* ... */,
+                blockExplorerUrls: ["https://bscscan.com"]                
+              },
+            ],
+          });
+        } catch (addError) {
+          // handle "add" error
+        }
+      }
+      // handle other "switch" errors
+    }
+    window.location.reload();
   };
 
   loadData = async () => {
