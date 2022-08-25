@@ -118,9 +118,9 @@ class Faq extends Component {
   }
   render() {
     return (
-      <section className="faq-area pt-0 bg-red" id="faq_area">
+      <section className="faq-area pt-0 bg-red" >
         <div className="container">
-          <div className="row justify-content-center">
+          <div className="row justify-content-center" id="guide">
             <div className="col-12 col-md-8 col-lg-7">
               {/* Intro */}
               <div className="intro text-center customFaq">
@@ -252,7 +252,7 @@ class Faq extends Component {
           </div>
 
           {/* FAQ */}
-          <div className="row justify-content-center">
+          <div className="row justify-content-center" id="faq_area">
             <div className="col-12 col-md-8 col-lg-7">
               {/* Intro */}
               <div className="intro text-center customFaq">

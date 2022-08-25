@@ -41,6 +41,12 @@ const ModalMenu = () => {
               </div>
               <div
                 className="list_child"
+                onClick={() => handleButton("/#guide")}
+              >
+                &nbsp;Guide
+              </div>
+              <div
+                className="list_child"
                 onClick={() => handleButton("/#faq_area")}
               >
                 &nbsp;FAQ
