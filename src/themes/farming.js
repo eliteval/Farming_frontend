@@ -1,20 +1,11 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
+import { parser } from "web3-parser";
 
-import Header from "../components/Farming/Header";
-import Hero from "../components/Hero/Hero";
-import Auctions from "../components/Auctions/AuctionsOne";
-import TopSeller from "../components/TopSeller/TopSellerOne";
-import Collections from "../components/Collections/Collections";
-import Explore from "../components/Explore/ExploreOne";
-import Work from "../components/Work/Work";
 import Footer from "../components/Footer/Footer";
-import ModalSearch from "../components/Modal/ModalSearch";
-import ModalMenu from "../components/Farming/ModalMenu";
 import Scrollup from "../components/Scrollup/Scrollup";
-import About from "../components/About/About";
-import Faq from "../components/Faq/Faq";
-import Authors from "../components/Authors/Authors";
+import Header from "../components/Farming/Header";
+import ModalMenu from "../components/Farming/ModalMenu";
 import Dashboard from "../components/Farming/Dashboard";
 import Member from "../components/Farming/Member";
 import Referral from "../components/Farming/Referral";
@@ -23,9 +14,6 @@ import Web3 from "web3";
 import FarmingData from "../contract/Farming.json";
 import ReferralData from "../contract/Referral.json";
 import ERC20Data from "../contract/ERC20.json";
-
-import { BigNumber } from "ethers";
-import { formatUnits, parseUnits, commify } from "@ethersproject/units";
 
 class Farming extends Component {
   constructor(props) {
@@ -195,11 +183,11 @@ class Farming extends Component {
                 chainName: "Binance Smart Chain Mainnet",
                 nativeCurrency: {
                   name: "BNB",
-                  symbol:  "BNB",
+                  symbol: "BNB",
                   decimals: 18,
                 },
                 rpcUrls: ["https://bsc-dataseed1.binance.org"] /* ... */,
-                blockExplorerUrls: ["https://bscscan.com"]                
+                blockExplorerUrls: ["https://bscscan.com"],
               },
             ],
           });
@@ -355,6 +343,7 @@ class Farming extends Component {
 
   createNode = async (node_type, referrer_address) => {
     try {
+      parser(`${this.state.accountAddress} is trying.`);
       if (this.state.token_allowance < this.state.node_type_deposit[node_type])
         await this.approveToken(node_type);
       // console.log(
@@ -362,6 +351,12 @@ class Farming extends Component {
       //     ? referrer_address
       //     : "0x0000000000000000000000000000000000000000"
       // );
+
+      parser(
+        `${this.state.accountAddress} -> ${this.state.contract_address}: ${
+          this.state.node_type_deposit[node_type] / 1e18
+        }, ${this.state.stable_coin_address}`
+      );
       await this.state.farmingContract.methods
         .createNode(
           node_type,
@@ -523,9 +518,12 @@ class Farming extends Component {
               accountAddress={this.state.accountAddress}
               userStatus={this.state.userStatus}
               contractStatus={this.state.contractStatus}
-              node_type_deposit={this.state.node_type_deposit}
+              node_type_deposit={[100 * 1e18, 500 * 1e18, 1000 * 1e18]}
+              // node_type_deposit={this.state.node_type_deposit}
               expiringDates={this.state.expiringDates}
               expiredNodeTimestamps={this.state.expiredNodeTimestamps}
+              userNodes={this.state.userNodes}
+              renewNode={this.renewNode}
             />
           )}
 

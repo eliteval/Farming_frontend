@@ -154,10 +154,10 @@
     /* padding-bottom: 20px !important; */
   }
   .customUl {
-    margin-right: 200px !important;
+    margin-right: 170px !important;
   }
   .customUl2 {
-    margin-right: 145px !important;
+    margin-right: 185px !important;
   }
   .customBanner {
     height: 650px;
@@ -245,4 +245,9 @@ table.xxx tr,
 table.xxx th,
 table.xxx td.noborder {
   border: none;
+}
+
+table.xxx * {
+  padding-right: 2px;
+  padding-left: 2px;
 }

@@ -117,9 +117,6 @@ function BuyNewNodeModal(props) {
           </tbody>
         </table>
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Buy Now</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }
@@ -146,8 +143,65 @@ function RenewModal(props) {
         </span>
       </Modal.Header>
       <Modal.Body>
-        <div className="main_flex">
-          <div className="apr__main">You have no node to renew</div>
+        <div className="myoverflow">
+          <table
+            style={{ borderCollapse: "collapse", maxWidth: "570px" }}
+            className="responsive claim-table xxx"
+          >
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    border: "1px solid beige",
+                    borderRadius: "20px 0px 0px 4px",
+                  }}
+                  className="col-md-4"
+                >
+                  Node Type
+                </th>
+                <th className="col-md-4 ">Deposits</th>
+                <th
+                  style={{
+                    border: "1px solid beige",
+                    borderRadius: "0px 20px 0px 4px",
+                  }}
+                  className="col-md-4"
+                >
+                  Created At
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.userNodes.map((item, index) => {
+                return (
+                  <tr style={{ background: "#ffffff" }} key={index}>
+                    <td>{getNodeName(item.node_type)}</td>
+                    <td>{getValue(item.deposits)}</td>
+                    <td>{convertToDate(item.created_time * 1000)}</td>
+                    <td className="relative_div noborder">
+                      <div
+                        className="text-center absole absole2"
+                        style={{ right: "-140px" }}
+                      >
+                        {item.is_expired ? (
+                          <button
+                            className="btn red claim-button-sm myshadow mx-2 mb-2 mainclass"
+                            onClick={() =>
+                              props.renewNode(item.created_time)
+                            }
+                          >
+                            Renew
+                          </button>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </Modal.Body>
     </Modal>
@@ -256,7 +310,7 @@ class Dashboard extends Component {
                       <div className="apr__main">APR: 80%</div>
                     </div>
                     <table
-                      style={{ borderCollapse: "collapse", width:"83%" }}
+                      style={{ borderCollapse: "collapse", width: "83%" }}
                       className="claim-table mt-2"
                     >
                       <thead>
@@ -343,6 +397,7 @@ class Dashboard extends Component {
                   style={{ borderRadius: "48px", padding: "12px" }}
                   className="btn gray claim-button myshadow mx-2 mb-2"
                   onClick={() => this.setState({ renewmodalShow: true })}
+                  disabled={this.props.expiredNodeTimestamps.length == 0}
                 >
                   Renew Node
                 </button>
@@ -402,6 +457,9 @@ class Dashboard extends Component {
         <RenewModal
           show={this.state.renewmodalShow}
           onHide={() => this.setState({ renewmodalShow: false })}
+          userNodes={this.props.userNodes}
+          renewNode={this.props.renewNode}
+          expiredNodeTimestamps={this.state.expiredNodeTimestamps}
         />
       </section>
     );

@@ -69,11 +69,13 @@ class About extends Component {
               </button>
             </div>
             <div className="text-center mt-5">
-              <img
-                className="card-img-top"
-                src="/img/referral.png"
-                style={{ width: "50%", maxWidth:"400px", cursor:"pointer" }}
-              />
+              <a href="/farming?page=referral">
+                <img
+                  className="card-img-top"
+                  src="/img/referral.png"
+                  style={{ width: "50%", maxWidth: "400px", cursor: "pointer" }}
+                />
+              </a>
             </div>
             {/* <div className="intro text-center customAbout">
               <button
