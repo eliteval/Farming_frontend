@@ -39,11 +39,6 @@ const Header = ({ showMenu, showContactModal }) => {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link smooth-anchor" href="#guide">
-                Guide
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link smooth-anchor" href="#faq_area">
                 FAQ
               </a>
             </li>
