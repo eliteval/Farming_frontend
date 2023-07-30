@@ -527,7 +527,7 @@ class Farming extends Component {
             />
           )}
 
-          {window.location.hostname === "localhost" ||
+          {/* {window.location.hostname === "localhost" ||
           window.location.hostname === "127.0.0.1" ? (
             <div className="bg-white">
               <p>page: {this.state.page}</p>
@@ -542,7 +542,7 @@ class Farming extends Component {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
 
           <Footer />
           <ModalMenu
